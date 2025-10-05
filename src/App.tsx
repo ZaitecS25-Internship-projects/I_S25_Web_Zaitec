@@ -4,8 +4,6 @@ function App() {
   return (
     <>
     <Header/>
-      <p>
-      </p>
     </>
   )
 }

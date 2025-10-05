@@ -1,11 +1,13 @@
 
 export default function Header() {
   return (
-  <>
-  <h1>
-    
-  </h1>
-  </>
+    <>
+      <header>
+        <div>
+          <h1>Aqui ira el Nombre</h1>
+        </div>
+      </header>
+    </>
 
   )
 }
