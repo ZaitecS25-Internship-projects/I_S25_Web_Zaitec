@@ -3,18 +3,20 @@ import { NavLink } from 'react-router-dom';
 import { motion } from 'framer-motion'
 import { useState } from 'react';
 
-
+//! Header para movil
 export default function HeaderMovil() {
 
+    //! estado para manejar el estado de la navegación
     const [modalNav, setModalNav] = useState<boolean>(false)
 
+    //!función para cambiar estado, si pasa a true se muestra la navegación maneja los dos estados true y false
     const openNav = () => {
         setModalNav(prev => !prev)
     }
 
     return (
         <div className="relative bg-[url('/img/header-zaitectwo.jpg')] bg-no-repeat bg-cover bg-top h-105">
-            <div className='absolute inset-0 bg-black/50 flex items-end pb-13'>
+            <div className='absolute inset-0 bg-black/70 flex items-end pb-13'>
                 <motion.p
                     className='mx-auto text-2xl text-amber-50 text-center px-2 pb-7 will-change-transform'
                     initial={{ x: -400, opacity: 0 }}
@@ -24,21 +26,20 @@ export default function HeaderMovil() {
                 </motion.p>
             </div>
 
-            <div className='grid grid-col-1 z-10 justify-items-center gap-1 pt-5'>
+            <div className='relative grid grid-col-1 justify-items-center gap-1 pt-5 z-10'>
                 <div>
                     <img
                         src="/img/zaitec-logo-blanco.png"
                         alt="imagen del logo"
-                        className='w-25 min-w-18 mx-auto pb-2' />
+                        className='w-25 min-w-18 mx-auto pb-2 z-10' />
                 </div>
                 <div className=''>
-                    <h1 className="text-7xl text-white font-bold font-sans "> Zaitec</h1>
-                    <p className="text-4xl text-amber-500 text-right font-bold ">Innova</p>
+                    <h1 className="text-7xl text-white font-bold font-sans z-10 "> Zaitec</h1>
+                    <p className="text-4xl text-amber-500 text-right font-bold z-10 ">Innova</p>
                 </div>
             </div>
 
             <div className='absolute top-5 right-5 z-50 flex flex-col items-end gap-1'>
-
                 <button
                     type='button'
                     className='flex flex-col items-center text-white pr-2 '
@@ -46,7 +47,6 @@ export default function HeaderMovil() {
                 ><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="size-7 text-orange-400">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6h9.75M10.5 6a1.5 1.5 0 1 1-3 0m3 0a1.5 1.5 0 1 0-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-9.75 0h9.75" />
                     </svg><span className='text-sm'>Menu</span></button>
-
 
                 {modalNav && (
                     <nav className=' flex flex-col items-end bg-gray-900 opacity-80 rounded-xl'>
@@ -86,7 +86,6 @@ export default function HeaderMovil() {
                                 className={({ isActive }) => (isActive ? 'text-orange-500  font-bold' : 'text-amber-50 font-semi-bold')}> Desarrollo de proyectos </NavLink>
                         </motion.div>
                     </nav>)}
-
             </div>
         </div>
     )

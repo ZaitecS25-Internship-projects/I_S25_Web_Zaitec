@@ -1,12 +1,14 @@
 import { NavLink } from "react-router-dom"
 import {motion} from 'framer-motion'
 
+// Header quesse mostrarà con una resolución mayor a 782px
 export default function HeaderDesktop() {
   return (
     <div className="relative flex flex-row justify-center items-start max-w-8xl  bg-[url('/img/header-zaitectwo.jpg')] bg-no-repeat bg-cover bg-top h-140">
-          <div className='absolute inset-0 bg-black/50 flex items-center'>
+          <div className='absolute inset-0 bg-black/60 flex items-center z-1'>
+      
             <motion.p
-              className=' mx-auto text-6xl text-amber-50 text-center will-change-transform'
+              className='mx-auto text-6xl text-amber-50 text-center will-change-transform'
               initial={{ x: -400, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
               transition={{ duration: 2, delay: 0.8, ease: 'easeInOut' }}>
@@ -14,29 +16,31 @@ export default function HeaderDesktop() {
             </motion.p>
           </div>
 
-          <div className='flex flex-row gap-8 items-top flex-1 pt-3 z-10 '>
+          <div className='relative z-10 flex flex-row gap-8 items-top flex-1 pt-3  '>
             <div className='pt-1'>
               <img
                 src="/img/zaitec-logo-blanco.png"
                 alt="imagen del logo"
-                className='min-w-28 mx-auto pl-4' />
+                className='min-w-28 mx-auto pl-4 z-10' />
             </div>
+        
             <motion.div
               initial={{ opacity: 0.2 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 2, delay: 0.5, ease: 'easeInOut', }}
             >
-              <h1 className="text-8xl text-white font-bold font-sans "> Zaitec</h1>
-              <p className="text-4xl text-amber-500 text-right font-bold ">Innova</p>
+              <h1 className="text-8xl text-white font-bold font-sans"> Zaitec</h1>
+              <p className="text-4xl text-amber-500 text-right font-bold">Innova</p>
             </motion.div>
           </div>
-
+          
           <motion.nav
             className='flex flex-col justify-end items-end gap-4 pb-4 pr-10 z-10 h-full'
             initial={{ opacity: 0, x: 100 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 2, delay: 0.8, ease: 'easeInOut', }}
           >
+          
             <motion.div
               whileHover={{ x: -10 }}
               whileTap={{ x: 5 }}
