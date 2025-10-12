@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 
 export default function Desarrollo() {
-return (
+  return (
     <div className="bg-neutral-100 shadow-md shadow-neutral-400">
       <section className="flex flex-col gap-5 lg:w-4/5 mx-auto mb-5 p-5 pt-10 pb-25 md:pt-25 ">
         <h2 className="text-2xl font-semibold md:text-4xl md:w-2/3 lg:text-5xl lg:text-neutral-800 lg:w-3/4"><span className="text-orange-600">Proyectos </span>que generan confianza y resultados</h2>
@@ -15,13 +15,13 @@ return (
             viewport={{ once: true, amount: 0.5 }}   // solo se anima la primera vez, al 50% visible
             className="flex flex-col gap-2 border border-neutral-400 rounded-lg px-4 py-6 shadow-lg shadow-neutral-400 min-h-35"
           >
-            <div className="w-full aspect-square overflow-hidden rounded-lg">
-    <img
-      src="/img/gestion-agil.jpg"
-      alt="Gestión Ágil"
-      className="w-full h-full object-cover"
-    />
-  </div>
+            <div className="w-full aspect-square overflow-hidden rounded-lg"> // la imagen siempre sale cuadrada
+              <img
+                src="/img/gestion-agil.jpg"
+                alt="Gestión Ágil"
+                className="w-full h-full object-cover"
+              />
+            </div>
             <h3 className="text-xl font-bold">Gestión Ágil.</h3>
             <p className="text-neutral-600">Solución Innovadora para la Gestión Ágil</p>
           </motion.div>
@@ -32,8 +32,8 @@ return (
             viewport={{ once: true, amount: 0.5 }}   // solo se anima la primera vez, al 50% visible
             className="flex flex-col gap-2 border border-neutral-400 rounded-lg px-4 py-6 shadow-lg shadow-neutral-400 min-h-35"
           >
-             <div className="w-full aspect-square overflow-hidden rounded-lg">
-            <img src= "public/img/digitalizacion.jpg" alt="Digitalización" className="w-full h-full object-cover"/>
+            <div className="w-full aspect-square overflow-hidden rounded-lg">   //   Preferences: Open Settings (JSON)sale siempre cuadrada la imagen, responsive
+              <img src="public/img/digitalizacion.jpg" alt="Digitalización" className="w-full h-full object-cover" />
             </div><h3 className="text-xl font-bold">Digitalización.</h3>
             <p className="text-neutral-600">Transformación digital en Tiempo Real </p>
           </motion.div>
@@ -43,9 +43,9 @@ return (
             transition={{ duration: 0.9, delay: 0.2, ease: 'easeIn' }}
             viewport={{ once: true, amount: 0.5 }}   // solo se anima la primera vez, al 50% visible
             className="flex flex-col gap-2 border border-neutral-400 rounded-lg px-4 py-6 shadow-lg shadow-neutral-400 min-h-35"
-            >
-               <div className="w-full aspect-square overflow-hidden rounded-lg">
-                <img src="public/img/crecimiento-empresarial.jpg" alt="Crecimiento empresarial" className="w-full h-full object-cover"/>
+          >
+            <div className="w-full aspect-square overflow-hidden rounded-lg">   //   sale siempre cuadrada la imagen, responsive
+              <img src="public/img/crecimiento-empresarial.jpg" alt="Crecimiento empresarial" className="w-full h-full object-cover" />
             </div><h3 className="text-xl font-bold">Crecimiento Empresarial.</h3>
             <p className="text-neutral-600">Herramienta Escalable para Crecimiento Empresarial</p>
           </motion.div>
