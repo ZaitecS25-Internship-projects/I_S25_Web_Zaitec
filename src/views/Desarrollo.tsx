@@ -15,7 +15,8 @@ export default function Desarrollo() {
             viewport={{ once: true, amount: 0.5 }}   // solo se anima la primera vez, al 50% visible
             className="flex flex-col gap-2 border border-neutral-400 rounded-lg px-4 py-6 shadow-lg shadow-neutral-400 min-h-35"
           >
-            <div className="w-full aspect-square overflow-hidden rounded-lg"> // la imagen siempre sale cuadrada
+            <div className="w-full aspect-square overflow-hidden rounded-lg">
+              {/* Este div crea un contenedor cuadrado con bordes redondeados para mantener la forma de la imagen */}
               <img
                 src="/img/gestion-agil.jpg"
                 alt="Gestión Ágil"
@@ -32,8 +33,9 @@ export default function Desarrollo() {
             viewport={{ once: true, amount: 0.5 }}   // solo se anima la primera vez, al 50% visible
             className="flex flex-col gap-2 border border-neutral-400 rounded-lg px-4 py-6 shadow-lg shadow-neutral-400 min-h-35"
           >
-            <div className="w-full aspect-square overflow-hidden rounded-lg">   //   Preferences: Open Settings (JSON)sale siempre cuadrada la imagen, responsive
-              <img src="public/img/digitalizacion.jpg" alt="Digitalización" className="w-full h-full object-cover" />
+            <div className="w-full aspect-square overflow-hidden rounded-lg">
+              {/* Este div crea un contenedor cuadrado con bordes redondeados para mantener la forma de la imagen */}
+              <img src="/img/digitalizacion.jpg" alt="Digitalización" className="w-full h-full object-cover" />
             </div><h3 className="text-xl font-bold">Digitalización.</h3>
             <p className="text-neutral-600">Transformación digital en Tiempo Real </p>
           </motion.div>
@@ -44,8 +46,9 @@ export default function Desarrollo() {
             viewport={{ once: true, amount: 0.5 }}   // solo se anima la primera vez, al 50% visible
             className="flex flex-col gap-2 border border-neutral-400 rounded-lg px-4 py-6 shadow-lg shadow-neutral-400 min-h-35"
           >
-            <div className="w-full aspect-square overflow-hidden rounded-lg">   //   sale siempre cuadrada la imagen, responsive
-              <img src="public/img/crecimiento-empresarial.jpg" alt="Crecimiento empresarial" className="w-full h-full object-cover" />
+            <div className="w-full aspect-square overflow-hidden rounded-lg">
+              {/* Este div crea un contenedor cuadrado con bordes redondeados para mantener la forma de la imagen */}
+              <img src="/img/crecimiento-empresarial.jpg" alt="Crecimiento empresarial" className="w-full h-full object-cover" />
             </div><h3 className="text-xl font-bold">Crecimiento Empresarial.</h3>
             <p className="text-neutral-600">Herramienta Escalable para Crecimiento Empresarial</p>
           </motion.div>
