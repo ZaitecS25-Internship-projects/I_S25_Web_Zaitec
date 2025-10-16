@@ -29,4 +29,10 @@ export const routerApp = createBrowserRouter([
             }
         ]
     }
+<<<<<<< HEAD
 ])
+=======
+])
+
+
+>>>>>>> origin/main
