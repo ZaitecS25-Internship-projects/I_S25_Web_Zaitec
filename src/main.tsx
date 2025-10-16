@@ -5,7 +5,6 @@ import './index.css'
 import { routerApp } from './router'
 import Footer from "./components/Footer"
 
-//! Cargar el routerApp desde el archivo router
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <RouterProvider router={routerApp}/>
