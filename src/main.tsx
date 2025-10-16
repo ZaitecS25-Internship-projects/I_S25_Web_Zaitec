@@ -9,5 +9,6 @@ import Footer from "./components/Footer"
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <RouterProvider router={routerApp}/>
+      <Footer />
   </StrictMode>,
 )
