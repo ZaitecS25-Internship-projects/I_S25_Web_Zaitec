@@ -1,39 +1,53 @@
 
 import { useActionData, Form, useOutletContext } from 'react-router-dom';
 import type { ActionFunctionArgs } from "react-router-dom"
-import type { userDataType } from "../types"
-import { useRef, useEffect } from 'react';
+import type { ErrorType, UserDataType } from "../types"
+import { useRef, useEffect, useState } from 'react';
 import { initialForm } from '../layouts/Layout';
+
 
 export type ActionDataType = {
   error?: string
-  formUserData: userDataType
+  formUserData: UserDataType
 }
 
 type OutletContextType = {
-  formState: userDataType;
-  setFormState: React.Dispatch<React.SetStateAction<userDataType>>;
+  formState: UserDataType;
+  setFormState: React.Dispatch<React.SetStateAction<UserDataType>>;
 };
 
 
 export const action = async ({ request }: ActionFunctionArgs) => {
   const dataForm = await request.formData()
-  const data = Object.fromEntries(dataForm.entries()) as userDataType
+  const data = Object.fromEntries(dataForm.entries()) as UserDataType
+  const userData = { ...data, comentario: 'sin comnetario' }
 
-  const userData = {...data, comentario:'sin comnetario' }
 
-  if (Object.values(userData).includes('')) {
-      return { error: 'Todos los campos son obligatorios' } 
-  }
+  // if (Object.values(userData).includes('')) {
+  //   return { error: 'Todos los campos son obligatorios' }
+  // }
+
+  // if (!emailRegex.test(userData.email)) {
+  //   return { error: 'Email no válido' };
+  // }
 
   console.log(userData)
   return { formUserData: userData }
 }
 
 export default function Contacto() {
-
   const actionData = useActionData<ActionDataType>()
   const { formState, setFormState } = useOutletContext<OutletContextType>()
+  const [errors, setErrors] = useState<ErrorType>({
+    nombre: '',
+    apellido: '',
+    segunapellido: '',
+    email: '',
+    telefono: '',
+    fecha: '',
+  });
+
+  // const [mensageError, setMensageError] = useState<{ error?: string, show?: boolean }>({})
   const formRef = useRef<HTMLFormElement>(null)
 
   useEffect(() => {
@@ -43,12 +57,61 @@ export default function Contacto() {
     }
   }, [actionData])
 
+  useEffect(() => {
+    const initialErrors: ErrorType = {
+      nombre: formState.nombre ? '' : 'Este campo es obligatorio',
+      apellido: formState.apellido ? '' : 'Este campo es obligatorio',
+      segunapellido: formState.segunapellido ? '' : 'Este campo es obligatorio',
+      email: formState.email
+        ? /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formState.email)
+          ? ''
+          : 'Email no válido'
+        : 'Este campo es obligatorio',
+      telefono: formState.telefono ? '' : 'Este campo es obligatorio',
+      fecha: formState.fecha ? '' : 'Este campo es obligatorio',
+    };
+
+    setErrors(initialErrors);
+  }, []);
+
+  // useEffect(() => {
+  //   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  //   const newFormState = { ...formState }
+
+  //   if (Object.values(newFormState).includes('')) {
+  //     setMensageError({ error: 'Todos los campos son requeridos', show: true });
+  //   } else if (!emailRegex.test(newFormState.email)) {
+  //     setMensageError({ error: 'El email no es válido', show: true });
+  //   } else {
+  //     setMensageError({ error: '', show: false });
+  //   }
+
+  // }, [formState])
+
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
-    const { value, name } = e.target
-    setFormState((prev) => ({
+    const { name, value } = e.target;
+
+    // Actualizamos formState
+    setFormState(prev => ({
       ...prev,
-      [name]: value
-    }))
+      [name as keyof UserDataType]: value,
+    }));
+
+    // Validamos dinámicamente el campo
+    setErrors(prev => {
+      const newErrors = { ...prev };
+
+      if (value.trim() === '') {
+        newErrors[name as keyof ErrorType] = 'Este campo es obligatorio';
+      } else if (name === 'email') {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        newErrors[name as keyof ErrorType] = !emailRegex.test(value) ? 'Email no válido' : '';
+      } else {
+        newErrors[name as keyof ErrorType] = '';
+      }
+
+      return newErrors;
+    });
   }
 
   return (
@@ -68,9 +131,11 @@ export default function Contacto() {
               type="text"
               id="nombre"
               name="nombre"
+              value={formState.nombre}
               onChange={handleChange}
               placeholder="Escribe tú nombre..."
               className="w-full border border-neutral-300 p-2 rounded-md shadow-md outline-0 text-md" />
+            {errors.nombre && <p className='text-red-500 text-sm'>{errors.nombre}</p>}
           </div>
           <div className="flex flex-col gap-1 text-neutral-600">
             <label
@@ -82,6 +147,7 @@ export default function Contacto() {
               onChange={handleChange}
               placeholder="Escribe tú primer apellido..."
             />
+            {errors.apellido && <p className='text-red-500 text-sm'>{errors.apellido}</p>}
           </div>
           <div className="flex flex-col gap-1 text-neutral-600">
             <label
@@ -93,6 +159,7 @@ export default function Contacto() {
               onChange={handleChange}
               placeholder="Escribe tú segundo apellido..."
             />
+            {errors.segunapellido && <p className='text-red-500 text-sm'>{errors.segunapellido}</p>}
           </div>
           <div className="flex flex-col gap-1 text-neutral-600">
             <label
@@ -101,10 +168,11 @@ export default function Contacto() {
             >Email:</label>
             <input
               className="w-full border border-neutral-300 rounded-md p-2 shadow-md outline-0 text-md"
-              type="email" id="email" name="email"
+              type="text" id="email" name="email"
               onChange={handleChange}
               placeholder="Escribe tú email..."
             />
+            {errors.email && <p className='text-red-500 text-sm'>{errors.email}</p>}
           </div>
           <div className="flex flex-col gap-1 text-neutral-600">
             <label
@@ -116,6 +184,7 @@ export default function Contacto() {
               onChange={handleChange}
               placeholder="Escribe tú número de teléfono..."
             />
+            {errors.telefono && <p className='text-red-500 text-sm'>{errors.telefono}</p>}
           </div>
           <div className="flex flex-col gap-1 text-neutral-600">
             <label
@@ -127,7 +196,7 @@ export default function Contacto() {
               name="fecha"
               onChange={handleChange}
             />
-
+            {errors.fecha && <p className='text-red-500 text-sm'>{errors.fecha}</p>}
           </div>
           <div className="flex flex-col gap-1 text-neutral-600">
             <label
@@ -150,7 +219,7 @@ export default function Contacto() {
             >Resetear</button>
           </div>
           <div>
-            {actionData?.error}
+
           </div>
         </Form>
       </fieldset>

@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom"
 import {motion} from 'framer-motion'
 
-// Header quesse mostrarà con una resolución mayor a 782px
+// Header que se mostrará con una resolución mayor a 782px
 export default function HeaderDesktop() {
   return (
     <div className="relative flex flex-row justify-center items-start max-w-8xl  bg-[url('/img/header-zaitectwo.jpg')] bg-no-repeat bg-cover bg-top h-140">
@@ -85,7 +85,7 @@ export default function HeaderDesktop() {
             >
               <NavLink
                 to={'/desarrollo'}
-                className={({ isActive }) => (isActive ? 'text-black text-shadow-none text-lg font-bold ' : 'text-white font-bold text-lg')}> Desarrollo de proyectos </NavLink>
+                className={({ isActive }) => (isActive ? 'text-black text-shadow-none text-lg font-bold ' : 'text-white font-bold text-lg')}> Desarrollo de proyectos Software</NavLink>
             </motion.div>
           </motion.nav>
         </div>

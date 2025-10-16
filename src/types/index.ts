@@ -7,7 +7,7 @@ export type CardInnovacionType = {
 
 export type Cards = CardInnovacionType[]
 
-export type userDataType = {
+export type UserDataType = {
     nombre: string
     apellido: string
     segunapellido: string
@@ -16,3 +16,13 @@ export type userDataType = {
     fecha: string
     comentario?: string
 }
+
+export type ErrorType =  {
+     nombre: string
+    apellido: string
+    segunapellido: string
+    email: string
+    telefono: string
+    fecha: string
+}
+

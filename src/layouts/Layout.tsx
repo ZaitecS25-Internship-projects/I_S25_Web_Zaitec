@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { Outlet } from "react-router-dom"
 import Header from "../components/Header"
-import type { userDataType } from "../types"
+import type { UserDataType } from "../types"
 
 export const initialForm = {
 nombre: '',
@@ -10,12 +10,12 @@ segunapellido: '',
 email: '',
 telefono: '',
 fecha: '',
-comentario: '',
+comentario: 'sin comentario',
 }
 
 export default function Layout() {
 
-  const [formState, setFormState] = useState<userDataType>(initialForm)
+  const [formState, setFormState] = useState<UserDataType>(initialForm)
 
   return (
     <>
