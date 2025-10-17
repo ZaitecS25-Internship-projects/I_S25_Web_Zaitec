@@ -2,6 +2,7 @@ import { useState } from "react"
 import { Outlet } from "react-router-dom"
 import Header from "../components/Header"
 import type { UserDataType } from "../types"
+import Footer from "../components/Footer"
 
 export const initialForm = {
   nombre: '',
@@ -25,7 +26,7 @@ export default function Layout() {
           context={{ formState, setFormState }}
         />
       </main>
-      
+      <Footer />
     </>
   )
 }
