@@ -20,7 +20,7 @@ type OutletContextType = {
 export const action = async ({ request }: ActionFunctionArgs) => {
   const dataForm = await request.formData()
   const data = Object.fromEntries(dataForm.entries()) as UserDataType
-  const userData = { ...data, comentario: 'sin comnetario' }
+  const userData = { ...data, comentario: "sin comentario" }
 
 
   // if (Object.values(userData).includes('')) {
@@ -225,11 +225,11 @@ export default function Contacto() {
           <div className="flex gap-5">
             <button
               type="submit"
-              className="block bg-green-500 flex-1  my-2 mx-auto py-1 font-bold text-white text-lg text-shadow-lg rounded-md"
+              className="block bg-green-600 flex-1  my-2 mx-auto py-1 font-bold text-white text-lg text-shadow-lg rounded-md hover:bg-green-500 transition duration-300"
             >Enviar</button>
             <button
               type="reset"
-              className="block bg-orange-500 flex-1 my-2 mx-auto py-1 font-bold text-white text-lg text-shadow-lg rounded-md"
+              className="block bg-orange-500 flex-1 my-2 mx-auto py-1 font-bold text-white text-lg text-shadow-lg rounded-md hover:bg-orange-400 transition duration-300"
             >Resetear</button>
           </div>
           <div>

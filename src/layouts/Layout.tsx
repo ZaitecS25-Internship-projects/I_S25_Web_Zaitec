@@ -11,7 +11,7 @@ export const initialForm = {
   email: '',
   telefono: '',
   fecha: '',
-  comentario: 'sin comentario',
+  comentario: '',
 }
 
 export default function Layout() {
