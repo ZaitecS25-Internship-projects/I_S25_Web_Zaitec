@@ -3,13 +3,13 @@ import { NavLink } from 'react-router-dom';
 import { motion } from 'framer-motion'
 import { useState } from 'react';
 
-//! Header para movil
+
 export default function HeaderMovil() {
 
-    //! estado para manejar el estado de la navegación
+
     const [modalNav, setModalNav] = useState<boolean>(false)
 
-    //!función para cambiar estado, si pasa a true se muestra la navegación maneja los dos estados true y false
+   
     const openNav = () => {
         setModalNav(prev => !prev)
     }

@@ -4,6 +4,7 @@ import IndexPage from "./views/IndexPage";
 import Contacto from "./views/Contacto";
 import Desarrollo from "./views/Desarrollo";
 import Formacion from "./views/Formacion";
+import {action as actionContacto} from './views/Contacto'
 
 export const routerApp = createBrowserRouter([
 
@@ -17,7 +18,8 @@ export const routerApp = createBrowserRouter([
             },
             {
                 path: 'contacto',
-                element: <Contacto />
+                element: <Contacto />,
+                action: actionContacto
             },
             {
                 path: 'formacion',

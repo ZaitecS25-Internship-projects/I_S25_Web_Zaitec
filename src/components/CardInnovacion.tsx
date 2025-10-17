@@ -11,8 +11,8 @@ export default function CardInnovacion({ cards }: CardPropsType) {
             {cards.map((card) => (
                 <motion.div
                     key={card.titulo}
-                    initial={{ opacity: 0 }}            // empieza invisible y un poco abajo
-                    whileInView={{ opacity: 1 }}        // aparece y sube a posición
+                    initial={{ opacity: 0 }}            
+                    whileInView={{ opacity: 1 }}      
                     transition={{ duration: 0.9, delay: 0.2, ease: 'easeIn' }}
                     viewport={{ once: true, amount: 0.5 }}   // solo se anima la primera vez, al 50% visible
                     className="flex flex-col gap-2 border border-neutral-400 rounded-lg px-4 py-6 shadow-lg shadow-neutral-400 min-h-35"
