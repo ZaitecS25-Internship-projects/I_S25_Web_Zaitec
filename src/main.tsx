@@ -5,6 +5,13 @@ import './index.css'
 import { routerApp } from './router'
 import Footer from "./components/Footer"
 
+<<<<<<< HEAD
+=======
+
+
+//! Cargar el routerApp desde el archivo router
+
+>>>>>>> temp-save
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <RouterProvider router={routerApp}/>
