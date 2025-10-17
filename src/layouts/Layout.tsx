@@ -4,13 +4,13 @@ import Header from "../components/Header"
 import type { UserDataType } from "../types"
 
 export const initialForm = {
-nombre: '',
-apellido: '',
-segunapellido: '',
-email: '',
-telefono: '',
-fecha: '',
-comentario: 'sin comentario',
+  nombre: '',
+  apellido: '',
+  segunapellido: '',
+  email: '',
+  telefono: '',
+  fecha: '',
+  comentario: 'sin comentario',
 }
 
 export default function Layout() {
@@ -20,10 +20,12 @@ export default function Layout() {
   return (
     <>
       <Header />
-
-      <Outlet
-      context={{formState, setFormState}}
-      />
+      <main>
+        <Outlet
+          context={{ formState, setFormState }}
+        />
+      </main>
+      
     </>
   )
 }

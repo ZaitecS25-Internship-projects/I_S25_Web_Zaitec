@@ -91,11 +91,19 @@ export default function Contacto() {
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
     const { name, value } = e.target;
 
-    // Actualizamos formState
-    setFormState(prev => ({
-      ...prev,
-      [name as keyof UserDataType]: value,
-    }));
+    //prueba 
+    const updateFormState = {
+      ...formState,
+      [name]: value
+    }
+
+    setFormState(updateFormState)
+
+    // // Actualizamos formState
+    // setFormState(prev => ({
+    //   ...prev,
+    //   [name as keyof UserDataType]: value,
+    // }));
 
     // Validamos dinámicamente el campo
     setErrors(prev => {
@@ -144,6 +152,7 @@ export default function Contacto() {
             <input
               className="w-full border border-neutral-300 rounded-md p-2 shadow-md outline-0 text-md"
               type="text" id="apellido" name="apellido"
+              value={formState.apellido}
               onChange={handleChange}
               placeholder="Escribe tú primer apellido..."
             />
@@ -156,6 +165,7 @@ export default function Contacto() {
             <input
               className="w-full border border-neutral-300 rounded-md p-2 shadow-md outline-0 text-md"
               type="text" id="segunapellido" name="segunapellido"
+              value={formState.segunapellido}
               onChange={handleChange}
               placeholder="Escribe tú segundo apellido..."
             />
@@ -169,6 +179,7 @@ export default function Contacto() {
             <input
               className="w-full border border-neutral-300 rounded-md p-2 shadow-md outline-0 text-md"
               type="text" id="email" name="email"
+              value={formState.email}
               onChange={handleChange}
               placeholder="Escribe tú email..."
             />
@@ -181,6 +192,7 @@ export default function Contacto() {
             <input
               className="w-full border border-neutral-300 rounded-md p-2 shadow-md outline-0 text-md"
               type="text" id="telefono" name="telefono"
+              value={formState.telefono}
               onChange={handleChange}
               placeholder="Escribe tú número de teléfono..."
             />
@@ -194,6 +206,7 @@ export default function Contacto() {
               className="w-full border border-neutral-300 rounded-md p-2 shadow-md outline-0 text-md text-neutral-500"
               type="date" id="fecha"
               name="fecha"
+              value={formState.fecha}
               onChange={handleChange}
             />
             {errors.fecha && <p className='text-red-500 text-sm'>{errors.fecha}</p>}
@@ -205,6 +218,7 @@ export default function Contacto() {
             <textarea
               className="w-full h-20 border border-neutral-300 shadow-md outline-0"
               id="comentario" name="comentario"
+              value={formState.comentario}
               onChange={handleChange}
               placeholder="Escribe un comentario..."></textarea>
           </div>
