@@ -9,7 +9,7 @@ export default function HeaderDesktop() {
       
             <motion.p
               className='mx-auto text-6xl text-amber-50 text-center will-change-transform'
-              initial={{ x: -400, opacity: 0 }}
+              initial={{ x: -200, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
               transition={{ duration: 2, delay: 0.8, ease: 'easeInOut' }}>
               Asesoría tecnológica diseñada para empresas líderes

@@ -1,9 +1,9 @@
-
-import { useActionData, Form, useOutletContext } from 'react-router-dom';
-import type { ActionFunctionArgs } from "react-router-dom"
-import type { ErrorType, UserDataType } from "../types"
 import { useRef, useEffect, useState } from 'react';
+import type { ActionFunctionArgs } from "react-router-dom"
+import { useActionData, Form, useOutletContext } from 'react-router-dom';
 import { initialForm } from '../layouts/Layout';
+import type { ErrorType, UserDataType } from "../types"
+import { Helmet } from 'react-helmet';
 
 
 export type ActionDataType = {
@@ -123,122 +123,131 @@ export default function Contacto() {
   }
 
   return (
-    <div className="w-full md:w-3/4 lg:w-1/2 p-10 my-10 mx-auto">
-      <p className='text-2xl text-center mb-6'><span className='text-orange-600'>Rellene el formulario</span> y le conestaremos lo antes posible</p>
-      <fieldset className="border-2 border-neutral-300 p-10 rounded-xl shadow-lg">
-        <legend className="text-xl md:text-3xl lg:text-4xl text-center text-neutral-600 px-2"> Formulario de Contacto</legend>
-        <Form
-          ref={formRef}
-          method="post"
-          className="flex flex-col gap-5">
-          <div className="flex flex-col gap-1 text-neutral-600">
-            <label
-              className="font-bold text-lg"
-              htmlFor="nombre">Nombre:</label>
-            <input
-              type="text"
-              id="nombre"
-              name="nombre"
-              value={formState.nombre}
-              onChange={handleChange}
-              placeholder="Escribe tú nombre..."
-              className="w-full border border-neutral-300 p-2 rounded-md shadow-md outline-0 text-md" />
-            {errors.nombre && <p className='text-red-500 text-sm'>{errors.nombre}</p>}
-          </div>
-          <div className="flex flex-col gap-1 text-neutral-600">
-            <label
-              className="font-bold text-lg"
-              htmlFor="apellido">Primer Apellido:</label>
-            <input
-              className="w-full border border-neutral-300 rounded-md p-2 shadow-md outline-0 text-md"
-              type="text" id="apellido" name="apellido"
-              value={formState.apellido}
-              onChange={handleChange}
-              placeholder="Escribe tú primer apellido..."
-            />
-            {errors.apellido && <p className='text-red-500 text-sm'>{errors.apellido}</p>}
-          </div>
-          <div className="flex flex-col gap-1 text-neutral-600">
-            <label
-              className="font-bold text-lg"
-              htmlFor="segunapellido">Segundo Apellido:</label>
-            <input
-              className="w-full border border-neutral-300 rounded-md p-2 shadow-md outline-0 text-md"
-              type="text" id="segunapellido" name="segunapellido"
-              value={formState.segunapellido}
-              onChange={handleChange}
-              placeholder="Escribe tú segundo apellido..."
-            />
-            {errors.segunapellido && <p className='text-red-500 text-sm'>{errors.segunapellido}</p>}
-          </div>
-          <div className="flex flex-col gap-1 text-neutral-600">
-            <label
-              className="font-bold text-lg"
-              htmlFor="email"
-            >Email:</label>
-            <input
-              className="w-full border border-neutral-300 rounded-md p-2 shadow-md outline-0 text-md"
-              type="text" id="email" name="email"
-              value={formState.email}
-              onChange={handleChange}
-              placeholder="Escribe tú email..."
-            />
-            {errors.email && <p className='text-red-500 text-sm'>{errors.email}</p>}
-          </div>
-          <div className="flex flex-col gap-1 text-neutral-600">
-            <label
-              className="font-bold text-lg"
-              htmlFor="telefono">Telefono de contacto:</label>
-            <input
-              className="w-full border border-neutral-300 rounded-md p-2 shadow-md outline-0 text-md"
-              type="text" id="telefono" name="telefono"
-              value={formState.telefono}
-              onChange={handleChange}
-              placeholder="Escribe tú número de teléfono..."
-            />
-            {errors.telefono && <p className='text-red-500 text-sm'>{errors.telefono}</p>}
-          </div>
-          <div className="flex flex-col gap-1 text-neutral-600">
-            <label
-              className="font-bold text-lg"
-              htmlFor="fecha">Fecha:</label>
-            <input
-              className="w-full border border-neutral-300 rounded-md p-2 shadow-md outline-0 text-md text-neutral-500"
-              type="date" id="fecha"
-              name="fecha"
-              value={formState.fecha}
-              onChange={handleChange}
-            />
-            {errors.fecha && <p className='text-red-500 text-sm'>{errors.fecha}</p>}
-          </div>
-          <div className="flex flex-col gap-1 text-neutral-600">
-            <label
-              className="font-bold text-lg"
-            >Comentario:</label>
-            <textarea
-              className="w-full h-20 border border-neutral-300 shadow-md outline-0"
-              id="comentario" name="comentario"
-              value={formState.comentario}
-              onChange={handleChange}
-              placeholder="Escribe un comentario..."></textarea>
-          </div>
-          <div className="flex gap-5">
-            <button
-              type="submit"
-              className="block bg-green-600 flex-1  my-2 mx-auto py-1 font-bold text-white text-lg text-shadow-lg rounded-md hover:bg-green-500 transition duration-300"
-            >Enviar</button>
-            <button
-              type="reset"
-              className="block bg-orange-500 flex-1 my-2 mx-auto py-1 font-bold text-white text-lg text-shadow-lg rounded-md hover:bg-orange-400 transition duration-300"
-            >Resetear</button>
-          </div>
-          <div>
 
-          </div>
-        </Form>
-      </fieldset>
+    <>
 
-    </div>
+      <Helmet>
+        <title>Formulario de Contacto | Zaitec</title>
+        <meta name="description" content="Formulario para usuarios que quieren información" />
+      </Helmet>
+
+      <div className="w-full md:w-3/4 lg:w-1/2 p-10 my-10 mx-auto">
+        <p className='text-2xl text-center mb-6'><span className='text-orange-600'>Rellene el formulario</span> y le conestaremos lo antes posible</p>
+        <fieldset className="border-2 border-neutral-300 p-10 rounded-xl shadow-lg">
+          <legend className="text-xl md:text-3xl lg:text-4xl text-center text-neutral-600 px-2"> Formulario de Contacto</legend>
+          <Form
+            ref={formRef}
+            method="post"
+            className="flex flex-col gap-5">
+            <div className="flex flex-col gap-1 text-neutral-600">
+              <label
+                className="font-bold text-lg"
+                htmlFor="nombre">Nombre:</label>
+              <input
+                type="text"
+                id="nombre"
+                name="nombre"
+                value={formState.nombre}
+                onChange={handleChange}
+                placeholder="Escribe tú nombre..."
+                className="w-full border border-neutral-300 p-2 rounded-md shadow-md outline-0 text-md" />
+              {errors.nombre && <p className='text-red-500 text-sm'>{errors.nombre}</p>}
+            </div>
+            <div className="flex flex-col gap-1 text-neutral-600">
+              <label
+                className="font-bold text-lg"
+                htmlFor="apellido">Primer Apellido:</label>
+              <input
+                className="w-full border border-neutral-300 rounded-md p-2 shadow-md outline-0 text-md"
+                type="text" id="apellido" name="apellido"
+                value={formState.apellido}
+                onChange={handleChange}
+                placeholder="Escribe tú primer apellido..."
+              />
+              {errors.apellido && <p className='text-red-500 text-sm'>{errors.apellido}</p>}
+            </div>
+            <div className="flex flex-col gap-1 text-neutral-600">
+              <label
+                className="font-bold text-lg"
+                htmlFor="segunapellido">Segundo Apellido:</label>
+              <input
+                className="w-full border border-neutral-300 rounded-md p-2 shadow-md outline-0 text-md"
+                type="text" id="segunapellido" name="segunapellido"
+                value={formState.segunapellido}
+                onChange={handleChange}
+                placeholder="Escribe tú segundo apellido..."
+              />
+              {errors.segunapellido && <p className='text-red-500 text-sm'>{errors.segunapellido}</p>}
+            </div>
+            <div className="flex flex-col gap-1 text-neutral-600">
+              <label
+                className="font-bold text-lg"
+                htmlFor="email"
+              >Email:</label>
+              <input
+                className="w-full border border-neutral-300 rounded-md p-2 shadow-md outline-0 text-md"
+                type="text" id="email" name="email"
+                value={formState.email}
+                onChange={handleChange}
+                placeholder="Escribe tú email..."
+              />
+              {errors.email && <p className='text-red-500 text-sm'>{errors.email}</p>}
+            </div>
+            <div className="flex flex-col gap-1 text-neutral-600">
+              <label
+                className="font-bold text-lg"
+                htmlFor="telefono">Telefono de contacto:</label>
+              <input
+                className="w-full border border-neutral-300 rounded-md p-2 shadow-md outline-0 text-md"
+                type="text" id="telefono" name="telefono"
+                value={formState.telefono}
+                onChange={handleChange}
+                placeholder="Escribe tú número de teléfono..."
+              />
+              {errors.telefono && <p className='text-red-500 text-sm'>{errors.telefono}</p>}
+            </div>
+            <div className="flex flex-col gap-1 text-neutral-600">
+              <label
+                className="font-bold text-lg"
+                htmlFor="fecha">Fecha:</label>
+              <input
+                className="w-full border border-neutral-300 rounded-md p-2 shadow-md outline-0 text-md text-neutral-500"
+                type="date" id="fecha"
+                name="fecha"
+                value={formState.fecha}
+                onChange={handleChange}
+              />
+              {errors.fecha && <p className='text-red-500 text-sm'>{errors.fecha}</p>}
+            </div>
+            <div className="flex flex-col gap-1 text-neutral-600">
+              <label
+                className="font-bold text-lg"
+              >Comentario:</label>
+              <textarea
+                className="w-full h-20 border border-neutral-300 shadow-md outline-0"
+                id="comentario" name="comentario"
+                value={formState.comentario}
+                onChange={handleChange}
+                placeholder="Escribe un comentario..."></textarea>
+            </div>
+            <div className="flex gap-5">
+              <button
+                type="submit"
+                className="block bg-green-600 flex-1  my-2 mx-auto py-1 font-bold text-white text-lg text-shadow-lg rounded-md hover:bg-green-500 transition duration-300"
+              >Enviar</button>
+              <button
+                type="reset"
+                className="block bg-orange-500 flex-1 my-2 mx-auto py-1 font-bold text-white text-lg text-shadow-lg rounded-md hover:bg-orange-400 transition duration-300"
+              >Resetear</button>
+            </div>
+            <div>
+
+            </div>
+          </Form>
+        </fieldset>
+
+      </div>
+    </>
   )
 }
 

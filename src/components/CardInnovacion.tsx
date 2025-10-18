@@ -9,7 +9,7 @@ export default function CardInnovacion({ cards }: CardPropsType) {
     return (
         <>
             {cards.map((card) => (
-                <motion.div
+                <motion.article
                     key={card.titulo}
                     initial={{ opacity: 0 }}            
                     whileInView={{ opacity: 1 }}      
@@ -19,7 +19,7 @@ export default function CardInnovacion({ cards }: CardPropsType) {
                 >
                     <h3 className="text-xl font-bold">{card.titulo}</h3>
                     <p className="text-neutral-600">{card.descripcion}</p>
-                </motion.div>
+                </motion.article>
             ))}
         </>
     )
