@@ -12,6 +12,7 @@ export default function Formación() {
   };
 
   return (
+   
     <div className="bg-neutral-100 min-h-screen flex items-center justify-center">
       <section className="flex flex-col gap-5 lg:w-4/5 mx-auto mb-5 p-5 pt-10 pb-25 md:pt-25">
         
