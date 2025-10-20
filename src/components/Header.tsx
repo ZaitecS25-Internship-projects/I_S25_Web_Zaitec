@@ -1,30 +1,97 @@
-import { useState, useEffect } from "react"
-import HeaderDesktop from './HeaderDesktop';
-import HeaderMovil from "./HeaderMovil";
-
+import { NavLink } from 'react-router-dom';
+import { motion } from 'framer-motion'
+import { useState } from 'react';
 
 export default function Header() {
+    const [modalNav, setModalNav] = useState<boolean>(false)
 
-    //Estado para manejar la resolución
-    const [modeMobile, setModMobile] = useState<boolean>(false)
+    const openNav = () => {
+        setModalNav(prev => !prev)
+    }
 
-    // Actualizamos en el primer render
-    useEffect(() => {
-        // función que maneja el estado
-        const handleResize = () => setModMobile(window.innerWidth < 768);
-        // llamada a la función para su ejecución inmedieta
-        handleResize();
-        // creando el evento y añadimos la función 
-        window.addEventListener("resize", handleResize);
-        // borramos el evento para renders innecesarios
-        return () => window.removeEventListener("resize", handleResize)
-
-    }, [])
     return (
         <>
-            <header>
-                {!modeMobile ? <HeaderDesktop /> : <HeaderMovil />}
-            </header>
+            <div className='fixed w-full flex flex-row z-100 bg-neutral-100 p-2'>
+                <div>
+                    <img
+                        src="/img/logo-zaitec.png"
+                        alt="imagen del logo"
+                        className='w-16 p-1' />
+                </div>
+                <div className='absolute top-5 right-5 z-50 flex flex-col items-end gap-4'>
+                    <button
+                        type='button'
+                        className='flex flex-col items-center text-white pr-2 '
+                        onClick={openNav}
+                    ><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="size-7 text-neutral-500">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6h9.75M10.5 6a1.5 1.5 0 1 1-3 0m3 0a1.5 1.5 0 1 0-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-9.75 0h9.75" />
+                        </svg><span className='text-sm text-orange-700 font-bold'>Menu</span></button>
+
+                    {modalNav && (
+                        <nav className=' flex flex-col items-end bg-gray-900 opacity-80 rounded-xl'>
+                            <motion.div className=' px-4 py-1 w-fit text-shadow-lg'
+                                whileHover={{ x: -10 }}
+                                transition={{ type: "spring", stiffness: 100, damping: 15 }}
+                            >
+                                <NavLink
+                                    to={'/'}
+                                    className={({ isActive }) => (isActive ? 'text-orange-500  font-bold ' : 'text-white font-semi-bold')}> Inicio </NavLink>
+                            </motion.div>
+
+                            <motion.div className=' px-5 py-1 w-fit'
+                                whileHover={{ x: -10 }}
+                                transition={{ type: "spring", stiffness: 100, damping: 15 }}
+                            >
+                                <NavLink
+                                    to={'/contacto'}
+                                    className={({ isActive }) => (isActive ? 'text-orange-500  font-bold' : 'text-amber-50 font-semi-bold')}> Contacto </NavLink>
+                            </motion.div>
+
+                            <motion.div className='px-6 py-1  w-fit'
+                                whileHover={{ x: -10 }}
+                                transition={{ type: "spring", stiffness: 100, damping: 15 }}
+                            >
+                                <NavLink
+                                    to={'/formacion'}
+                                    className={({ isActive }) => (isActive ? 'text-orange-500  font-bold' : 'text-amber-50 font-semi-bold')}> Formación </NavLink>
+                            </motion.div>
+
+                            <motion.div className='px-5 py-1 w-fit'
+                                whileHover={{ x: -10 }}
+                                transition={{ type: "spring", stiffness: 100, damping: 15 }}
+                            >
+                                <NavLink
+                                    to={'/desarrollo'}
+                                    className={({ isActive }) => (isActive ? 'text-orange-500  font-bold' : 'text-amber-50 font-semi-bold')}> Desarrollo de proyectos </NavLink>
+                            </motion.div>
+                        </nav>)}
+                </div>
+            </div>
+
+            <div className='pt-20'>
+                <div className="relative bg-[url('/img/header-zaitectwo.jpg')] bg-no-repeat bg-cover bg-center h-80">
+                    <div className='absolute inset-0 bg-black/50 flex items-end pb-13'>
+                        <motion.p
+                            className='mx-auto text-2xl text-amber-50 text-center px-2 pb-7 will-change-transform'
+                            initial={{ x: -400, opacity: 0 }}
+                            animate={{ x: 0, opacity: 1 }}
+                            transition={{ duration: 2, delay: 0.8, ease: 'easeInOut' }}>
+                            Asesoría tecnológica diseñada para empresas líderes
+                        </motion.p>
+                    </div>
+
+                    <div className='relative grid grid-col-1 justify-items-center gap-1 pt-5 z-10'>
+
+                        <div className=''>
+                            <h1 className="text-7xl text-white font-bold font-sans z-10 "> Zaitec</h1>
+                            <p className="text-4xl text-amber-500 text-right font-bold z-10 ">Innova</p>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
         </>
     )
 }

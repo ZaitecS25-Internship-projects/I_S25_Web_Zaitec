@@ -1,6 +1,6 @@
-import Banner from "../components/Banner";
 import type { Cards } from "../types/index";
 import CardInnovacion from "../components/CardInnovacion";
+import Banner from "../components/banner";
 // import { motion } from "framer-motion"; // <- puedes activarlo si luego añades animaciones
 
 export default function IndexPage() {

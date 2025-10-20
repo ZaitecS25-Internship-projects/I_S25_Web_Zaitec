@@ -1,4 +1,4 @@
-import Banner from "./components/Banner"; // 👈 nuestro nuevo banner
+import Banner from "./components/banner"; // 👈 nuestro nuevo banner
 import "./index.css";
 
 // Si ya tienes un componente Navbar, impórtalo aquí.
