@@ -1,123 +1,120 @@
-import { motion, easeInOut } from "framer-motion";
+import { motion, useScroll, useTransform, useSpring, easeInOut } from "framer-motion";
+import { useRef } from "react";
 
 export default function Formación() {
-
   const cardVariants = {
     hidden: { opacity: 0, y: 50 },
-    show: { 
-      opacity: 1, 
-      y: 0, 
-      transition: { duration: 0.9, ease: easeInOut }
+    show: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.8, ease: easeInOut },
     },
   };
 
-  return (
-    <div className="bg-neutral-100 min-h-screen flex items-center justify-center">
-      <section className="flex flex-col gap-5 lg:w-4/5 mx-auto mb-5 p-5 pt-10 pb-25 md:pt-25">
-        
-        <h2 className="text-2xl font-semibold md:text-4xl md:w-2/3 lg:text-5xl lg:text-neutral-800 lg:w-3/4">
-          <span className="text-orange-600">Capacitación</span> para convertirte en un experto de la tecnología.
-        </h2>
+  const cards = [
+    {
+      title: "AWS Services",
+      description:
+        "Empoderamiento de las instituciones de educación superior con certificaciones y carreras en la nube.",
+      img: "/img/aws.png",
+      bgColor: "#146EB4",
+      link: "https://www.awsacademy.com/login?ec=302&startURL=%2FSiteLogin%3FstartURL%3D%252Fforums%252F",
+    },
+    {
+      title: "Udemy",
+      description:
+        "Domina hoy las habilidades del mañana con cursos actualizados e impartidos por expertos.",
+      img: "/img/udemy.png",
+      bgColor: "#000000",
+      link: "https://www.udemy.com/",
+    },
+    {
+      title: "Python",
+      description:
+        "Explora Python, un lenguaje de programación popular en diversas carreras tecnológicas.",
+      img: "/img/python.png",
+      bgColor: "#306998",
+      link: "https://www.edx.org/learn/python",
+    },
+    {
+      title: "SAP",
+      description:
+        "Potencia tu carrera con cursos gratuitos de SAP y adquiere habilidades en gestión empresarial y tecnología.",
+      img: "/img/sap.png",
+      bgColor: "#1E7145",
+      link: "https://logaligroup.com/cursos-gratis-aprender-sap-desde-cero/",
+    },
+  ];
 
-        <p className="md:w-2/3 lg:text-2xl lg:w-3/4 text-neutral-600">
+  return (
+    <div className="bg-neutral-100 w-full flex flex-col items-center">
+      {/* HEADER */}
+      <header className="text-center max-w-4xl mb-10 mt-10 px-4">
+        <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-neutral-800">
+          <span className="text-orange-600">Capacitación</span> para convertirte en un experto de la tecnología
+        </h2>
+        <p className="text-neutral-600 text-base md:text-lg lg:text-xl mt-2">
           Aquí destacamos los beneficios esenciales de nuestros servicios.
         </p>
+      </header>
 
-        {/* CONTENEDOR DE TARJETAS */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 w-11/12 md:w-4/5 mx-auto mt-10">
+      {/* TARJETAS */}
+      {cards.map((card, index) => {
+        const ref = useRef<HTMLDivElement>(null);
+        const { scrollYProgress } = useScroll({
+          target: ref,
+          offset: ["start end", "end start"],
+        });
 
-          {/* TARJETA 1 - AWS Services */}
-          <a
-            href="https://www.awsacademy.com/login?ec=302&startURL=%2FSiteLogin%3FstartURL%3D%252Fforums%252F"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block"
+        const y = useSpring(useTransform(scrollYProgress, [0, 1], [30, -30]), {
+          damping: 30,
+          stiffness: 100,
+        });
+
+        return (
+          <motion.section
+            key={index}
+            ref={ref}
+            variants={cardVariants}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.5 }}
+            className="w-full min-h-[500px] md:h-screen flex flex-col justify-center items-center relative overflow-hidden mb-10"
           >
-            <motion.div
-              variants={cardVariants}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true, amount: 0.4 }}
-              className="cursor-pointer flex flex-col justify-center border border-neutral-400 rounded-lg px-6 py-6 
-                         shadow-lg shadow-neutral-400 bg-[#FF9900] hover:scale-105 transition-transform duration-300"
-            >
-              <h3 className="text-2xl font-bold text-white mb-2">AWS Services</h3>
-              <p className="text-white">
-                Empoderamiento de las instituciones de educación superior con certificaciones y carreras en la nube.
-              </p>
-            </motion.div>
-          </a>
+            {/* Imagen de fondo con parallax */}
+            <motion.img
+              style={{ y }}
+              src={card.img}
+              alt={card.title}
+              className="absolute inset-0 w-full h-full object-contain object-center z-0"
+            />
 
-          {/* TARJETA 2 - Udemy */}
-          <a
-            href="https://www.udemy.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block"
-          >
-            <motion.div
-              variants={cardVariants}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true, amount: 0.4 }}
-              className="cursor-pointer flex flex-col justify-center border border-neutral-400 rounded-lg px-6 py-6 
-                         shadow-lg shadow-neutral-400 bg-[#EC5252] hover:scale-105 transition-transform duration-300"
-            >
-              <h3 className="text-xl font-bold text-white mb-2">Udemy</h3>
-              <p className="text-white">
-                Domina hoy las habilidades del mañana con cursos actualizados e impartidos por expertos.
-              </p>
-            </motion.div>
-          </a>
+            {/* Overlay semitransparente */}
+            <div
+              className="absolute inset-0 z-10"
+              style={{ backgroundColor: `${card.bgColor}80` }}
+            ></div>
 
-          {/* TARJETA 3 - Python */}
-          <a
-            href="https://www.edx.org/learn/python"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block"
-          >
-            <motion.div
-              variants={cardVariants}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true, amount: 0.4 }}
-              className="cursor-pointer flex flex-col justify-center items-start border border-neutral-400 rounded-lg px-6 py-6 
-                         shadow-lg shadow-neutral-400 bg-[#306998] hover:scale-105 transition-transform duration-300"
-            >
-              <h3 className="text-xl font-bold text-white mb-2">Python</h3>
-              <p className="text-white">
-                Explora Python, un lenguaje de programación popular en diversas carreras tecnológicas.
+            {/* Contenido */}
+            <div className="relative z-20 text-center px-6 md:px-12 lg:px-24">
+              <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white mb-4">
+                {card.title}
+              </h2>
+              <p className="text-white text-base md:text-lg lg:text-xl max-w-3xl mx-auto">
+                {card.description}
               </p>
-            </motion.div>
-          </a>
-
-          {/* TARJETA 4 - SAP */}
-          <a
-            href="https://logaligroup.com/cursos-gratis-aprender-sap-desde-cero/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block"
-          >
-            <motion.div
-              variants={cardVariants}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true, amount: 0.4 }}
-              className="cursor-pointer flex flex-col justify-center items-start border border-neutral-400 rounded-lg px-6 py-6 
-                         shadow-lg shadow-neutral-400 bg-[#1E7145] hover:scale-105 transition-transform duration-300"
-            >
-              <h3 className="text-xl font-bold text-white mb-2">SAP</h3>
-              <p className="text-white">
-                Potencia tu carrera con cursos gratuitos de SAP y adquiere habilidades en gestión empresarial y tecnología.
-              </p>
-            </motion.div>
-          </a>
-
-        </div>
-      </section>
+              <a
+                href={card.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-6 inline-block px-6 py-3 bg-white/90 backdrop-blur-sm text-black font-semibold rounded-lg hover:bg-neutral-200 transition"
+              >
+                Ver más
+              </a>
+            </div>
+          </motion.section>
+        );
+      })}
     </div>
   );
 }
-
-
