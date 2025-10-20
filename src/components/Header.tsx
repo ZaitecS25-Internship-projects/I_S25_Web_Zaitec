@@ -4,6 +4,7 @@ import HeaderMovil from "./HeaderMovil";
 
 
 export default function Header() {
+
     //Estado para manejar la resolución
     const [modeMobile, setModMobile] = useState<boolean>(false)
 
