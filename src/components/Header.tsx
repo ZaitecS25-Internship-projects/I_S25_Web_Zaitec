@@ -1,6 +1,5 @@
-import { NavLink } from 'react-router-dom';
-import { motion } from 'framer-motion'
 import { useState } from 'react';
+import { motion } from 'framer-motion'
 
 export default function Header() {
     const [modalNav, setModalNav] = useState<boolean>(false)
@@ -9,14 +8,25 @@ export default function Header() {
         setModalNav(prev => !prev)
     }
 
+    const handleScroll = (id: string) => {
+        const section = document.getElementById(id)
+        if (section) {
+            section.scrollIntoView({ behavior: 'smooth' })
+        }
+    }
+
     return (
         <>
-            <div className='fixed w-full flex flex-row z-100 bg-neutral-100 p-2'>
+            <div className='fixed w-full flex flex-row z-100 bg-neutral-100/90 p-2'>
                 <div>
                     <img
                         src="/img/logo-zaitec.png"
                         alt="imagen del logo"
                         className='w-16 p-1' />
+                </div>
+                <div className='flex flex-col pl-1 justify-center items-center'>
+                    <h1 className="text-lg text-neutral-600 font-bold font-sans">Zaitec<span className='text-xs text-orange-600 '> Innova</span></h1>
+
                 </div>
                 <div className='absolute top-5 right-5 z-50 flex flex-col items-end gap-4'>
                     <button
@@ -33,62 +43,53 @@ export default function Header() {
                                 whileHover={{ x: -10 }}
                                 transition={{ type: "spring", stiffness: 100, damping: 15 }}
                             >
-                                <NavLink
-                                    to={'/'}
-                                    className={({ isActive }) => (isActive ? 'text-orange-500  font-bold ' : 'text-white font-semi-bold')}> Inicio </NavLink>
+                                <button
+                                    onClick={()=>handleScroll("inicio")}
+                                    className="text-white"> Inicio </button>
                             </motion.div>
 
                             <motion.div className=' px-5 py-1 w-fit'
                                 whileHover={{ x: -10 }}
                                 transition={{ type: "spring", stiffness: 100, damping: 15 }}
                             >
-                                <NavLink
-                                    to={'/contacto'}
-                                    className={({ isActive }) => (isActive ? 'text-orange-500  font-bold' : 'text-amber-50 font-semi-bold')}> Contacto </NavLink>
+                                <button
+                                    onClick={()=> handleScroll('contacto')}
+                                    className="text-white"> Contacto </button>
                             </motion.div>
 
                             <motion.div className='px-6 py-1  w-fit'
                                 whileHover={{ x: -10 }}
                                 transition={{ type: "spring", stiffness: 100, damping: 15 }}
                             >
-                                <NavLink
-                                    to={'/formacion'}
-                                    className={({ isActive }) => (isActive ? 'text-orange-500  font-bold' : 'text-amber-50 font-semi-bold')}> Formación </NavLink>
+                                <button
+                                    onClick={()=> handleScroll('formacion')}
+                                    className="text-white"> Formación </button>
                             </motion.div>
 
                             <motion.div className='px-5 py-1 w-fit'
                                 whileHover={{ x: -10 }}
                                 transition={{ type: "spring", stiffness: 100, damping: 15 }}
                             >
-                                <NavLink
-                                    to={'/desarrollo'}
-                                    className={({ isActive }) => (isActive ? 'text-orange-500  font-bold' : 'text-amber-50 font-semi-bold')}> Desarrollo de proyectos </NavLink>
+                                <button
+                                    onClick={()=> handleScroll('desarrollo-proyectos')}
+                                    className="text-white"> Desarrollo de proyectos </button>
                             </motion.div>
                         </nav>)}
                 </div>
             </div>
 
-            <div className='pt-20'>
+            <div className='pt-20'
+            id='inicio'>
                 <div className="relative bg-[url('/img/header-zaitectwo.jpg')] bg-no-repeat bg-cover bg-center h-80">
-                    <div className='absolute inset-0 bg-black/50 flex items-end pb-13'>
+                    <div className='absolute inset-0 bg-black/40'>
                         <motion.p
-                            className='mx-auto text-2xl text-amber-50 text-center px-2 pb-7 will-change-transform'
-                            initial={{ x: -400, opacity: 0 }}
-                            animate={{ x: 0, opacity: 1 }}
+                            className='text-2xl text-amber-50 text-center px-2 pt-34 md:text-4xl md:w-2/3 md:mx-auto lg:text-6xl lg:pt-20'
+                            initial={{ y: 40, opacity: 0 }}
+                            animate={{ y: 0, opacity: 1 }}
                             transition={{ duration: 2, delay: 0.8, ease: 'easeInOut' }}>
                             Asesoría tecnológica diseñada para empresas líderes
                         </motion.p>
                     </div>
-
-                    <div className='relative grid grid-col-1 justify-items-center gap-1 pt-5 z-10'>
-
-                        <div className=''>
-                            <h1 className="text-7xl text-white font-bold font-sans z-10 "> Zaitec</h1>
-                            <p className="text-4xl text-amber-500 text-right font-bold z-10 ">Innova</p>
-                        </div>
-                    </div>
-
-
                 </div>
             </div>
 

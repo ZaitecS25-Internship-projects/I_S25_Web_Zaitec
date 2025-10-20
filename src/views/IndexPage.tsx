@@ -2,7 +2,9 @@
 import type { Cards } from "../types/index";
 import CardInnovacion from "../components/CardInnovacion";
 import Banner from "../components/banner";
-import { motion } from "framer-motion"; // <- puedes activarlo si luego añades animaciones
+import { motion } from "framer-motion";
+import Contacto from '../components/Contacto';
+
 
 export default function IndexPage() {
   const cards: Cards = [
@@ -26,7 +28,10 @@ export default function IndexPage() {
 
   return (
     <>
-      <section aria-labelledby="innovacion-tecnologica-heading" className="bg-neutral-100 shadow-sm shadow-neutral-400">
+
+      {/* 👇 Banner agregado antes de la sección principal */}
+      <Banner />
+      <section aria-labelledby="innovacion-tecnologica-heading">
         <div className="flex flex-col gap-5 lg:w-4/5 mx-auto p-5 pt-10 pb-30 md:pt-25  ">
           <h2 id="innovacion-tecnologica-heading" className="text-2xl font-semibold md:text-4xl md:w-2/3 lg:text-5xl lg:text-neutral-800 lg:w-3/4"><span className="text-orange-600">Innovación</span> tecnologica para empresas que lideran su industria.</h2>
           <p className="md:w-2/3 lg:text-2xl lg:w-3/4 text-neutral-600">Descubre nuestra oferta de servicios, centrada en calidad, innovación y satisfacción total del cliente.</p>
@@ -38,7 +43,15 @@ export default function IndexPage() {
         </div>
       </section>
 
-      <section aria-labelledby="soluciones-heading">
+      <section
+      className="w-6/7 mx-auto"
+      style={{backgroundColor:'yellow'}}
+      id="contacto">
+        <Contacto />
+      </section>
+
+      <section aria-labelledby="soluciones-heading"
+      id="desarrollo-proyectos">
         <div className="flex flex-col gap-5 lg:w-4/5 mx-auto p-5 md:pt-25 ">
           <h2 id='soluciones-heading' className="text-2xl font-semibold md:text-4xl md:w-2/3 lg:text-5xl lg:text-neutral-800 lg:w-3/4"><span className="text-orange-600">Proyectos </span>que generan confianza y resultados</h2>
           <p className="md:w-2/3 lg:text-2xl lg:w-3/4 text-neutral-600">Explora nuestras soluciones clave, donde convergen innovación, experiencia y resultados excepcionales.</p>
@@ -105,7 +118,9 @@ export default function IndexPage() {
           </p>
 
           {/* CONTENEDOR DE TARJETAS */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 w-11/12 md:w-4/5 mx-auto mt-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 w-11/12 md:w-4/5 mx-auto mt-10"
+          id="formacion"
+          >
 
             {/* TARJETA 1 - AWS Services */}
             <article>
@@ -208,26 +223,6 @@ export default function IndexPage() {
           </div>
         </div>
       </section>
-
-          <div className="bg-neutral-100 shadow-md shadow-neutral-400">
-      {/* 👇 Banner agregado antes de la sección principal */}
-      <Banner />
-
-      <section className="flex flex-col gap-5 lg:w-4/5 mx-auto mb-5 p-5 pt-10 pb-25 md:pt-25">
-        <h2 className="text-2xl font-semibold md:text-4xl md:w-2/3 lg:text-5xl lg:text-neutral-800 lg:w-3/4">
-          <span className="text-orange-600">Innovación</span> tecnológica para
-          empresas que lideran su industria.
-        </h2>
-        <p className="md:w-2/3 lg:text-2xl lg:w-3/4 text-neutral-600">
-          Descubre nuestra oferta de servicios, centrada en calidad, innovación
-          y satisfacción total del cliente.
-        </p>
-
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 mt-10">
-          <CardInnovacion cards={cards} />
-        </div>
-      </section>
-    </div>
     </>
   )
 
