@@ -1,4 +1,11 @@
+import type { ReactNode } from "react";
+
 export type CardInnovacionType = {
+  description: ReactNode;
+  link: string | undefined;
+  title: string | undefined;
+  img: string | undefined;
+  bgColor: any;
   titulo: string;
   descripcion: string;
 };
