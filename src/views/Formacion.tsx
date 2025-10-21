@@ -112,7 +112,7 @@ export default function Formacion() {
   return (
     <div className="bg-neutral-100 min-h-screen flex flex-col items-center">
       {/* HEADER */}
-      <header className="text-center max-w-4xl mb-10 mt-10 px-4">
+      <header className="text-center max-w-4xl mb-16 mt-10 px-4">
         <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-neutral-800">
           <span className="text-orange-600">Capacitación</span> para convertirte en un experto de la tecnología
         </h2>
@@ -121,10 +121,13 @@ export default function Formacion() {
         </p>
       </header>
 
+
       {/* Tarjetas */}
       {trainingCards.map((card, index) => (
         <CardFormacion key={index} card={card} index={index} />
       ))}
+
+ 
     </div>
   );
 }
