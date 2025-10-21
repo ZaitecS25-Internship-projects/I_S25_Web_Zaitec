@@ -66,6 +66,7 @@ function CardFormacion({ card, index }: { card: TrainingCard; index: number }) {
     show: { opacity: 1, y: 0, transition: { duration: 0.8, ease: easeInOut } },
   };
 
+
   return (
     <motion.section
       key={index}
@@ -120,6 +121,51 @@ export default function Formacion() {
           Aquí destacamos los beneficios esenciales de nuestros servicios.
         </p>
       </header>
+    {
+      title: "AWS Services",
+      description:
+        "Empoderamiento de las instituciones de educación superior con certificaciones y carreras en la nube.",
+      img: "/img/aws.png",
+      bgColor: "#146EB4",
+      link: "https://www.awsacademy.com/login?ec=302&startURL=%2FSiteLogin%3FstartURL%3D%252Fforums%252F",
+    },
+    {
+      title: "Udemy",
+      description:
+        "Domina hoy las habilidades del mañana con cursos actualizados e impartidos por expertos.",
+      img: "/img/udemy.png",
+      bgColor: "#000000",
+      link: "https://www.udemy.com/",
+    },
+    {
+      title: "Python",
+      description:
+        "Explora Python, un lenguaje de programación popular en diversas carreras tecnológicas.",
+      img: "/img/python.png",
+      bgColor: "#306998",
+      link: "https://www.edx.org/learn/python",
+    },
+    {
+      title: "SAP",
+      description:
+        "Potencia tu carrera con cursos gratuitos de SAP y adquiere habilidades en gestión empresarial y tecnología.",
+      img: "/img/sap.png",
+      bgColor: "#1E7145",
+      link: "https://logaligroup.com/cursos-gratis-aprender-sap-desde-cero/",
+    },
+  ];
+
+ <div className="bg-neutral-100 min-h-screen flex items-center justify-center">
+    {/* HEADER DE APERTURA */}
+    <header className="flex flex-col gap-5 lg:w-4/5 mx-auto mb-5 p-5 pt-10 pb-25 md:pt-25 text-center">
+      <h2 className="text-2xl font-semibold md:text-4xl md:w-2/3 lg:text-5xl lg:text-neutral-800 lg:w-3/4">
+        <span className="text-orange-600">Capacitación</span> para convertirte en un experto de la tecnología.
+      </h2>
+      <p className="text-neutral-600 text-base md:text-lg lg:text-xl mt-2">
+        Aquí destacamos los beneficios esenciales de nuestros servicios.
+      </p>
+    </header>
+
 
 
       {/* Tarjetas */}
@@ -127,7 +173,7 @@ export default function Formacion() {
         <CardFormacion key={index} card={card} index={index} />
       ))}
 
- 
+      ))}
     </div>
   );
 }
