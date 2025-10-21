@@ -3,7 +3,9 @@ import type { Cards } from "../types/index";
 import CardInnovacion from "../components/CardInnovacion";
 import CardFormacion from "../components/CardFormacion";
 import Banner from "../components/banner";
+
 import Contacto from "../components/Contacto";
+
 
 type TrainingCard = {
   title: string;
@@ -22,7 +24,10 @@ export default function IndexPage() {
       link: undefined,
       title: undefined,
       img: undefined,
+
       bgColor: undefined,
+
+      
     },
     {
       titulo: "Formación Especializada.",
@@ -31,7 +36,11 @@ export default function IndexPage() {
       link: undefined,
       title: undefined,
       img: undefined,
+
       bgColor: undefined,
+
+     
+
     },
     {
       titulo: "Consultoría Estratégica.",
@@ -40,7 +49,11 @@ export default function IndexPage() {
       link: undefined,
       title: undefined,
       img: undefined,
+
       bgColor: undefined,
+
+     
+
     },
   ];
 
@@ -50,27 +63,38 @@ export default function IndexPage() {
       description: "Empoderamiento de las instituciones de educación superior con certificaciones y carreras en la nube.",
       img: "/img/aws.png",
       bgColor: "#146EB4",
+
       link: "https://www.awsacademy.com/login?ec=302&startURL=%2FSiteLogin%3FstartURL%3D%252Fforums%252F",
+
+      
+ 
     },
     {
       title: "Udemy",
       description: "Domina hoy las habilidades del mañana con cursos actualizados e impartidos por expertos.",
       img: "/img/udemy.png",
       bgColor: "#000000",
+
       link: "https://www.udemy.com/",
+
+      
     },
     {
       title: "Python",
       description: "Explora Python, un lenguaje de programación popular en diversas carreras tecnológicas.",
       img: "/img/python.png",
       bgColor: "#306998",
+
       link: "https://www.edx.org/learn/python",
+
+      
     },
     {
       title: "SAP",
       description: "Potencia tu carrera con cursos gratuitos de SAP y adquiere habilidades en gestión empresarial y tecnología.",
       img: "/img/sap.png",
       bgColor: "#1E7145",
+
       link: "https://logaligroup.com/cursos-gratis-aprender-sap-desde-cero/",
     },
   ];
@@ -104,7 +128,7 @@ export default function IndexPage() {
       </section>
 
       {/* Sección Formación */}
-      <section className="bg-neutral-100 flex flex-col items-center py-10">
+      <section className="bg-neutral-100 min-h-screen flex flex-col items-center justify-center">
         <header className="flex flex-col gap-5 lg:w-4/5 mx-auto mb-5 p-5 pt-10 text-center">
           <h2 className="text-2xl font-semibold md:text-4xl lg:text-5xl text-neutral-800">
             <span className="text-orange-600">Capacitación</span> para convertirte en un experto de la tecnología.
