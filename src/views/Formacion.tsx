@@ -46,17 +46,16 @@ export default function Formación() {
     },
   ];
 
-  return (
-    <div className="bg-neutral-100 min-h-screen flex items-center justify-center">
-      <section className="flex flex-col gap-5 lg:w-4/5 mx-auto mb-5 p-5 pt-10 pb-25 md:pt-25">
-        
-        <h2 className="text-2xl font-semibold md:text-4xl md:w-2/3 lg:text-5xl lg:text-neutral-800 lg:w-3/4">
-          <span className="text-orange-600">Capacitación</span> para convertirte en un experto de la tecnología.
-        </h2>
-        <p className="text-neutral-600 text-base md:text-lg lg:text-xl mt-2">
-          Aquí destacamos los beneficios esenciales de nuestros servicios.
-        </p>
-      </header>
+ <div className="bg-neutral-100 min-h-screen flex items-center justify-center">
+    {/* HEADER DE APERTURA */}
+    <header className="flex flex-col gap-5 lg:w-4/5 mx-auto mb-5 p-5 pt-10 pb-25 md:pt-25 text-center">
+      <h2 className="text-2xl font-semibold md:text-4xl md:w-2/3 lg:text-5xl lg:text-neutral-800 lg:w-3/4">
+        <span className="text-orange-600">Capacitación</span> para convertirte en un experto de la tecnología.
+      </h2>
+      <p className="text-neutral-600 text-base md:text-lg lg:text-xl mt-2">
+        Aquí destacamos los beneficios esenciales de nuestros servicios.
+      </p>
+    </header>
 
       {/* TARJETAS */}
       {cards.map((card, index) => {
@@ -120,5 +119,5 @@ export default function Formación() {
         );
       })}
     </div>
-  );
+  ;
 }
