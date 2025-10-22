@@ -10,9 +10,29 @@ export default function Header() {
 
     const handleScroll = (id: string) => {
         const section = document.getElementById(id)
-        if (section) {
-            section.scrollIntoView({ behavior: 'smooth' })
+        if (!section) return
+        setModalNav(false) // 🔹 cerrar menú al terminar el scroll
+        const targetPosition = section.getBoundingClientRect().top + window.scrollY
+        const startPosition = window.scrollY
+        const distance = targetPosition - startPosition
+        const duration = 3500 // 🔹 Duración total en milisegundos (se ajusta la velocidad aquí)
+        let start: number | null = null
+
+        const step = (timestamp: number) => {
+            if (!start) start = timestamp
+            const progress = Math.min((timestamp - start) / duration, 1)
+            const easing = progress < 0.5
+                ? 4 * progress * progress * progress
+                : 1 - Math.pow(-2 * progress + 2, 3) / 2 // curva easeInOutCubic
+            window.scrollTo(0, startPosition + distance * easing)
+
+            if (progress < 1) {
+                requestAnimationFrame(step)
+            } else {
+            }
         }
+
+        requestAnimationFrame(step)
     }
 
     return (
@@ -44,7 +64,7 @@ export default function Header() {
                                 transition={{ type: "spring", stiffness: 100, damping: 15 }}
                             >
                                 <button
-                                    onClick={()=>handleScroll("inicio")}
+                                    onClick={() => handleScroll("inicio")}
                                     className="text-white"> Inicio </button>
                             </motion.div>
 
@@ -53,7 +73,7 @@ export default function Header() {
                                 transition={{ type: "spring", stiffness: 100, damping: 15 }}
                             >
                                 <button
-                                    onClick={()=> handleScroll('contacto')}
+                                    onClick={() => handleScroll('contacto')}
                                     className="text-white"> Contacto </button>
                             </motion.div>
 
@@ -62,7 +82,7 @@ export default function Header() {
                                 transition={{ type: "spring", stiffness: 100, damping: 15 }}
                             >
                                 <button
-                                    onClick={()=> handleScroll('formacion')}
+                                    onClick={() => handleScroll('formacion')}
                                     className="text-white"> Formación </button>
                             </motion.div>
 
@@ -71,7 +91,7 @@ export default function Header() {
                                 transition={{ type: "spring", stiffness: 100, damping: 15 }}
                             >
                                 <button
-                                    onClick={()=> handleScroll('desarrollo-proyectos')}
+                                    onClick={() => handleScroll('desarrollo-proyectos')}
                                     className="text-white"> Desarrollo de proyectos </button>
                             </motion.div>
                         </nav>)}
@@ -79,7 +99,7 @@ export default function Header() {
             </div>
 
             <div className='pt-20'
-            id='inicio'>
+                id='inicio'>
                 <div className="relative bg-[url('/img/header-zaitectwo.jpg')] bg-no-repeat bg-cover bg-center h-80">
                     <div className='absolute inset-0 bg-black/40'>
                         <motion.p
