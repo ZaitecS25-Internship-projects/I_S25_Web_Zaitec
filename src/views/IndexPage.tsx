@@ -66,13 +66,13 @@ export default function IndexPage() {
               <div className="w-full aspect-square overflow-hidden rounded-lg">
                 {/* Este div crea un contenedor cuadrado con bordes redondeados para mantener la forma de la imagen */}
                 <img
-                  src="/img/gestion-agil.jpg"
-                  alt="Gestión Ágil"
-                  className="w-full h-full object-cover"
+                  src="/img/pepe-martinez.png"
+                  alt="Pepe Martínez y Asociados"
+                  className="transition-transform duration-500 hover:scale-110"//zoom al hacer hover
                 />
               </div>
-              <h3 className="text-xl font-bold">Gestión Ágil.</h3>
-              <p className="text-neutral-600">Solución Innovadora para la Gestión Ágil</p>
+                <h3 className="text-xl font-bold">Pepe Martínez y asociados, bufete de abogados</h3>
+              <p className="text-neutral-600">Posicionamiento SEO, formularios para consejo legal y mucho más.</p>
             </motion.article>
 
             <motion.article
@@ -84,9 +84,11 @@ export default function IndexPage() {
             >
               <div className="w-full aspect-square overflow-hidden rounded-lg">
                 {/* Este div crea un contenedor cuadrado con bordes redondeados para mantener la forma de la imagen */}
-                <img src="/img/digitalizacion.jpg" alt="Digitalización" className="w-full h-full object-cover" />
-              </div><h3 className="text-xl font-bold">Digitalización.</h3>
-              <p className="text-neutral-600">Transformación digital en Tiempo Real </p>
+                <img src="/img/cocinas-con-alma.png"
+                  alt="Cocinas con Alma"
+                  className="transition-transform duration-500 hover:scale-110" /> {/*zoom al hacer hover */}
+              </div><h3 className="text-xl font-bold">Cocinas con Alma</h3>
+              <p className="text-neutral-600">Página con diseño impactante y gran detalle en Proyectos de Cocinas realizados. </p>
             </motion.article>
 
             <motion.article
@@ -98,9 +100,11 @@ export default function IndexPage() {
             >
               <div className="w-full aspect-square overflow-hidden rounded-lg">
                 {/* Este div crea un contenedor cuadrado con bordes redondeados para mantener la forma de la imagen */}
-                <img src="/img/crecimiento-empresarial.jpg" alt="Crecimiento empresarial" className="w-full h-full object-cover" />
-              </div><h3 className="text-xl font-bold">Crecimiento Empresarial.</h3>
-              <p className="text-neutral-600">Herramienta Escalable para Crecimiento Empresarial</p>
+               <img src="/img/electro-genio.png"
+                  alt="Electro-genio" 
+                  className="transition-transform duration-500 hover:scale-110" /> {/*zoom al hacer hover */}
+              </div><h3 className="text-xl font-bold">Electrodomésticos ElectroGenio</h3>
+              <p className="text-neutral-600">Una web con tienda incorporada con cientos de referencias y pasarelas de pago (tarjetas, bizum, etc).</p>
             </motion.article>
           </div>
         </div>
