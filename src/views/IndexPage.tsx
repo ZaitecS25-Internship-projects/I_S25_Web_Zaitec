@@ -106,7 +106,9 @@ export default function IndexPage() {
         </div>
       </section>
 
-      <section aria-labelledby="capacitacion-tecnologica-heading" className="min-h-screen flex items-center justify-center">
+      <section
+      id="formacion"
+      aria-labelledby="capacitacion-tecnologica-heading" className="min-h-screen flex items-center justify-center">
         <div className="flex flex-col gap-5 lg:w-4/5 mx-auto mb-5 p-5 pb-25 md:pt-25">
 
           <h2 id="capacitación-tecnologica-heading" className="text-2xl font-semibold md:text-4xl md:w-2/3 lg:text-5xl lg:text-neutral-800 lg:w-3/4">
@@ -119,7 +121,7 @@ export default function IndexPage() {
 
           {/* CONTENEDOR DE TARJETAS */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 w-11/12 md:w-4/5 mx-auto mt-10"
-          id="formacion"
+          
           >
 
             {/* TARJETA 1 - AWS Services */}
