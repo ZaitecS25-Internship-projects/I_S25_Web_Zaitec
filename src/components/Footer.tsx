@@ -29,10 +29,10 @@ const Footer: React.FC = () => {
             </li>
             <li>
               <a
-                href="#servicios"
+                href="#contacto"
                 className="hover:text-orange-500 transition duration-300 ease-in-out transform hover:translate-x-1"
               >
-                Servicios
+                Contacto
               </a>
             </li>
             <li>
@@ -41,14 +41,6 @@ const Footer: React.FC = () => {
                 className="hover:text-orange-500 transition duration-300 ease-in-out transform hover:translate-x-1"
               >
                 Formación
-              </a>
-            </li>
-            <li>
-              <a
-                href="#contacto"
-                className="hover:text-orange-500 transition duration-300 ease-in-out transform hover:translate-x-1"
-              >
-                Contacto
               </a>
             </li>
             <li>
@@ -62,15 +54,10 @@ const Footer: React.FC = () => {
           </ul>
         </div>
 
-        {/* Contacto + redes sociales */}
+        {/* Redes sociales */}
         <div className="flex flex-col gap-4">
-          <h3 className="font-semibold mb-2 text-white"></h3>
-          <p className="text-gray-400 text-sm"></p>
-          <p className="text-gray-400 text-sm"></p>
-
-          {/* Redes sociales */}
+          <h3 className="font-semibold mb-2 text-white">Síguenos</h3>
           <div className="flex gap-4 text-2xl mt-2">
-            {/* Facebook */}
             <a
               href="https://www.facebook.com/asirtec/"
               target="_blank"
@@ -80,7 +67,6 @@ const Footer: React.FC = () => {
               <FaFacebook />
             </a>
 
-            {/* X (Twitter) */}
             <a
               href="https://x.com/asirtec?lang=es"
               target="_blank"
@@ -90,7 +76,6 @@ const Footer: React.FC = () => {
               <FaXTwitter />
             </a>
 
-            {/* Instagram */}
             <a
               href="https://www.instagram.com/asirtec/?hl=es"
               target="_blank"
