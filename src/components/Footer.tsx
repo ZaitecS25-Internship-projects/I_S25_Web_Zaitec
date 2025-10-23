@@ -1,43 +1,15 @@
 import React from "react";
 import { FaFacebook, FaInstagram } from "react-icons/fa";
-import { FaXTwitter } from "react-icons/fa6";
+import { FaXTwitter } from "react-icons/fa6"; // Icono de X (Twitter)
 
 const Footer: React.FC = () => {
-  const scrollToSection = (id: string, duration: number = 3500) => {
-    const target = document.getElementById(id);
-    if (!target) return;
-
-    const start = window.scrollY;
-    const end = target.getBoundingClientRect().top + start;
-    const distance = end - start;
-    let startTime: number | null = null;
-
-    const easeInOutQuad = (t: number) =>
-      t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
-
-    const animate = (currentTime: number) => {
-      if (!startTime) startTime = currentTime;
-      const timeElapsed = currentTime - startTime;
-      const progress = Math.min(timeElapsed / duration, 1);
-      window.scrollTo(0, start + distance * easeInOutQuad(progress));
-      if (timeElapsed < duration) {
-        requestAnimationFrame(animate);
-      }
-    };
-
-    requestAnimationFrame(animate);
-  };
-
   return (
     <footer className="bg-gray-900 text-white pt-12">
+      {/* Contenedor principal */}
       <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between gap-12">
         {/* Logo + descripción */}
         <div className="flex flex-col gap-4">
-          <img
-            src="/img/logo-zaitec.png"
-            alt="Logo"
-            className="h-12 w-auto object-contain"
-          />
+          <img src="/img/logo-zaitec.png" alt="Logo" className="h-12 w-auto object-contain" />
           <p className="text-gray-400 text-sm max-w-xs">
             Soluciones tecnológicas innovadoras que ayudan a tu negocio a crecer.
           </p>
@@ -48,36 +20,36 @@ const Footer: React.FC = () => {
           <h3 className="font-semibold mb-2 text-white">Enlaces</h3>
           <ul className="flex flex-col gap-1 text-sm">
             <li>
-              <button
-                onClick={() => scrollToSection("inicio")}
+              <a
+                href="#inicio"
                 className="hover:text-orange-500 transition duration-300 ease-in-out transform hover:translate-x-1"
               >
                 Inicio
-              </button>
+              </a>
             </li>
             <li>
-              <button
-                onClick={() => scrollToSection("contacto")}
+              <a
+                href="#contacto"
                 className="hover:text-orange-500 transition duration-300 ease-in-out transform hover:translate-x-1"
               >
                 Contacto
-              </button>
+              </a>
             </li>
             <li>
-              <button
-                onClick={() => scrollToSection("formacion")}
+              <a
+                href="#formacion"
                 className="hover:text-orange-500 transition duration-300 ease-in-out transform hover:translate-x-1"
               >
                 Formación
-              </button>
+              </a>
             </li>
             <li>
-              <button
-                onClick={() => scrollToSection("desarrollo-proyectos")}
+              <a
+                href="#desarrollo-proyectos"
                 className="hover:text-orange-500 transition duration-300 ease-in-out transform hover:translate-x-1"
               >
                 Desarrollo de proyectos
-              </button>
+              </a>
             </li>
           </ul>
         </div>
