@@ -1,17 +1,36 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion'
+import Desarrollo from '../../I_S25_Web_Zaitec-rama-previa-zaitec/src/views/Desarrollo';
 
 export default function Header() {
     const [modalNav, setModalNav] = useState<boolean>(false)
-
+    const [scrolling, setScrolling] = useState<number>(0)
     const openNav = () => {
         setModalNav(prev => !prev)
     }
 
+    useEffect(() => {
+        const updateScroll = () => {
+            const currentScroll = window.scrollY;
+            setScrolling(currentScroll)
+
+            if (currentScroll > 5) {
+                setModalNav(false)
+            }
+
+        }
+
+        document.addEventListener('scroll', updateScroll)
+
+
+        return () => { document.removeEventListener('scroll', updateScroll) }
+
+    }, [])
+
     const handleScroll = (id: string) => {
         const section = document.getElementById(id)
         if (!section) return
-        setModalNav(false) // 🔹 cerrar menú al terminar el scroll
+        // setModalNav(false)  //cerrar menú al terminar el scroll
         const targetPosition = section.getBoundingClientRect().top + window.scrollY
         const startPosition = window.scrollY
         const distance = targetPosition - startPosition
@@ -73,8 +92,8 @@ export default function Header() {
                                 transition={{ type: "spring", stiffness: 100, damping: 15 }}
                             >
                                 <button
-                                    onClick={() => handleScroll('contacto')}
-                                    className="text-white"> Contacto </button>
+                                    onClick={() => handleScroll('desarrollo-proyectos')}
+                                    className="text-white"> Desarrollo y proyectos </button>
                             </motion.div>
 
                             <motion.div className='px-6 py-1  w-fit'
@@ -82,8 +101,8 @@ export default function Header() {
                                 transition={{ type: "spring", stiffness: 100, damping: 15 }}
                             >
                                 <button
-                                    onClick={() => handleScroll('formacion')}
-                                    className="text-white"> Formación </button>
+                                    onClick={() => handleScroll('contacto')}
+                                    className="text-white"> Contacto </button>
                             </motion.div>
 
                             <motion.div className='px-5 py-1 w-fit'
@@ -91,8 +110,8 @@ export default function Header() {
                                 transition={{ type: "spring", stiffness: 100, damping: 15 }}
                             >
                                 <button
-                                    onClick={() => handleScroll('desarrollo-proyectos')}
-                                    className="text-white"> Desarrollo de proyectos </button>
+                                    onClick={() => handleScroll('formacion')}
+                                    className="text-white"> Formación </button>
                             </motion.div>
                         </nav>)}
                 </div>

@@ -21,8 +21,9 @@ export default function Layout() {
   return (
     <>
       <Header />
-    
+      <main>
         <Outlet context={{ formState, setFormState }} />
+      </main>
 
       <Footer />
 
