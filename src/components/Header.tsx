@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion'
-import Desarrollo from '../../I_S25_Web_Zaitec-rama-previa-zaitec/src/views/Desarrollo';
+
 
 export default function Header() {
     const [modalNav, setModalNav] = useState<boolean>(false)
