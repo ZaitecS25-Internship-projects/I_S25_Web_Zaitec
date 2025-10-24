@@ -1,10 +1,10 @@
-
+import { useOutletContext } from "react-router-dom";
 import type { Cards } from "../types/index";
 import CardInnovacion from "../components/CardInnovacion";
 import Banner from "../components/banner";
 import { motion } from "framer-motion";
 import Contacto from '../components/Contacto';
-
+import type { OutletContextType } from "../components/Contacto";
 
 export default function IndexPage() {
   const cards: Cards = [
@@ -25,6 +25,7 @@ export default function IndexPage() {
     },
   ];
 
+   const { formState, setFormState } = useOutletContext<OutletContextType>();
 
   return (
     <>
@@ -32,10 +33,10 @@ export default function IndexPage() {
       {/* 👇 Banner agregado antes de la sección principal */}
       <Banner />
       <section aria-labelledby="innovacion-tecnologica-heading">
-        <div className="flex flex-col gap-5 lg:w-4/5 mx-auto p-5 pt-10 pb-30 md:pt-25  ">
+        <div className="flex flex-col gap-5 lg:w-4/5 mx-auto pt-10 mb-25 md:pt-25  ">
           <h2 id="innovacion-tecnologica-heading" className="text-2xl font-semibold md:text-4xl md:w-2/3 lg:text-5xl lg:text-neutral-800 lg:w-3/4"><span className="text-orange-600">Innovación</span> tecnologica para empresas que lideran su industria.</h2>
           <p className="md:w-2/3 lg:text-2xl lg:w-3/4 text-neutral-600">Descubre nuestra oferta de servicios, centrada en calidad, innovación y satisfacción total del cliente.</p>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 mt-10">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 mt-5 bg-orange-50 py-4 border border-neutral-300 rounded-lg shadow-lg shadow-neutral-400">
             <CardInnovacion
               cards={cards}
             />
@@ -43,16 +44,9 @@ export default function IndexPage() {
         </div>
       </section>
 
-      <section
-      className="w-6/7 mx-auto"
-      style={{backgroundColor:'yellow'}}
-      id="contacto">
-        <Contacto />
-      </section>
-
       <section aria-labelledby="soluciones-heading"
-      id="desarrollo-proyectos">
-        <div className="flex flex-col gap-5 lg:w-4/5 mx-auto p-5 md:pt-25 ">
+        id="desarrollo-proyectos">
+        <div className="flex flex-col gap-5 lg:w-4/5 mx-auto py-5 mb-18 ">
           <h2 id='soluciones-heading' className="text-2xl font-semibold md:text-4xl md:w-2/3 lg:text-5xl lg:text-neutral-800 lg:w-3/4"><span className="text-orange-600">Proyectos </span>que generan confianza y resultados</h2>
           <p className="md:w-2/3 lg:text-2xl lg:w-3/4 text-neutral-600">Explora nuestras soluciones clave, donde convergen innovación, experiencia y resultados excepcionales.</p>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 mt-10">
@@ -71,7 +65,7 @@ export default function IndexPage() {
                   className="transition-transform duration-500 hover:scale-110"//zoom al hacer hover
                 />
               </div>
-                <h3 className="text-xl font-bold">Pepe Martínez y asociados, bufete de abogados</h3>
+              <h3 className="text-xl font-bold">Pepe Martínez y asociados, bufete de abogados</h3>
               <p className="text-neutral-600">Posicionamiento SEO, formularios para consejo legal y mucho más.</p>
             </motion.article>
 
@@ -100,8 +94,8 @@ export default function IndexPage() {
             >
               <div className="w-full aspect-square overflow-hidden rounded-lg">
                 {/* Este div crea un contenedor cuadrado con bordes redondeados para mantener la forma de la imagen */}
-               <img src="/img/electro-genio.png"
-                  alt="Electro-genio" 
+                <img src="/img/electro-genio.png"
+                  alt="Electro-genio"
                   className="transition-transform duration-500 hover:scale-110" /> {/*zoom al hacer hover */}
               </div><h3 className="text-xl font-bold">Electrodomésticos ElectroGenio</h3>
               <p className="text-neutral-600">Una web con tienda incorporada con cientos de referencias y pasarelas de pago (tarjetas, bizum, etc).</p>
@@ -110,105 +104,142 @@ export default function IndexPage() {
         </div>
       </section>
 
-      {/* Formación */}
-<section
-  id="formacion"
-  aria-labelledby="capacitacion-tecnologica-heading"
-  className="bg-neutral-100 flex flex-col items-center justify-center w-full py-20"
->
-  {/* HEADER */}
-  <header className="text-center mb-16">
-    <h2
-      id="capacitacion-tecnologica-heading"
-      className="text-3xl md:text-5xl font-bold text-neutral-800"
-    >
-      <span className="text-orange-600">Capacitación</span> para convertirte en un experto de la tecnología
-    </h2>
-    <p className="mt-4 text-neutral-600 text-lg md:text-xl">
-      Aquí destacamos los beneficios esenciales de nuestros servicios.
-    </p>
-  </header>
+      <section
+        className="lg:w-4/5 mx-auto py-5 mb-10 "
+        id="contacto">
+        <div className="flex flex-col gap-5 mb-15">
+           <h2 id='soluciones-heading' className="text-2xl font-semibold md:text-4xl md:w-2/3 lg:text-5xl lg:text-neutral-800 lg:w-3/4"><span className="text-orange-600">Formación</span> y asesoramiento para empresas y particulares.</h2>
+           <p className="text-2xl text-neutral-700">Te damos las mejores soluciones <br /> para que tu negocio o tu carrera profesional avance.</p>
+        </div>
+        <div
+        className=""
+         style={{ backgroundColor: 'yellow' }}>
+          <Contacto
+          formState={formState}
+          setFormState={setFormState}
+          />
+        </div>
+      </section>
 
-  {/* TARJETAS HORIZONTALES COMPLETAS */}
-  <div className="flex flex-col gap-16 w-full">
-    {[
-      {
-        title: "AWS Services",
-        description:
-          "Empoderamiento de las instituciones de educación superior con certificaciones y carreras en la nube.",
-        img: "/img/aws.png",
-        bgColor: "#FF9900",
-        link: "https://www.awsacademy.com/login?ec=302&startURL=%2FSiteLogin%3FstartURL%3D%252Fforums%252F",
-      },
-      {
-        title: "Udemy",
-        description:
-          "Domina hoy las habilidades del mañana con cursos actualizados e impartidos por expertos.",
-        img: "/img/udemy.png",
-        bgColor: "#EC5252",
-        link: "https://www.udemy.com/",
-      },
-      {
-        title: "Python",
-        description:
-          "Explora Python, un lenguaje de programación popular en diversas carreras tecnológicas.",
-        img: "/img/python.png",
-        bgColor: "#306998",
-        link: "https://www.edx.org/learn/python",
-      },
-      {
-        title: "SAP",
-        description:
-          "Potencia tu carrera con cursos gratuitos de SAP y adquiere habilidades en gestión empresarial y tecnología.",
-        img: "/img/SAP.png",
-        bgColor: "#1E7145",
-        link: "https://logaligroup.com/cursos-gratis-aprender-sap-desde-cero/",
-      },
-    ].map((card, index) => {
-      const isEven = index % 2 === 1;
 
-      return (
-        <motion.a
-          key={index}
-          href={card.link}
-          target="_blank"
-          rel="noopener noreferrer"
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, ease: "easeInOut" }}
-          viewport={{ once: true, amount: 0.4 }}
-          className={`flex flex-col md:flex-row items-center w-full md:h-[400px]`}
-        >
-          {/* IMAGEN */}
-          <div
-            className={`w-full md:w-1/2 h-64 md:h-full p-6 flex justify-center items-center ${
-              isEven ? "md:order-2" : ""
-            }`}
-            style={{ backgroundColor: card.bgColor }}
+      <section
+        id="formacion"
+        aria-labelledby="capacitacion-tecnologica-heading" className="min-h-screen flex items-center justify-center">
+        <div className="flex flex-col gap-5 lg:w-4/5 mx-auto mb-5 p-5 pb-25">
+
+          <h2 id="capacitación-tecnologica-heading" className="text-2xl font-semibold md:text-4xl md:w-2/3 lg:text-5xl lg:text-neutral-800 lg:w-3/4">
+            <span className="text-orange-600">Capacitación</span> para convertirte en un experto de la tecnología.
+          </h2>
+
+          <p className="md:w-2/3 lg:text-2xl lg:w-3/4 text-neutral-600">
+            Aquí destacamos los beneficios esenciales de nuestros servicios.
+          </p>
+
+          {/* CONTENEDOR DE TARJETAS */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 w-11/12 md:w-4/5 mx-auto mt-10"
+
           >
-            <img
-              src={card.img}
-              alt={card.title}
-              className="w-full h-full object-contain rounded-xl"
-            />
-          </div>
 
-          {/* INFORMACIÓN */}
-          <div
-            className={`w-full md:w-1/2 p-12 text-white flex flex-col justify-center ${
-              isEven ? "md:order-1 md:text-right" : "md:text-left"
-            }`}
-            style={{ backgroundColor: card.bgColor }}
-          >
-            <h3 className="text-4xl font-bold mb-4">{card.title}</h3>
-            <p className="text-xl">{card.description}</p>
-          </div>
-        </motion.a>
-      );
-    })}
-  </div>
-</section>
+            {/* TARJETA 1 - AWS Services */}
+            <article>
 
+              <a
+                href="https://www.awsacademy.com/login?ec=302&startURL=%2FSiteLogin%3FstartURL%3D%252Fforums%252F"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block"
+              >
+                <motion.div
+                  initial={{ y: 40, opacity: 0.8 }}
+                  whileInView={{ y: 0, opacity: 1 }}
+                  viewport={{ once: true, amount: 0.4 }}
+                  transition={{ type: "spring", damping: 5, stiffness: 100, mass: 0.4, delay: 0.2 }}
+                  className="cursor-pointer flex flex-col justify-center border border-neutral-400 rounded-lg px-6 py-6 
+                         shadow-lg shadow-neutral-400 bg-[#FF9900] hover:scale-105 transition-transform duration-300"
+                >
+                  <h3 className="text-2xl font-bold text-white mb-2">AWS Services</h3>
+                  <p className="text-white">
+                    Empoderamiento de las instituciones de educación superior con certificaciones y carreras en la nube.
+                  </p>
+                </motion.div>
+              </a>
+            </article>
+
+            {/* TARJETA 2 - Udemy */}
+            <article>
+              <a
+                href="https://www.udemy.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block"
+              >
+                <motion.div
+                  initial={{ y: 40, opacity: 0.6 }}
+                  whileInView={{ y: 0, opacity: 1 }}
+                  viewport={{ once: true, amount: 0.4 }}
+                  transition={{ type: "spring", damping: 5, stiffness: 100, mass: 0.4, delay: 0.4 }}
+                  className="cursor-pointer flex flex-col justify-center border border-neutral-400 rounded-lg px-6 py-6 
+                         shadow-lg shadow-neutral-400 bg-[#EC5252] hover:scale-105 transition-transform duration-300"
+                >
+                  <h3 className="text-xl font-bold text-white mb-2">Udemy</h3>
+                  <p className="text-white">
+                    Domina hoy las habilidades del mañana con cursos actualizados e impartidos por expertos.
+                  </p>
+                </motion.div>
+              </a>
+            </article>
+
+            {/* TARJETA 3 - Python */}
+            <article>
+
+              <a
+                href="https://www.edx.org/learn/python"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block"
+              >
+                <motion.div
+                  initial={{ y: 40, opacity: 0.4 }}
+                  whileInView={{ y: 0, opacity: 1 }}
+                  viewport={{ once: true, amount: 0.4 }}
+                  transition={{ type: "spring", damping: 5, stiffness: 100, mass: 0.4, delay: 0.6 }}
+                  className="cursor-pointer flex flex-col justify-center items-start border border-neutral-400 rounded-lg px-6 py-6 
+                         shadow-lg shadow-neutral-400 bg-[#306998] hover:scale-105 transition-transform duration-300"
+                >
+                  <h3 className="text-xl font-bold text-white mb-2">Python</h3>
+                  <p className="text-white">
+                    Explora Python, un lenguaje de programación popular en diversas carreras tecnológicas.
+                  </p>
+                </motion.div>
+              </a>
+            </article>
+
+            {/* TARJETA 4 - SAP */}
+            <article>
+              <a
+                href="https://logaligroup.com/cursos-gratis-aprender-sap-desde-cero/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block"
+              >
+                <motion.div
+                  initial={{ y: 40, opacity: 0.2 }}
+                  whileInView={{ y: 0, opacity: 1 }}
+                  viewport={{ once: true, amount: 0.4 }}
+                  transition={{ type: "spring", damping: 5, stiffness: 100, mass: 0.4, delay: 0.8 }}
+                  className="cursor-pointer flex flex-col justify-center items-start border border-neutral-400 rounded-lg px-6 py-6 
+                         shadow-lg shadow-neutral-400 bg-[#1E7145] hover:scale-105 transition-transform duration-300"
+                >
+                  <h3 className="text-xl font-bold text-white mb-2">SAP</h3>
+                  <p className="text-white">
+                    Potencia tu carrera con cursos gratuitos de SAP y adquiere habilidades en gestión empresarial y tecnología.
+                  </p>
+                </motion.div>
+              </a>
+            </article>
+          </div>
+        </div>
+      </section>
     </>
   )
 
