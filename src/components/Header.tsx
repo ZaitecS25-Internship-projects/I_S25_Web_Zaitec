@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
+import Banner from './banner';
 
 export default function Header() {
     const [modalNav, setModalNav] = useState<boolean>(false);
@@ -52,8 +53,9 @@ export default function Header() {
 
     return (
         <>
+
             {/* HEADER FIJO SUPERIOR */}
-            <div className="fixed w-full flex flex-row z-50 bg-neutral-100/90 p-2">
+            <div className="fixed top-0 left-0 w-full flex flex-row z-50 bg-neutral-100/90 p-2">
                 <div>
                     <img
                         src="/img/logo-zaitec.png"
@@ -117,20 +119,31 @@ export default function Header() {
             </div>
 
             {/* HEADER CONTENIDO */}
-            <div className="pt-20" id="inicio">
-                <div className="relative bg-[url('/img/header-zaitectwo.jpg')] bg-no-repeat bg-cover bg-center h-80">
-                    <div className="absolute inset-0 bg-black/40">
-                        <motion.p
-                            className="text-2xl text-amber-50 text-center px-2 pt-34 md:text-4xl md:w-2/3 md:mx-auto lg:text-6xl lg:pt-20"
-                            initial={{ y: 40, opacity: 0 }}
-                            animate={{ y: 0, opacity: 1 }}
-                            transition={{ duration: 2, delay: 0.8, ease: "easeInOut" }}
-                        >
-                            Asesoría tecnológica diseñada para empresas líderes
-                        </motion.p>
-                    </div>
+            <div className="relative  w-full h-120 mt-20 grid grid-cols-1 md:grid-cols-2 items-center bg-[url('/img/header-zaitectwo.jpg')] bg-no-repeat bg-cover bg-center" id="inicio">
+                <div className='absolute inset-0 bg-black/60'></div>
+                <div><Banner /></div>
+                <div className="relative ">
+                    <motion.div
+                        className='flex flex-row justify-center mb-10'
+                        initial={{ opacity: 0, y:-30 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 2.0, delay: 0.5 }}
+                    >
+                        <img src="/img/zaitec-logo-blanco.png" alt="Imagenn del logo"
+                            className='w-30'
+                        />
+                    </motion.div>
+                    <motion.p
+                        className="text-2xl text-amber-50 text-center md:text-4xl lg:text-5xl"
+                        initial={{ y: 20, opacity: 0 }}
+                        animate={{ y: 0, opacity: 1 }}
+                        transition={{ duration: 1.8, delay: 0.5, ease: "easeInOut" }}
+                    >
+                        Asesoría tecnológica diseñada para empresas líderes
+                    </motion.p>
                 </div>
             </div>
+
         </>
     );
 }

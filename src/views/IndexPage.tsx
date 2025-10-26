@@ -29,14 +29,11 @@ export default function IndexPage() {
 
   return (
     <>
-
-      {/* 👇 Banner agregado antes de la sección principal */}
-      <Banner />
       <section aria-labelledby="innovacion-tecnologica-heading">
         <div className="flex flex-col gap-5 lg:w-4/5 mx-auto pt-10 mb-25 md:pt-25  ">
           <h2 id="innovacion-tecnologica-heading" className="text-2xl font-semibold md:text-4xl md:w-2/3 lg:text-5xl lg:text-neutral-800 lg:w-3/4"><span className="text-orange-600">Innovación</span> tecnologica para empresas que lideran su industria.</h2>
           <p className="md:w-2/3 lg:text-2xl lg:w-3/4 text-neutral-600">Descubre nuestra oferta de servicios, centrada en calidad, innovación y satisfacción total del cliente.</p>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 mt-5 bg-orange-50 py-4 border border-neutral-300 rounded-lg shadow-lg shadow-neutral-400">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-3 mt-5 bg-neutral-950 py-4 border border-neutral-300 shadow-lg shadow-neutral-400">
             <CardInnovacion
               cards={cards}
             />
@@ -150,7 +147,7 @@ export default function IndexPage() {
                 className="block"
               >
                 <motion.div
-                  initial={{ y: 40, opacity: 0.8 }}
+                  initial={{ y: 30, opacity: 0.8 }}
                   whileInView={{ y: 0, opacity: 1 }}
                   viewport={{ once: true, amount: 0.4 }}
                   transition={{ type: "spring", damping: 5, stiffness: 100, mass: 0.4, delay: 0.2 }}
