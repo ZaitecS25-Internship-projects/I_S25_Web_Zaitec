@@ -119,10 +119,10 @@ export default function Header() {
             </div>
 
             {/* HEADER CONTENIDO */}
-            <div className="relative  w-full h-120 mt-20 grid grid-cols-1 md:grid-cols-2 items-center bg-[url('/img/header-zaitectwo.jpg')] bg-no-repeat bg-cover bg-center" id="inicio">
+            <div className="relative w-full min-h-120 mt-20 p-10 flex flex-col-reverse gap-10 lg:flex-row items-center bg-[url('/img/header-zaitectwo.jpg')] bg-no-repeat bg-cover bg-center" id="inicio">
                 <div className='absolute inset-0 bg-black/60'></div>
-                <div><Banner /></div>
-                <div className="relative ">
+                <div className='flex-1'><Banner /></div>
+                <div className="relative flex-1 z-50">
                     <motion.div
                         className='flex flex-row justify-center mb-10'
                         initial={{ opacity: 0, y:-30 }}

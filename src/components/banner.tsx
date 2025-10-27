@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 
 export default function Banner() {
   return (
-    <section className=" ml-10 bg-black/60 rounded-lg border border-neutral-900 shadow-black shadow-lg">
+    <section className="bg-black/60 rounded-lg border border-neutral-900 shadow-black shadow-lg">
       {/* 🔹 Transición desde el header oscuro */}
       {/* <div className="absolute w-full  flex flex-col "></div> */}
 
@@ -36,14 +36,14 @@ export default function Banner() {
 
         {/* DERECHA: Botones */}
         <motion.div
-          className="flex flex-row gap-5 pr-8 z-50"
+          className="flex flex-row gap-2 md:gap-6 z-50"
           initial={{ opacity: 0}}
           animate={{ opacity: 1}}
           transition={{ duration: 3, delay: 0.2 }}
         >
           <motion.a
             href="/formacion"
-            className="rounded-full bg-orange-600 font-semibold px-6 py-2.5 shadow-md hover:bg-orange-500 transition-all text-center text-base md:text-lg"
+            className="rounded-full bg-orange-600 font-semibold px-4 py-2.5 md:px-6 md:py-2.5 shadow-md hover:bg-orange-500 transition-all text-center text-base md:text-lg"
             whileHover={{
               scale: 1.05,
               boxShadow: "0 0 15px rgba(255,255,255,0.4)",
@@ -55,7 +55,7 @@ export default function Banner() {
 
           <motion.a
             href="/contacto"
-            className="block rounded-full border-2 border-white bg-white text-orange-600  font-semibold px-6 py-2.5 hover:bg-white/10 transition-all text-center text-base md:text-lg"
+            className="block rounded-full border-2 border-white bg-white text-orange-600  font-semibold px-4 py-2.5 md:px-6 md:py-2.5 hover:bg-white/10 transition-all text-center text-base md:text-lg"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.97 }}
           >

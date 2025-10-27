@@ -30,7 +30,7 @@ export default function IndexPage() {
   return (
     <>
       <section aria-labelledby="innovacion-tecnologica-heading">
-        <div className="flex flex-col gap-5 lg:w-4/5 mx-auto pt-10 mb-25 md:pt-25  ">
+        <div className="flex flex-col gap-5 lg:w-4/5 mx-auto px-5 pt-10 mb-25 md:pt-25  ">
           <h2 id="innovacion-tecnologica-heading" className="text-2xl font-semibold md:text-4xl md:w-2/3 lg:text-5xl lg:text-neutral-800 lg:w-3/4"><span className="text-orange-600">Innovación</span> tecnologica para empresas que lideran su industria.</h2>
           <p className="md:w-2/3 lg:text-2xl lg:w-3/4 text-neutral-600">Descubre nuestra oferta de servicios, centrada en calidad, innovación y satisfacción total del cliente.</p>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-3 mt-5 bg-neutral-950 py-4 border border-neutral-300 shadow-lg shadow-neutral-400">
@@ -43,7 +43,7 @@ export default function IndexPage() {
 
       <section aria-labelledby="soluciones-heading"
         id="desarrollo-proyectos">
-        <div className="flex flex-col gap-5 lg:w-4/5 mx-auto py-5 mb-18 ">
+        <div className="flex flex-col gap-5 lg:w-4/5 mx-auto px-5 py-5 mb-18 ">
           <h2 id='soluciones-heading' className="text-2xl font-semibold md:text-4xl md:w-2/3 lg:text-5xl lg:text-neutral-800 lg:w-3/4"><span className="text-orange-600">Proyectos </span>que generan confianza y resultados</h2>
           <p className="md:w-2/3 lg:text-2xl lg:w-3/4 text-neutral-600">Explora nuestras soluciones clave, donde convergen innovación, experiencia y resultados excepcionales.</p>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 mt-10">
@@ -104,7 +104,7 @@ export default function IndexPage() {
       <section
         className="lg:w-4/5 mx-auto py-5 mb-10 "
         id="contacto">
-        <div className="flex flex-col gap-5 mb-15">
+        <div className="flex flex-col gap-5 px-5 mb-15">
            <h2 id='soluciones-heading' className="text-2xl font-semibold md:text-4xl md:w-2/3 lg:text-5xl lg:text-neutral-800 lg:w-3/4"><span className="text-orange-600">Formación</span> y asesoramiento para empresas y particulares.</h2>
            <p className="text-2xl text-neutral-700">Te damos las mejores soluciones <br /> para que tu negocio o tu carrera profesional avance.</p>
         </div>
