@@ -1,9 +1,9 @@
 import { useState } from "react"
 import { Outlet, useRouteError } from "react-router-dom"
+
 import Header from "../components/Header"
 import type { UserDataType } from "../types"
 import Footer from "../components/Footer"
-
 export const initialForm = {
   nombre: '',
   apellido: '',
@@ -37,6 +37,7 @@ export function LayoutErrorBoundary() {
       <Footer />
     </div>
   );
+
 }
 
 export default function Layout() {
@@ -52,3 +53,4 @@ export default function Layout() {
     </div>
   );
 }
+

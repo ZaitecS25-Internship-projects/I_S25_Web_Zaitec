@@ -1,3 +1,4 @@
+
 // Header.tsx - UPDATED HERO SECTION
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -8,11 +9,13 @@ export default function Header() {
     const [isScrolled, setIsScrolled] = useState<boolean>(false);
     const location = useLocation();
 
+
     const openNav = () => {
         setModalNav(prev => !prev);
     };
 
     useEffect(() => {
+
         const handleScroll = () => {
             setIsScrolled(window.scrollY > 50);
         };
@@ -42,11 +45,13 @@ export default function Header() {
         if (section) {
             section.scrollIntoView({ behavior: 'smooth' });
         }
+
         setModalNav(false);
     };
 
     return (
         <>
+
             {/* FIXED HEADER */}
             <motion.header 
                 className={`fixed w-full flex flex-row z-50 backdrop-blur-md transition-all duration-300 ${
@@ -88,6 +93,7 @@ export default function Header() {
                         onClick={openNav}
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
+
                     >
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -95,13 +101,16 @@ export default function Header() {
                             viewBox="0 0 24 24"
                             strokeWidth="1.5"
                             stroke="currentColor"
+
                             className={`transition-colors ${
                                 isScrolled ? 'size-6 text-gray-700' : 'size-7 text-gray-800'
                             }`}
+
                         >
                             <path
                                 strokeLinecap="round"
                                 strokeLinejoin="round"
+
                                 d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
                             />
                         </svg>

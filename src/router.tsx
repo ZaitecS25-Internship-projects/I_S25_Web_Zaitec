@@ -28,6 +28,7 @@ export const routerApp = createHashRouter([
         path: '/',
         element: <Layout />,
         errorElement: <ErrorBoundary />,
+
         children: [
             {
                 index: true,
@@ -45,3 +46,4 @@ export const routerApp = createHashRouter([
         ]
     }
 ])
+

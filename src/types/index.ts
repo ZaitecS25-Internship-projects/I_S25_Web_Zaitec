@@ -16,6 +16,7 @@ export type UserDataType = {
   telefono: string;
   fecha: string;
   comentario?: string;
+
 };
 
 /**
@@ -28,4 +29,6 @@ export type ErrorType = {
   email: string;
   telefono: string;
   fecha: string;
+
 };
+
