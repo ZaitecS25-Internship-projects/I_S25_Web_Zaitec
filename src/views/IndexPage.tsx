@@ -100,7 +100,7 @@ export default function IndexPage() {
               viewport={{ once: true }}
               className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden"
             >
-              <div className="aspect-video overflow-hidden">
+              <div className="h-80 md:h-96 overflow-hidden flex items-center justify-center bg-gray-50">
                 <img
                   src="/img/pepe-martinez.png"
                   alt="Pepe Martínez y Asociados"
@@ -125,7 +125,7 @@ export default function IndexPage() {
               viewport={{ once: true }}
               className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden"
             >
-              <div className="aspect-video overflow-hidden">
+              <div className="h-80 md:h-96 overflow-hidden flex items-center justify-center bg-gray-50">
                 <img
                   src="/img/cocinas-con-alma.png"
                   alt="Cocinas con Alma"
@@ -150,7 +150,7 @@ export default function IndexPage() {
               viewport={{ once: true }}
               className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden"
             >
-              <div className="aspect-video overflow-hidden">
+              <div className="h-80 md:h-96 overflow-hidden flex items-center justify-center bg-gray-50">
                 <img
                   src="/img/electro-genio.png"
                   alt="Electro-genio"
