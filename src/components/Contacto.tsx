@@ -1,9 +1,8 @@
-
 import { useRef, useEffect, useState } from 'react';
-import type { ActionFunctionArgs } from "react-router-dom"
+import type { ActionFunctionArgs } from "react-router-dom";
 import { useActionData, Form } from 'react-router-dom';
 import { initialForm } from '../layouts/Layout';
-import type { ErrorType, UserDataType } from "../types"
+import type { ErrorType, UserDataType } from "../types";
 
 export type ActionDataType = {
   error?: string;
@@ -19,11 +18,10 @@ export const action = async ({ request }: ActionFunctionArgs) => {
   const dataForm = await request.formData();
   const data = Object.fromEntries(dataForm.entries()) as UserDataType;
   const userData = { ...data };
-
   return { formUserData: userData };
 };
 
-export default function Contacto({formState, setFormState}:OutletContextType) {
+export default function Contacto({ formState, setFormState }: OutletContextType) {
   const actionData = useActionData<ActionDataType>();
   const [errors, setErrors] = useState<ErrorType>({
     nombre: '',
@@ -41,7 +39,7 @@ export default function Contacto({formState, setFormState}:OutletContextType) {
       setFormState(initialForm);
       formRef.current?.reset();
     }
-  }, [actionData]);
+  }, [actionData, setFormState]);
 
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -68,14 +66,18 @@ export default function Contacto({formState, setFormState}:OutletContextType) {
   };
 
   return (
+<<<<<<< HEAD
 
     <div className="w-full md:w-3/4 py-10 px-5  mx-auto">
+=======
+    <div className="w-full md:w-3/4 py-10 mx-auto">
+>>>>>>> rama-previa-zaitec
       <p className="text-3xl text-center pb-10 mb-6">
         <span className="text-neutral-700 font-medium">Completa con tus datos</span>
       </p>
 
       <Form ref={formRef} method="post" className="flex flex-col gap-5">
-        {/* Nombre */}
+        {/* Nombre y primer apellido */}
         <div className='grid grid-cols-1 gap-5 md:grid-cols-2'>
           <div className="flex flex-col gap-1 text-neutral-600">
             <label className="font-bold text-lg" htmlFor="nombre">Nombre:</label>
@@ -91,7 +93,6 @@ export default function Contacto({formState, setFormState}:OutletContextType) {
             {errors.nombre && <p className="text-red-500 text-sm">{errors.nombre}</p>}
           </div>
 
-          {/* Primer apellido */}
           <div className="flex flex-col gap-1 text-neutral-600">
             <label className="font-bold text-lg" htmlFor="apellido">Primer Apellido:</label>
             <input
@@ -107,8 +108,7 @@ export default function Contacto({formState, setFormState}:OutletContextType) {
           </div>
         </div>
 
-
-        {/* Segundo apellido */}
+        {/* Segundo apellido y email */}
         <div className='grid grid-cols-1 gap-5 md:grid-cols-2'>
           <div className="flex flex-col gap-1 text-neutral-600">
             <label className="font-bold text-lg" htmlFor="segunapellido">Segundo Apellido:</label>
@@ -124,7 +124,6 @@ export default function Contacto({formState, setFormState}:OutletContextType) {
             {errors.segunapellido && <p className="text-red-500 text-sm">{errors.segunapellido}</p>}
           </div>
 
-          {/* Email */}
           <div className="flex flex-col gap-1 text-neutral-600">
             <label className="font-bold text-lg" htmlFor="email">Email:</label>
             <input
@@ -140,37 +139,35 @@ export default function Contacto({formState, setFormState}:OutletContextType) {
           </div>
         </div>
 
-        {/* Teléfono */}
+        {/* Teléfono y fecha */}
         <div className='grid grid-cols-1 gap-5 md:grid-cols-2'>
           <div className="flex flex-col gap-1 text-neutral-600">
-          <label className="font-bold text-lg" htmlFor="telefono">Teléfono de contacto:</label>
-          <input
-            className="w-full border-b border-neutral-800 p-2 outline-0 text-md"
-            type="text"
-            id="telefono"
-            name="telefono"
-            value={formState.telefono}
-            onChange={handleChange}
-            placeholder="Escribe tu número de teléfono..."
-          />
-          {errors.telefono && <p className="text-red-500 text-sm">{errors.telefono}</p>}
-        </div>
+            <label className="font-bold text-lg" htmlFor="telefono">Teléfono de contacto:</label>
+            <input
+              className="w-full border-b border-neutral-800 p-2 outline-0 text-md"
+              type="text"
+              id="telefono"
+              name="telefono"
+              value={formState.telefono}
+              onChange={handleChange}
+              placeholder="Escribe tu número de teléfono..."
+            />
+            {errors.telefono && <p className="text-red-500 text-sm">{errors.telefono}</p>}
+          </div>
 
-        {/* Fecha */}
-        <div className="flex flex-col gap-1 text-neutral-600">
-          <label className="font-bold text-lg" htmlFor="fecha">Fecha:</label>
-          <input
-            className="w-full border-b border-neutral-800 p-2 outline-0 text-md"
-            type="date"
-            id="fecha"
-            name="fecha"
-            value={formState.fecha}
-            onChange={handleChange}
-          />
-          {errors.fecha && <p className="text-red-500 text-sm">{errors.fecha}</p>}
+          <div className="flex flex-col gap-1 text-neutral-600">
+            <label className="font-bold text-lg" htmlFor="fecha">Fecha:</label>
+            <input
+              className="w-full border-b border-neutral-800 p-2 outline-0 text-md"
+              type="date"
+              id="fecha"
+              name="fecha"
+              value={formState.fecha}
+              onChange={handleChange}
+            />
+            {errors.fecha && <p className="text-red-500 text-sm">{errors.fecha}</p>}
+          </div>
         </div>
-        </div>
-        
 
         {/* Comentario */}
         <div className="flex flex-col gap-1 text-neutral-600">
@@ -182,14 +179,14 @@ export default function Contacto({formState, setFormState}:OutletContextType) {
             value={formState.comentario}
             onChange={handleChange}
             placeholder="Escribe un comentario..."
-          ></textarea>
+          />
         </div>
 
         {/* Botones */}
         <div className="flex flex-row gap-5 pt-5">
           <button
             type="submit"
-            className="block w-50 bg-black  my-2 mx-auto py-1 font-bold text-white text-lg text-shadow-lg rounded-md"
+            className="block w-50 bg-black my-2 mx-auto py-1 font-bold text-white text-lg text-shadow-lg rounded-md"
           >
             Enviar
           </button>
@@ -208,5 +205,4 @@ export default function Contacto({formState, setFormState}:OutletContextType) {
       </Form>
     </div>
   );
-
 }

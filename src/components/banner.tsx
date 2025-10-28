@@ -1,7 +1,7 @@
-import { motion } from "framer-motion";
 
 
 export default function Banner() {
+<<<<<<< HEAD
   return (
     <section className="bg-black/60 rounded-lg border border-neutral-900 shadow-black shadow-lg">
       {/* 🔹 Transición desde el header oscuro */}
@@ -65,4 +65,8 @@ export default function Banner() {
       </motion.div>
     </section>
   );
+=======
+  return null;
+>>>>>>> rama-previa-zaitec
 }
+
