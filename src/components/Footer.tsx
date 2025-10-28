@@ -9,7 +9,6 @@ const Footer: React.FC = () => {
       window.location.href = `/#${id}`;
       return;
     }
-    
     const section = document.getElementById(id);
     if (section) {
       section.scrollIntoView({ behavior: 'smooth' });
@@ -53,14 +52,14 @@ const Footer: React.FC = () => {
 
   return (
     <motion.footer 
-      className="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white pt-20 pb-8 relative overflow-hidden"
+      className="bg-linear-to-br from-gray-900 via-gray-800 to-gray-900 text-white pt-20 pb-8 relative overflow-hidden"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: "-50px" }}
       variants={footerVariants}
     >
       {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-5 bg-[length:100px_100px] bg-[radial-gradient(circle,_#ffffff_1px,_transparent_1px)]" />
+      <div className="absolute inset-0 opacity-5 bg-size-[100px_100px] bg-[radial-gradient(circle,#ffffff_1px,transparent_1px)]" />
       
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         {/* Main Footer Content */}
@@ -86,7 +85,7 @@ const Footer: React.FC = () => {
               />
               <div className="flex flex-col">
                 <h2 className="text-xl font-bold">Zaitec</h2>
-                <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent text-sm font-semibold">
+                <span className="bg-linear-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent text-sm font-semibold">
                   Innova
                 </span>
               </div>
@@ -132,7 +131,7 @@ const Footer: React.FC = () => {
                     className="text-gray-400 hover:text-white transition-all duration-300 text-left group"
                     whileHover={{ x: 8 }}
                   >
-                    <span className="group-hover:bg-gradient-to-r group-hover:from-blue-400 group-hover:to-purple-400 group-hover:bg-clip-text group-hover:text-transparent">
+                    <span className="group-hover:bg-linear-to-r group-hover:from-blue-400 group-hover:to-purple-400 group-hover:bg-clip-text group-hover:text-transparent">
                       {item.label}
                     </span>
                   </motion.button>
@@ -253,7 +252,7 @@ const Footer: React.FC = () => {
       </div>
 
       {/* Accent Gradient */}
-      <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600" />
+      <div className="absolute bottom-0 left-0 right-0 h-1 bg-linear-to-r from-blue-600 via-purple-600 to-indigo-600" />
     </motion.footer>
   );
 };
