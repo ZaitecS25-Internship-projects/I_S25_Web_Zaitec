@@ -5,6 +5,7 @@ import CardInnovacion from "../components/CardInnovacion";
 import { motion } from "framer-motion";
 import Contacto from "../components/Contacto";
 import type { OutletContextType } from "../components/Contacto";
+import { Link } from "react-router-dom";
 
 export default function IndexPage() {
   const cards: Cards = [
@@ -170,17 +171,13 @@ export default function IndexPage() {
           </div>
         </div>
 <div className="text-center mt-12">
-  <motion.a
-    href="/Desarrollo" // 🔗 Enlace a la página completa
-    initial={{ opacity: 0, y: 20 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    transition={{ duration: 0.6, delay: 0.2 }}
-    viewport={{ once: true }}
-    className="inline-block bg-blue-600 text-white px-6 py-3 rounded-full font-semibold hover:bg-blue-700 transition-colors duration-300"
-  >
-    Ver más proyectos
-  </motion.a>
-</div>
+        <Link
+          to="/Desarrollo"
+          className="inline-block bg-blue-600 text-white px-6 py-3 rounded-full font-semibold hover:bg-blue-700 transition-colors duration-300"
+        >
+          Ver más proyectos
+        </Link>
+      </div>
 
 
 
