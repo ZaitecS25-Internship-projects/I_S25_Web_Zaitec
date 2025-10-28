@@ -66,12 +66,9 @@ export default function Contacto({ formState, setFormState }: OutletContextType)
   };
 
   return (
-<<<<<<< HEAD
 
-    <div className="w-full md:w-3/4 py-10 px-5  mx-auto">
-=======
     <div className="w-full md:w-3/4 py-10 mx-auto">
->>>>>>> rama-previa-zaitec
+
       <p className="text-3xl text-center pb-10 mb-6">
         <span className="text-neutral-700 font-medium">Completa con tus datos</span>
       </p>

@@ -1,11 +1,8 @@
 import { useEffect, useState } from 'react';
-<<<<<<< HEAD
-import { motion } from 'framer-motion';
-import Banner from './banner';
-=======
+
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link, useLocation } from 'react-router-dom';
->>>>>>> rama-previa-zaitec
+
 
 export default function Header() {
     const [modalNav, setModalNav] = useState<boolean>(false);
@@ -47,25 +44,7 @@ export default function Header() {
 
     return (
         <>
-<<<<<<< HEAD
 
-            {/* HEADER FIJO SUPERIOR */}
-            <div className="fixed top-0 left-0 w-full flex flex-row z-50 bg-neutral-100/90 p-2">
-                <div>
-                    <img
-                        src="/img/logo-zaitec.png"
-                        alt="Logo Zaitec"
-                        className="w-16 p-1"
-                    />
-                </div>
-                <div className="flex flex-col pl-1 justify-center items-center">
-                    <h1 className="text-lg text-neutral-600 font-bold font-sans">
-                        Zaitec<span className="text-xs text-orange-600"> Innova</span>
-                    </h1>
-                </div>
-                <div className="absolute top-5 right-5 z-50 flex flex-col items-end gap-4">
-                    <button
-=======
             {/* FIXED HEADER */}
             <motion.header 
                 className={`fixed w-full flex flex-row z-50 backdrop-blur-md transition-all duration-300 ${
@@ -103,7 +82,7 @@ export default function Header() {
                     
                     {/* Menu Button */}
                     <motion.button
->>>>>>> rama-previa-zaitec
+
                         type="button"
                         className="flex flex-col items-center p-2 rounded-lg hover:bg-white/50 transition-colors"
                         onClick={openNav}
@@ -132,34 +111,6 @@ export default function Header() {
                 </div>
             </motion.header>
 
-<<<<<<< HEAD
-            {/* HEADER CONTENIDO */}
-            <div className="relative w-full min-h-120 mt-20 p-10 flex flex-col-reverse gap-10 lg:flex-row items-center bg-[url('/img/header-zaitectwo.jpg')] bg-no-repeat bg-cover bg-center" id="inicio">
-                <div className='absolute inset-0 bg-black/60'></div>
-                <div className='flex-1'><Banner /></div>
-                <div className="relative flex-1 z-50">
-                    <motion.div
-                        className='flex flex-row justify-center mb-10'
-                        initial={{ opacity: 0, y:-30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 2.0, delay: 0.5 }}
-                    >
-                        <img src="/img/zaitec-logo-blanco.png" alt="Imagenn del logo"
-                            className='w-30'
-                        />
-                    </motion.div>
-                    <motion.p
-                        className="text-2xl text-amber-50 text-center md:text-4xl lg:text-5xl"
-                        initial={{ y: 20, opacity: 0 }}
-                        animate={{ y: 0, opacity: 1 }}
-                        transition={{ duration: 1.8, delay: 0.5, ease: "easeInOut" }}
-                    >
-                        Asesoría tecnológica diseñada para empresas líderes
-                    </motion.p>
-                </div>
-            </div>
-
-=======
             {/* MAIN CONTENT WRAPPER */}
             <motion.div
                 className="relative min-h-screen transition-all duration-300"
@@ -365,7 +316,7 @@ export default function Header() {
                     </div>
                 </div>
             </motion.div>
->>>>>>> rama-previa-zaitec
+
         </>
     );
 }
