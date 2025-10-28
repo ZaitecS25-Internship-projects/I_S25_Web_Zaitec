@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { Outlet, useRouteError } from "react-router-dom"
+import { Outlet, useRouteError, Link } from "react-router-dom"
 
 import Header from "../components/Header"
 import type { UserDataType } from "../types"
@@ -53,4 +53,5 @@ export default function Layout() {
     </div>
   );
 }
+
 
