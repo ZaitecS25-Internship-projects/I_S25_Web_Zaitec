@@ -15,7 +15,8 @@ export type UserDataType = {
   email: string;
   telefono: string;
   fecha: string;
-  comentario?: string; // opcional para permitir vacío o valor por defecto
+  comentario?: string;
+
 };
 
 /**
@@ -28,4 +29,6 @@ export type ErrorType = {
   email: string;
   telefono: string;
   fecha: string;
+
 };
+
