@@ -202,11 +202,11 @@ export default function IndexPage() {
         </div>
       </section>
 
-   {/* Training Section */}
+ {/* Training Section */}
 <section
   id="formacion"
   aria-labelledby="capacitacion-tecnologica-heading"
-  className="py-16 md:py-20 bg-gray-50"
+  className="py-16 md:py-20 bg-gray-50 relative"
 >
   <div className="container mx-auto px-6">
     <motion.div
@@ -229,6 +229,48 @@ export default function IndexPage() {
         Mejora tus habilidades con nuestras formaciones tecnológicas más demandadas.
       </p>
     </motion.div>
+
+    {/* Bloque de acceso al curso con texto centrado y flecha a la derecha */}
+<div className="flex items-center justify-between my-12 max-w-5xl mx-auto px-6">
+  {/* Texto centrado */}
+  <span className="text-2xl md:text-3xl font-bold text-gray-900 mx-auto">
+    Accede al curso ZaitecLabs.es
+  </span>
+
+  {/* Flecha clicable a la derecha */}
+  <motion.a
+    href="https://Zaiteclabs.es/"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="w-60 h-60 ml-auto" // ml-auto empuja la flecha a la derecha
+    animate={{
+      y: [0, -15, 0],
+      x: [0, 10, 0]
+    }}
+    transition={{
+      duration: 2,
+      repeat: Infinity,
+      repeatType: "loop",
+      ease: "easeInOut",
+    }}
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="none"
+      strokeWidth={2.4}
+      stroke="currentColor"
+      className="w-60 h-60 text-blue-700 hover:text-blue-900 cursor-pointer transition-transform duration-300 hover:scale-105"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M5 19L19 5M5 5h14v14"
+      />
+    </svg>
+  </motion.a>
+</div>
+
 
     {/* Training Targets */}
     <div className="flex flex-col gap-10 max-w-5xl mx-auto">
@@ -332,9 +374,11 @@ export default function IndexPage() {
           </a>
         </div>
       </motion.article>
+
     </div>
   </div>
 </section>
+
 
 
     </>
