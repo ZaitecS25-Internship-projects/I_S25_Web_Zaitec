@@ -1,6 +1,6 @@
 import { useRef, useEffect, useState } from 'react';
 import type { ActionFunctionArgs } from "react-router-dom";
-import { useActionData, Form } from 'react-router-dom';
+// import { useActionData, Form } from 'react-router-dom';
 import { initialForm } from '../layouts/Layout';
 import type { ErrorType, UserDataType } from "../types";
 
@@ -14,15 +14,15 @@ export type OutletContextType = {
   setFormState: React.Dispatch<React.SetStateAction<UserDataType>>;
 };
 
-export const action = async ({ request }: ActionFunctionArgs) => {
-  const dataForm = await request.formData();
-  const data = Object.fromEntries(dataForm.entries()) as UserDataType;
-  const userData = { ...data };
-  return { formUserData: userData };
-};
+// export const action = async ({ request }: ActionFunctionArgs) => {
+//   const dataForm = await request.formData();
+//   const data = Object.fromEntries(dataForm.entries()) as UserDataType;
+//   const userData = { ...data };
+//   return { formUserData: userData };
+// };
 
 export default function Contacto({ formState, setFormState }: OutletContextType) {
-  const actionData = useActionData<ActionDataType>();
+  // const actionData = useActionData<ActionDataType>();
   const [errors, setErrors] = useState<ErrorType>({
     nombre: '',
     apellido: '',
@@ -34,12 +34,12 @@ export default function Contacto({ formState, setFormState }: OutletContextType)
 
   const formRef = useRef<HTMLFormElement>(null);
 
-  useEffect(() => {
-    if (actionData && !actionData.error) {
-      setFormState(initialForm);
-      formRef.current?.reset();
-    }
-  }, [actionData, setFormState]);
+  // useEffect(() => {
+  //   if (actionData && !actionData.error) {
+  //     setFormState(initialForm);
+  //     formRef.current?.reset();
+  //   }
+  // }, [actionData, setFormState]);
 
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -73,7 +73,7 @@ export default function Contacto({ formState, setFormState }: OutletContextType)
         <span className="text-neutral-700 font-medium">Completa con tus datos</span>
       </p>
 
-      <Form ref={formRef} method="post" className="flex flex-col gap-5">
+      <form ref={formRef}  className="flex flex-col gap-5">
         {/* Nombre y primer apellido */}
         <div className='grid grid-cols-1 gap-5 md:grid-cols-2'>
           <div className="flex flex-col gap-1 text-neutral-600">
@@ -195,11 +195,11 @@ export default function Contacto({ formState, setFormState }: OutletContextType)
           </button>
         </div>
 
-        {/* Mensaje de error global */}
+        {/* Mensaje de error global
         {actionData?.error && (
           <p className="text-center text-red-600 font-semibold">{actionData.error}</p>
-        )}
-      </Form>
+        )} */}
+      </form>
     </div>
   );
 }
