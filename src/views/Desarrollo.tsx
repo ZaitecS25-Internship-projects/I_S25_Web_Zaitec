@@ -81,7 +81,7 @@ export default function ProyectosPage() {
   viewport={{ once: true }}
   className="text-5xl md:text-6xl font-extrabold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-6"
 >
-  Todos nuestros proyectos
+  Más proyectos
 </motion.h1>
 
         <motion.p
@@ -91,7 +91,7 @@ export default function ProyectosPage() {
           viewport={{ once: true }}
           className="bg-linear-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent"
         >
-          Explora todos nuestros trabajos realizados: diseño web, desarrollo, e-commerce y mucho más.
+          Explora más trabajos realizados por Zaitec: diseño web, desarrollo, e-commerce y mucho más.
         </motion.p>
       </div>
 
@@ -122,41 +122,48 @@ export default function ProyectosPage() {
       </div>
 
       {/* Modal */}
-      <AnimatePresence>
-        {modalProyecto && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50"
-            onClick={() => setModalProyecto(null)}
-          >
-            <motion.div
-              initial={{ scale: 0.8 }}
-              animate={{ scale: 1 }}
-              exit={{ scale: 0.8 }}
-              className="bg-white rounded-2xl max-w-3xl w-full p-6 relative"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <button
-                onClick={() => setModalProyecto(null)}
-                className="absolute top-4 right-4 text-gray-500 hover:text-gray-800 text-2xl font-bold"
-              >
-                &times;
-              </button>
-              <div className="h-64 flex items-center justify-center mb-6">
-                <img
-                  src={modalProyecto.img}
-                  alt={modalProyecto.alt}
-                  className="max-h-full object-contain"
-                />
-              </div>
-              <h3 className="text-2xl font-bold mb-2">{modalProyecto.titulo}</h3>
-              <p className="text-gray-700">{modalProyecto.detalles || modalProyecto.descripcion}</p>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {/* Modal */}
+<AnimatePresence mode="wait">
+  {modalProyecto && (
+    <motion.div
+      key="modal"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.25 }}
+      className="fixed inset-0 z-[9999] bg-black bg-opacity-70 flex items-center justify-center"
+      onClick={() => setModalProyecto(null)}
+    >
+      <motion.div
+        initial={{ scale: 0.9, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        exit={{ scale: 0.9, opacity: 0 }}
+        transition={{ duration: 0.3, ease: 'easeInOut' }}
+        className="bg-white rounded-2xl max-w-3xl w-full p-6 relative"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <button
+          onClick={() => setModalProyecto(null)}
+          className="absolute top-4 right-4 text-gray-500 hover:text-gray-800 text-2xl font-bold"
+        >
+          &times;
+        </button>
+
+        <div className="h-64 flex items-center justify-center mb-6">
+          <img
+            src={modalProyecto.img}
+            alt={modalProyecto.alt}
+            className="max-h-full object-contain"
+          />
+        </div>
+
+        <h3 className="text-2xl font-bold mb-2">{modalProyecto.titulo}</h3>
+        <p className="text-gray-700">{modalProyecto.detalles || modalProyecto.descripcion}</p>
+      </motion.div>
+    </motion.div>
+  )}
+</AnimatePresence>
+
     </section>
   );
 }

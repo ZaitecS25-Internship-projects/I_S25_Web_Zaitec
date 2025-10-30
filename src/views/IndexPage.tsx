@@ -174,7 +174,7 @@ export default function IndexPage() {
         <div className="text-center mt-12">
           <div className="text-center mt-16">
             <Link
-              to="/proyectos"
+              to="/Desarrollo"
               className="inline-flex items-center text-blue-600 text-2xl font-bold hover:text-blue-800 transition-colors group"
             >
               Ver más proyectos
