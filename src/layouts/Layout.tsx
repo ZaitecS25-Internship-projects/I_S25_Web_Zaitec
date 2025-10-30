@@ -1,5 +1,7 @@
-import { useState } from "react"
-import { Outlet, useRouteError, Link } from "react-router-dom"
+import { useState } from "react";
+import { Outlet, useRouteError, Link } from "react-router-dom";
+import ScrollToTop from "../components/ScrollToTop";
+
 
 import Header from "../components/Header"
 import type { UserDataType } from "../types"
@@ -46,6 +48,7 @@ export default function Layout() {
   return (
     <div className="min-h-screen flex flex-col relative">
       <Header />
+      <ScrollToTop />
       <main className="flex-1 relative z-10">
         <Outlet context={{ formState, setFormState }} />
       </main>
