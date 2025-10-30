@@ -25,6 +25,19 @@ export default function Header() {
         setModalNav(false);
     }, [location.pathname]);
 
+    // Prevent body scroll when menu is open
+    useEffect(() => {
+        if (modalNav) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = 'unset';
+        }
+        
+        return () => {
+            document.body.style.overflow = 'unset';
+        };
+    }, [modalNav]);
+
     const menuItems = [
         { label: "Inicio", path: "/", id: "inicio" },
         { label: "Desarrollo y proyectos", path: "/desarrollo", id: "desarrollo-proyectos" },
@@ -111,97 +124,95 @@ export default function Header() {
                 </div>
             </motion.header>
 
-            {/* MAIN CONTENT WRAPPER */}
-            <motion.div
-                className="relative min-h-screen transition-all duration-300"
-                animate={{ x: modalNav ? '-8%' : '0%', scale: modalNav ? 0.95 : 1 }}
-                transition={{ type: "spring", damping: 30, stiffness: 300, mass: 0.8 }}
-                style={{ transformOrigin: 'center left' }}
-            >
-                {/* SIDE NAVIGATION MENU */}
-                <AnimatePresence>
-                    {modalNav && (
-                        <>
-                            <motion.div
-                                className="fixed inset-0 bg-black/40 backdrop-blur-sm z-40"
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: 1 }}
-                                exit={{ opacity: 0 }}
-                                onClick={() => setModalNav(false)}
-                            />
-                            <motion.nav
-                                className="fixed top-0 right-0 h-full w-80 bg-linear-to-b from-gray-900 to-gray-800 z-50 shadow-2xl border-l border-gray-700/50"
-                                initial={{ x: '100%' }}
-                                animate={{ x: 0 }}
-                                exit={{ x: '100%' }}
-                                transition={{ type: "spring", damping: 25, stiffness: 250 }}
-                            >
-                                <div className="p-8 h-full flex flex-col">
-                                    <div className="flex justify-between items-center mb-12">
-                                        <motion.img
-                                            src="/img/logo-zaitec.png"
-                                            alt="Logo Zaitec"
-                                            className="h-10 w-auto"
-                                            initial={{ opacity: 0, scale: 0.8 }}
-                                            animate={{ opacity: 1, scale: 1 }}
-                                            transition={{ delay: 0.1 }}
-                                        />
-                                        <motion.button
-                                            onClick={() => setModalNav(false)}
-                                            className="text-white p-2 rounded-full hover:bg-white/10 transition-colors"
-                                            whileHover={{ scale: 1.1, rotate: 90 }}
-                                            whileTap={{ scale: 0.9 }}
-                                        >
-                                            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                                            </svg>
-                                        </motion.button>
-                                    </div>
-
-                                    <div className="flex-1 flex flex-col justify-center space-y-6">
-                                        {menuItems.map((item, index) => (
-                                            <motion.div
-                                                key={item.id}
-                                                initial={{ x: 50, opacity: 0 }}
-                                                animate={{ x: 0, opacity: 1 }}
-                                                transition={{ delay: index * 0.1, type: "spring", stiffness: 100, damping: 15 }}
-                                            >
-                                                {location.pathname === '/' ? (
-                                                    <button
-                                                        onClick={() => scrollToSection(item.id)}
-                                                        className="text-xl font-semibold text-white hover:text-blue-300 transition-all duration-300 w-full text-left py-3 pl-4 border-l-2 border-transparent hover:border-blue-400 hover:bg-white/5 rounded-r-lg"
-                                                    >
-                                                        {item.label}
-                                                    </button>
-                                                ) : (
-                                                    <Link
-                                                        to="/"
-                                                        onClick={() => setTimeout(() => scrollToSection(item.id), 100)}
-                                                        className="text-xl font-semibold text-white hover:text-blue-300 transition-all duration-300 w-full text-left py-3 pl-4 border-l-2 border-transparent hover:border-blue-400 hover:bg-white/5 rounded-r-lg block"
-                                                    >
-                                                        {item.label}
-                                                    </Link>
-                                                )}
-                                            </motion.div>
-                                        ))}
-                                    </div>
-
-                                    <motion.div
-                                        className="pt-6 border-t border-gray-700/50"
-                                        initial={{ opacity: 0, y: 20 }}
-                                        animate={{ opacity: 1, y: 0 }}
-                                        transition={{ delay: 0.5 }}
+            {/* SIDE NAVIGATION MENU - COMPLETELY INDEPENDENT */}
+            <AnimatePresence>
+                {modalNav && (
+                    <>
+                        {/* Backdrop */}
+                        <motion.div
+                            className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40"
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            onClick={() => setModalNav(false)}
+                        />
+                        
+                        {/* Navigation Menu */}
+                        <motion.nav
+                            className="fixed top-0 right-0 h-full w-80 bg-linear-to-b from-gray-900 to-gray-800 z-50 shadow-2xl border-l border-gray-700/50"
+                            initial={{ x: '100%' }}
+                            animate={{ x: 0 }}
+                            exit={{ x: '100%' }}
+                            transition={{ type: "spring", damping: 25, stiffness: 250 }}
+                        >
+                            <div className="p-8 h-full flex flex-col">
+                                <div className="flex justify-between items-center mb-12">
+                                    <motion.img
+                                        src="/img/logo-zaitec.png"
+                                        alt="Logo Zaitec"
+                                        className="h-10 w-auto"
+                                        initial={{ opacity: 0, scale: 0.8 }}
+                                        animate={{ opacity: 1, scale: 1 }}
+                                        transition={{ delay: 0.1 }}
+                                    />
+                                    <motion.button
+                                        onClick={() => setModalNav(false)}
+                                        className="text-white p-2 rounded-full hover:bg-white/10 transition-colors"
+                                        whileHover={{ scale: 1.1, rotate: 90 }}
+                                        whileTap={{ scale: 0.9 }}
                                     >
-                                        <p className="text-gray-400 text-sm font-light">
-                                            Transformando ideas en soluciones digitales
-                                        </p>
-                                    </motion.div>
+                                        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                                        </svg>
+                                    </motion.button>
                                 </div>
-                            </motion.nav>
-                        </>
-                    )}
-                </AnimatePresence>
 
+                                <div className="flex-1 flex flex-col justify-center space-y-6">
+                                    {menuItems.map((item, index) => (
+                                        <motion.div
+                                            key={item.id}
+                                            initial={{ x: 50, opacity: 0 }}
+                                            animate={{ x: 0, opacity: 1 }}
+                                            transition={{ delay: index * 0.1, type: "spring", stiffness: 100, damping: 15 }}
+                                        >
+                                            {location.pathname === '/' ? (
+                                                <button
+                                                    onClick={() => scrollToSection(item.id)}
+                                                    className="text-xl font-semibold text-white hover:text-blue-300 transition-all duration-300 w-full text-left py-3 pl-4 border-l-2 border-transparent hover:border-blue-400 hover:bg-white/5 rounded-r-lg"
+                                                >
+                                                    {item.label}
+                                                </button>
+                                            ) : (
+                                                <Link
+                                                    to="/"
+                                                    onClick={() => setTimeout(() => scrollToSection(item.id), 100)}
+                                                    className="text-xl font-semibold text-white hover:text-blue-300 transition-all duration-300 w-full text-left py-3 pl-4 border-l-2 border-transparent hover:border-blue-400 hover:bg-white/5 rounded-r-lg block"
+                                                >
+                                                    {item.label}
+                                                </Link>
+                                            )}
+                                        </motion.div>
+                                    ))}
+                                </div>
+
+                                <motion.div
+                                    className="pt-6 border-t border-gray-700/50"
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ delay: 0.5 }}
+                                >
+                                    <p className="text-gray-400 text-sm font-light">
+                                        Transformando ideas en soluciones digitales
+                                    </p>
+                                </motion.div>
+                            </div>
+                        </motion.nav>
+                    </>
+                )}
+            </AnimatePresence>
+
+            {/* MAIN CONTENT - NO TRANSFORMATION NEEDED */}
+            <div className="relative min-h-screen">
                 {/* HERO SECTION */}
                 <div className="pt-24 md:pt-28" id="inicio">
                     <div className="min-h-screen flex flex-col md:flex-row bg-linear-to-br from-slate-50 via-white to-blue-50 relative overflow-hidden">
@@ -315,8 +326,8 @@ export default function Header() {
                         </motion.div>
                     </div>
                 </div>
-            </motion.div>
 
+            </div>
         </>
     );
 }
