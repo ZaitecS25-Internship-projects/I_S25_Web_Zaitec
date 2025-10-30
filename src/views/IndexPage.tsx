@@ -5,6 +5,7 @@ import CardInnovacion from "../components/CardInnovacion";
 import { motion } from "framer-motion";
 import Contacto from "../components/Contacto";
 import type { OutletContextType } from "../components/Contacto";
+import { Link } from "react-router-dom";
 
 export default function IndexPage() {
   const cards: Cards = [
@@ -100,7 +101,7 @@ export default function IndexPage() {
               viewport={{ once: true }}
               className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden"
             >
-              <div className="aspect-video overflow-hidden">
+              <div className="h-80 md:h-96 overflow-hidden flex items-center justify-center bg-gray-50">
                 <img
                   src="/img/pepe-martinez.png"
                   alt="Pepe Martínez y Asociados"
@@ -125,7 +126,7 @@ export default function IndexPage() {
               viewport={{ once: true }}
               className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden"
             >
-              <div className="aspect-video overflow-hidden">
+              <div className="h-80 md:h-96 overflow-hidden flex items-center justify-center bg-gray-50">
                 <img
                   src="/img/cocinas-con-alma.png"
                   alt="Cocinas con Alma"
@@ -150,7 +151,7 @@ export default function IndexPage() {
               viewport={{ once: true }}
               className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden"
             >
-              <div className="aspect-video overflow-hidden">
+              <div className="h-80 md:h-96 overflow-hidden flex items-center justify-center bg-gray-50">
                 <img
                   src="/img/electro-genio.png"
                   alt="Electro-genio"
@@ -169,6 +170,17 @@ export default function IndexPage() {
             </motion.article>
           </div>
         </div>
+<div className="text-center mt-12">
+        <Link
+          to="/Desarrollo"
+          className="inline-block bg-blue-600 text-white px-6 py-3 rounded-full font-semibold hover:bg-blue-700 transition-colors duration-300"
+        >
+          Ver más proyectos
+        </Link>
+      </div>
+
+
+
       </section>
 
       {/* Contact Section */}

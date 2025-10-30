@@ -40,7 +40,7 @@ export const routerApp = createHashRouter([
                 element: <Formacion />
             },
             {
-                path: 'desarrollo',
+                path: "desarrollo",
                 element: <Desarrollo />
             }
         ]
