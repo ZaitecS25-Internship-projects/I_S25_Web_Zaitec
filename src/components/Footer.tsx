@@ -9,10 +9,32 @@ const Footer: React.FC = () => {
       window.location.href = `/#${id}`;
       return;
     }
+
     const section = document.getElementById(id);
-    if (section) {
-      section.scrollIntoView({ behavior: 'smooth' });
-    }
+    if (!section) return;
+
+    const targetPosition = section.getBoundingClientRect().top + window.scrollY;
+    const startPosition = window.scrollY;
+    const distance = targetPosition - startPosition;
+    const duration = 2500; // duración del scroll en ms
+    const startTime = performance.now();
+
+    const easeInOutCubic = (t: number) =>
+      t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+
+    const animateScroll = (currentTime: number) => {
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = easeInOutCubic(progress);
+
+      window.scrollTo(0, startPosition + distance * eased);
+
+      if (elapsed < duration) {
+        requestAnimationFrame(animateScroll);
+      }
+    };
+
+    requestAnimationFrame(animateScroll);
   };
 
   const footerVariants = {
@@ -61,15 +83,15 @@ const Footer: React.FC = () => {
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5 bg-size-[100px_100px] bg-[radial-gradient(circle,#ffffff_1px,transparent_1px)]" />
       
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
+      <div className="max-w-5xl mx-auto px-6 relative z-10">
         {/* Main Footer Content */}
         <motion.div 
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-16 mb-16"
+          className="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-16 mb-16 text-center md:text-left"
           variants={staggerVariants}
         >
           {/* Brand Section */}
           <motion.div 
-            className="flex flex-col gap-6"
+            className="flex flex-col items-center md:items-start gap-6"
             custom={0}
             variants={itemVariants}
           >
@@ -95,13 +117,14 @@ const Footer: React.FC = () => {
               whileHover={{ x: 5 }}
               transition={{ type: "spring", stiffness: 300 }}
             >
-              Soluciones tecnológicas innovadoras que transforman negocios y impulsan el crecimiento digital.
+              Soluciones tecnológicas innovadoras que transforman negocios y
+              impulsan el crecimiento digital.
             </motion.p>
           </motion.div>
 
           {/* Quick Links */}
           <motion.div 
-            className="flex flex-col gap-6"
+            className="flex flex-col items-center md:items-start gap-6"
             custom={1}
             variants={itemVariants}
           >
@@ -140,45 +163,10 @@ const Footer: React.FC = () => {
             </motion.ul>
           </motion.div>
 
-          {/* Services */}
-          <motion.div 
-            className="flex flex-col gap-6"
-            custom={2}
-            variants={itemVariants}
-          >
-            <motion.h3 
-              className="font-bold text-lg text-white mb-2"
-              whileHover={{ x: 5 }}
-              transition={{ type: "spring", stiffness: 300 }}
-            >
-              Servicios
-            </motion.h3>
-            <motion.ul 
-              className="flex flex-col gap-4 text-sm text-gray-400"
-              variants={staggerVariants}
-            >
-              {[
-                "Desarrollo Web",
-                "Aplicaciones Móviles",
-                "Consultoría Tecnológica",
-                "Formación Especializada",
-              ].map((service) => (
-                <motion.li 
-                  key={service}
-                  variants={itemVariants}
-                  whileHover={{ x: 5 }}
-                  transition={{ type: "spring", stiffness: 300 }}
-                >
-                  {service}
-                </motion.li>
-              ))}
-            </motion.ul>
-          </motion.div>
-
           {/* Social & Contact */}
           <motion.div 
-            className="flex flex-col gap-6"
-            custom={3}
+            className="flex flex-col items-center md:items-start gap-6"
+            custom={2}
             variants={itemVariants}
           >
             <motion.h3 
@@ -196,32 +184,47 @@ const Footer: React.FC = () => {
               Mantente conectado con nuestras últimas novedades.
             </motion.p>
             <motion.div 
-              className="flex gap-4"
+              className="flex gap-4 justify-center md:justify-start"
               variants={staggerVariants}
             >
               {[
                 { icon: FaFacebook, href: "https://www.facebook.com/asirtec/", color: "hover:text-blue-400" },
                 { icon: FaXTwitter, href: "https://x.com/asirtec?lang=es", color: "hover:text-white" },
                 { icon: FaInstagram, href: "https://www.instagram.com/asirtec/?hl=es", color: "hover:text-pink-400" },
-                { icon: FaLinkedin, href: "#", color: "hover:text-blue-300" },
-              ].map((SocialIcon) => (
-                <motion.a
-                  key={SocialIcon.href}
-                  href={SocialIcon.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`text-xl text-gray-400 ${SocialIcon.color} transition-colors duration-300 bg-gray-800/50 p-3 rounded-xl backdrop-blur-sm`}
-                  variants={itemVariants}
-                  whileHover={{ 
-                    scale: 1.2, 
-                    y: -2,
-                    backgroundColor: "rgba(255,255,255,0.1)"
-                  }}
-                  whileTap={{ scale: 0.9 }}
-                >
-                  <SocialIcon.icon />
-                </motion.a>
-              ))}
+                { icon: FaLinkedin, href: null, color: "hover:text-blue-300" }, // sin enlace
+              ].map((SocialIcon) =>
+                SocialIcon.href ? (
+                  <motion.a
+                    key={SocialIcon.href}
+                    href={SocialIcon.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`text-xl text-gray-400 ${SocialIcon.color} transition-colors duration-300 bg-gray-800/50 p-3 rounded-xl backdrop-blur-sm`}
+                    variants={itemVariants}
+                    whileHover={{ 
+                      scale: 1.2, 
+                      y: -2,
+                      backgroundColor: "rgba(255,255,255,0.1)"
+                    }}
+                    whileTap={{ scale: 0.9 }}
+                  >
+                    <SocialIcon.icon />
+                  </motion.a>
+                ) : (
+                  <motion.div
+                    key="linkedin"
+                    className={`text-xl text-gray-400 ${SocialIcon.color} transition-colors duration-300 bg-gray-800/50 p-3 rounded-xl backdrop-blur-sm cursor-default`}
+                    variants={itemVariants}
+                    whileHover={{ 
+                      scale: 1.1, 
+                      y: -2,
+                      backgroundColor: "rgba(255,255,255,0.05)"
+                    }}
+                  >
+                    <SocialIcon.icon />
+                  </motion.div>
+                )
+              )}
             </motion.div>
           </motion.div>
         </motion.div>
