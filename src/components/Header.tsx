@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
+
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link, useLocation } from 'react-router-dom';
+
 
 export default function Header() {
     const [modalNav, setModalNav] = useState<boolean>(false);
@@ -56,6 +58,7 @@ export default function Header() {
 
     return (
         <>
+
             {/* FIXED HEADER */}
             <motion.header
                 className={`fixed w-full flex flex-row z-50 backdrop-blur-md transition-all duration-300 ${isScrolled
@@ -90,6 +93,7 @@ export default function Header() {
 
                     {/* Menu Button */}
                     <motion.button
+
                         type="button"
                         className="flex flex-col items-center p-2 rounded-lg hover:bg-white/50 transition-colors"
                         onClick={openNav}
@@ -341,6 +345,7 @@ export default function Header() {
                         </motion.div>
                     </div>
                 </div>
+
             </div>
         </>
     );

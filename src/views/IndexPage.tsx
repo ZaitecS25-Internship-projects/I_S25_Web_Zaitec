@@ -1,15 +1,73 @@
+import { useEffect, useState, useMemo } from "react";
+import type { FormEvent, MouseEvent } from "react";
 import { useOutletContext } from "react-router-dom";
 import type { Cards } from "../types";
 import CardInnovacion from "../components/CardInnovacion";
-
-import { motion } from "framer-motion";
-import Contacto from "../components/Contacto";
-import type { OutletContextType } from "../components/Contacto";
+import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from "react-router-dom";
 import { ArrowUpRight } from "lucide-react";
+import type { ErrorType, UserDataType } from "../types";
+
+
+
+//Estado inicial del formulario
+const initialForm = {
+  nombre: '',
+  apellido: '',
+  segunapellido: '',
+  email: '',
+  telefono: '',
+  fecha: '',
+  comentario: '',
+}
 
 export default function IndexPage() {
+  //Mostrar local storage
+  const savedData = useMemo<UserDataType[]>(() => {
+    try {
+      const data = localStorage.getItem('datosForm');
+      return data ? JSON.parse(data) : [];
+    } catch {
+      return [];
+    }
+  }, []);
+
+  //State del formulario
+  const [formState, setFormState] = useState<UserDataType>(initialForm);
+  const [dataForm, setDataForm] = useState<UserDataType[]>(savedData)
+
+  //escribir en local storage
+  useEffect(() => {
+    localStorage.setItem('datosForm', JSON.stringify(dataForm))
+  }, [dataForm])
+
+
+  const [enviado, setEnviado] = useState<string>('')
+  // State para los campos requridos
+  const [errors, setErrors] = useState<ErrorType>({
+    nombre: '',
+    apellido: '',
+    segunapellido: '',
+    email: '',
+    telefono: '',
+    fecha: '',
+  });
+
+
+
+  useEffect(() => {
+    setErrors({
+      nombre: 'Campo obligatorio',
+      apellido: 'Campo obligatorio',
+      segunapellido: 'campo obligatorio',
+      email: 'Campo obligatorio',
+      telefono: 'Campo obligatorio',
+      fecha: 'Campo obligatorio',
+    })
+  }, [])
+
   const cards: Cards = [
+
     {
       titulo: "Desarrollo Ágil.",
       descripcion:
@@ -27,7 +85,69 @@ export default function IndexPage() {
     },
   ];
 
-  const { formState, setFormState } = useOutletContext<OutletContextType>();
+  const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
+    const { name, value } = e.target;
+
+    // Actualiza estado del formulario
+    const updatedForm = { ...formState, [name]: value };
+    setFormState(updatedForm);
+
+    // Validación dinámica simple
+    setErrors(prev => {
+      const newErrors = { ...prev };
+      if (value.trim() === '') {
+        newErrors[name as keyof ErrorType] = 'Este campo es obligatorio';
+      } else if (name === 'email') {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        newErrors[name as keyof ErrorType] = !emailRegex.test(value)
+          ? 'Email no válido'
+          : '';
+      } else {
+        newErrors[name as keyof ErrorType] = '';
+      }
+      return newErrors;
+    });
+  };
+
+  // values(formState).some(value => value.trim() === ''
+
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    if (
+      (Object.keys(formState) as (keyof UserDataType)[])
+        .filter(key => key !== 'comentario')
+        .some(key => formState[key].trim() === '')
+    ) {
+      return;
+    } else {
+      setDataForm(prev => [...prev, { ...formState }]);
+      handleReset()
+      setErrors({
+        nombre: 'Campo obligatorio',
+        apellido: 'Campo obligatorio',
+        segunapellido: 'campo obligatorio',
+        email: 'Campo obligatorio',
+        telefono: 'Campo obligatorio',
+        fecha: 'Campo obligatorio',
+      })
+      setEnviado('Formulario enviado con éxito')
+      setTimeout(() => {
+        setEnviado('')
+      }, 5000)
+    }
+  }
+
+  const handleReset = () => {
+    setFormState(initialForm)
+    setErrors({
+      nombre: 'Campo obligatorio',
+      apellido: 'Campo obligatorio',
+      segunapellido: 'campo obligatorio',
+      email: 'Campo obligatorio',
+      telefono: 'Campo obligatorio',
+      fecha: 'Campo obligatorio',
+    })
+  }
 
   return (
     <>
@@ -61,9 +181,11 @@ export default function IndexPage() {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto">
             <CardInnovacion cards={cards} />
+
           </div>
         </div>
       </section>
+
 
       {/* Projects Section */}
       <section
@@ -82,6 +204,7 @@ export default function IndexPage() {
             <h2
               id="soluciones-heading"
               className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6"
+
             >
               <span className="bg-linear-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                 Proyectos
@@ -185,9 +308,6 @@ export default function IndexPage() {
           </div>
 
         </div>
-
-
-
       </section>
 
       {/* Contact Section */}
@@ -202,6 +322,7 @@ export default function IndexPage() {
             transition={{ duration: 0.7 }}
             viewport={{ once: true }}
             className="text-center mb-12"
+
           >
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
               <span className="bg-linear-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
@@ -214,9 +335,150 @@ export default function IndexPage() {
               profesional avance.
             </p>
           </motion.div>
-
           <div className="max-w-4xl mx-auto bg-white rounded-2xl shadow-lg p-8">
-            <Contacto formState={formState} setFormState={setFormState} />
+            <div className="w-full md:w-3/4 py-10 mx-auto">
+              <p className="text-3xl text-center pb-10 mb-6">
+                <span className="text-neutral-700 font-medium">Completa con tus datos</span>
+              </p>
+              {/**comienzo del formulario */}
+              <form
+                onSubmit={handleSubmit}
+                className="relative flex flex-col gap-5">
+                {/* Nombre y primer apellido */}
+                <div className='grid grid-cols-1 gap-5 md:grid-cols-2'>
+                  <div className="flex flex-col gap-1 text-neutral-600">
+                    <label className="font-bold text-lg" htmlFor="nombre">Nombre:</label>
+                    <input
+                      type="text"
+                      id="nombre"
+                      name="nombre"
+                      value={formState.nombre}
+                      onChange={handleChange}
+                      placeholder="Escribe tu nombre..."
+                      className="w-full border-b border-neutral-800 p-2 outline-0 text-md"
+                    />
+                    {errors.nombre && <p className="text-red-600 text-xs">{'* '}{errors.nombre}{' *'}</p>}
+                  </div>
+
+                  <div className="flex flex-col gap-1 text-neutral-600">
+                    <label className="font-bold text-lg" htmlFor="apellido">Primer Apellido:</label>
+                    <input
+                      className="w-full border-b border-neutral-800 p-2 outline-0 text-md"
+                      type="text"
+                      id="apellido"
+                      name="apellido"
+                      value={formState.apellido}
+                      onChange={handleChange}
+                      placeholder="Escribe tu primer apellido..."
+                    />
+                    {errors.apellido && <p className="text-red-500 text-sm">{'* '}{errors.apellido}{' *'}</p>}
+                  </div>
+                </div>
+
+                {/* Segundo apellido y email */}
+                <div className='grid grid-cols-1 gap-5 md:grid-cols-2'>
+                  <div className="flex flex-col gap-1 text-neutral-600">
+                    <label className="font-bold text-lg" htmlFor="segunapellido">Segundo Apellido:</label>
+                    <input
+                      className="w-full border-b border-neutral-800 p-2 outline-0 text-md"
+                      type="text"
+                      id="segunapellido"
+                      name="segunapellido"
+                      value={formState.segunapellido}
+                      onChange={handleChange}
+                      placeholder="Escribe tu segundo apellido..."
+                    />
+                    {errors.segunapellido && <p className="text-red-500 text-sm">{'* '}{errors.segunapellido}{' *'}</p>}
+                  </div>
+
+                  <div className="flex flex-col gap-1 text-neutral-600">
+                    <label className="font-bold text-lg" htmlFor="email">Email:</label>
+                    <input
+                      className="w-full border-b border-neutral-800 p-2 outline-0 text-md"
+                      type="email"
+                      id="email"
+                      name="email"
+                      value={formState.email}
+                      onChange={handleChange}
+                      placeholder="Escribe tu email..."
+                    />
+                    {errors.email && <p className="text-red-500 text-sm">{'* '}{errors.email}{' *'}</p>}
+                  </div>
+                </div>
+
+                {/* Teléfono y fecha */}
+                <div className='grid grid-cols-1 gap-5 md:grid-cols-2'>
+                  <div className="flex flex-col gap-1 text-neutral-600">
+                    <label className="font-bold text-lg" htmlFor="telefono">Teléfono de contacto:</label>
+                    <input
+                      className="w-full border-b border-neutral-800 p-2 outline-0 text-md"
+                      type="text"
+                      id="telefono"
+                      name="telefono"
+                      value={formState.telefono}
+                      onChange={handleChange}
+                      placeholder="Escribe tu número de teléfono..."
+                    />
+                    {errors.telefono && <p className="text-red-500 text-sm">{'* '}{errors.telefono}{' *'}</p>}
+                  </div>
+
+                  <div className="flex flex-col gap-1 text-neutral-600">
+                    <label className="font-bold text-lg" htmlFor="fecha">Fecha:</label>
+                    <input
+                      className="w-full border-b border-neutral-800 p-2 outline-0 text-md"
+                      type="date"
+                      id="fecha"
+                      name="fecha"
+                      value={formState.fecha}
+                      onChange={handleChange}
+                    />
+                    {errors.fecha && <p className="text-red-500 text-sm">{'* '}{errors.fecha}{' *'}</p>}
+                  </div>
+                </div>
+
+                {/* Comentario */}
+                <div className="flex flex-col gap-1 text-neutral-600">
+                  <label className="font-bold text-lg" htmlFor="comentario">Comentario:</label>
+                  <textarea
+                    className="w-full h-20 border-b border-neutral-800 p-2 outline-0 text-md"
+                    id="comentario"
+                    name="comentario"
+                    value={formState.comentario}
+                    onChange={handleChange}
+                    placeholder="Escribe un comentario..."
+                  />
+                </div>
+
+                {/* Botones */}
+                <div className="flex flex-row gap-5 pt-5">
+                  <button
+                    type="submit"
+                    className="block w-50 bg-black my-2 mx-auto py-1 font-bold text-white text-lg text-shadow-lg rounded-md hover:bg-green-600 transition-all duration-200 ease-linear"
+                  >
+                    Enviar
+                  </button>
+                  <button
+                    type="reset"
+                    className="block bg-neutral-700 w-50 my-2 mx-auto py-1 font-bold text-white text-lg text-shadow-lg rounded-md hover:bg-neutral-400 transition-all duration-200 ease-linear"
+                    onClick={handleReset}
+                  >
+                    Resetear
+                  </button>
+                </div>
+
+                {enviado ? <motion.div
+                  className="absolute top-139 left-50 w-1/3 mx-auto rounded-xl bg-green-50 p-2 border border-green-300"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 1 }}
+                ><h4 className="text-blue-600 text-center text-md font-bold">
+                    Solicitud reciba
+                  </h4>
+                  <p className="text-blue-400 text-xs text-center">{enviado}</p>
+                </motion.div> : null}
+              </form>
+            </div>
+
           </div>
         </div>
       </section>

@@ -1,20 +1,9 @@
 import { useState } from "react";
 import { Outlet, useRouteError, Link } from "react-router-dom";
 import ScrollToTop from "../components/ScrollToTop";
-
-
 import Header from "../components/Header"
-import type { UserDataType } from "../types"
 import Footer from "../components/Footer"
-export const initialForm = {
-  nombre: '',
-  apellido: '',
-  segunapellido: '',
-  email: '',
-  telefono: '',
-  fecha: '',
-  comentario: '',
-}
+
 
 // Error boundary for layout
 export function LayoutErrorBoundary() {
@@ -43,14 +32,13 @@ export function LayoutErrorBoundary() {
 }
 
 export default function Layout() {
-  const [formState, setFormState] = useState<UserDataType>(initialForm);
-
+  
   return (
     <div className="min-h-screen flex flex-col relative">
       <Header />
       <ScrollToTop />
       <main className="flex-1 relative z-10">
-        <Outlet context={{ formState, setFormState }} />
+        <Outlet />
       </main>
       <Footer />
     </div>
