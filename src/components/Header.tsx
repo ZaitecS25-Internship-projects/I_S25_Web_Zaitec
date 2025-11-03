@@ -95,31 +95,52 @@ export default function Header() {
                     </motion.div>
 
                     {/* Menu Button */}
-                    <motion.button
-
-                        type="button"
-                        className="flex flex-col items-center p-2 rounded-lg hover:bg-white/50 transition-colors"
-                        onClick={openNav}
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                    >
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            strokeWidth="1.5"
-                            stroke="currentColor"
-                            className={`transition-colors ${isScrolled ? 'size-6 text-gray-700' : 'size-7 text-gray-800'
-                                }`}
+                    {location.pathname === '/' ?
+                        <motion.button
+                            type="button"
+                            className="flex flex-col items-center p-2 rounded-lg hover:bg-white/50 transition-colors"
+                            onClick={openNav}
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
                         >
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-                        </svg>
-                        <span className={`font-semibold transition-all ${isScrolled ? 'text-xs bg-linear-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent'
-                            : 'text-sm bg-linear-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent'
-                            }`}>
-                            Menu
-                        </span>
-                    </motion.button>
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                strokeWidth="1.5"
+                                stroke="currentColor"
+                                className={`transition-colors ${isScrolled ? 'size-6 text-gray-700' : 'size-7 text-gray-800'
+                                    }`}
+                            >
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                            </svg>
+                            <span className={`font-semibold transition-all ${isScrolled ? 'text-xs bg-linear-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent'
+                                : 'text-sm bg-linear-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent'
+                                }`}>
+                                Menu
+                            </span>
+                        </motion.button> :
+                        <nav
+                         className='hover:bg-neutral-50 p-1 rounded-lg'
+                        >
+                            <Link
+                                to="/"
+                               
+                            >
+                                <div className='flex flex-col items-center justify-center'>
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-5">
+                                        <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 19.5-15-15m0 0v11.25m0-11.25h11.25" />
+                                    </svg>
+
+                                    <p className='text-md text-blue-600 font-bold'>Incio</p>
+                                </div>
+
+
+                            </Link>
+                        </nav>
+
+                    }
+
                 </div>
             </motion.header>
 
