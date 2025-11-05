@@ -206,12 +206,12 @@ export default function IndexPage() {
       <div className="relative text-center md:text-left mb-6 md:mb-0 inline-block">
         <h2
           id="soluciones-heading"
-          className="text-3xl sm:text-4xl font-bold text-gray-900 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent inline-block pb-2"
+          className="text-3xl sm:text-4xl font-bold text-gray-900 bg-linear-to-r from-blue-600 to-purple-600 bg-clip-text  inline-block pb-2"
         >
           Proyectos que generan confianza
         </h2>
         {/* Línea animada de ancho completo */}
-        <span className="absolute bottom-0 left-0 w-full h-1 rounded-full bg-[length:200%_200%] bg-gradient-to-r from-blue-600 via-purple-600 to-blue-600 animate-gradient-move"></span>
+        <span className="absolute bottom-0 left-0 w-full h-1 rounded-full bg-size[length:200%_200%] bg-linear-to-r from-blue-600 via-purple-600 to-blue-600 animate-gradient-move"></span>
       </div>
 
       {/* Enlace derecha con flecha animada constante */}
@@ -245,7 +245,7 @@ export default function IndexPage() {
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7, delay: 0.1 }}
         viewport={{ once: true }}
-        className="group bg-white rounded-2xl shadow-md hover:shadow-2xl hover:-translate-y-2 hover:bg-gradient-to-br hover:from-blue-50 hover:to-purple-50 transition-all duration-500 overflow-hidden cursor-pointer"
+        className="group bg-white rounded-2xl shadow-md hover:shadow-2xl hover:-translate-y-2 hover:bg-linear-to-br hover:from-blue-50 hover:to-purple-50 transition-all duration-500 overflow-hidden cursor-pointer"
       >
         <div className="h-56 sm:h-64 md:h-72 lg:h-80 overflow-hidden flex items-center justify-center bg-gray-50">
           <img
@@ -270,7 +270,7 @@ export default function IndexPage() {
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7, delay: 0.2 }}
         viewport={{ once: true }}
-        className="group bg-white rounded-2xl shadow-md hover:shadow-2xl hover:-translate-y-2 hover:bg-gradient-to-br hover:from-blue-50 hover:to-purple-50 transition-all duration-500 overflow-hidden cursor-pointer"
+        className="group bg-white rounded-2xl shadow-md hover:shadow-2xl hover:-translate-y-2 hover:bg-linear-to-br hover:from-blue-50 hover:to-purple-50 transition-all duration-500 overflow-hidden cursor-pointer"
       >
         <div className="h-56 sm:h-64 md:h-72 lg:h-80 overflow-hidden flex items-center justify-center bg-gray-50">
           <img
@@ -295,7 +295,7 @@ export default function IndexPage() {
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7, delay: 0.3 }}
         viewport={{ once: true }}
-        className="group bg-white rounded-2xl shadow-md hover:shadow-2xl hover:-translate-y-2 hover:bg-gradient-to-br hover:from-blue-50 hover:to-purple-50 transition-all duration-500 overflow-hidden cursor-pointer"
+        className="group bg-white rounded-2xl shadow-md hover:shadow-2xl hover:-translate-y-2 hover:bg-linear-to-br hover:from-blue-50 hover:to-purple-50 transition-all duration-500 overflow-hidden cursor-pointer"
       >
         <div className="h-56 sm:h-64 md:h-72 lg:h-80 overflow-hidden flex items-center justify-center bg-gray-50">
           <img
