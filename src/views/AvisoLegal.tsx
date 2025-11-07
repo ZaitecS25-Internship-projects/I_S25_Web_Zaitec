@@ -92,9 +92,6 @@ const AvisoLegal: React.FC = () => {
           </p>
         </div>
       </main>
-
-      
-      
     </div>
   );
 };
