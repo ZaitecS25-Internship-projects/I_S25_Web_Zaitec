@@ -256,7 +256,7 @@ export default function IndexPage() {
       <section
         aria-labelledby="soluciones-heading"
         id="desarrollo-proyectos"
-        className="py-16 md:py-20 bg-linear-to-br from-yellow-50 to-amber-50"
+        className="py-16 md:py-20 bg-white"
       >
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           {/* Título + enlace */}
