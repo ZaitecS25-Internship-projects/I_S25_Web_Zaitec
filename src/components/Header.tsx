@@ -347,21 +347,18 @@ export default function Header() {
             <div className="relative min-h-screen">
                 {/* HERO SECTION */}
                 <div className="pt-16 md:pt-20" id="inicio">
-                    <div className="min-h-screen flex flex-col md:flex-row bg-linear-to-br from-slate-50 via-white to-blue-50 relative overflow-hidden">
+                    <div className="min-h-screen flex flex-col-reverse lg:flex-row bg-linear-to-br from-slate-50 via-white to-blue-50 relative overflow-hidden">
                         {/* Background Pattern */}
                         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,var(--tw-gradient-stops))] from-blue-50/40 via-transparent to-transparent" />
 
                         {/* Left Side - Content */}
                         <motion.div
-                            className="flex-1 flex flex-col justify-center p-6 md:p-12 lg:p-16 xl:p-24 relative z-10"
+                            className="flex-1 flex flex-col justify-center p-6 md:p-16 relative z-10"
                             initial={{ opacity: 0, x: -30 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ duration: 0.7, ease: "easeOut" }}
                         >
-                            <motion.div className="mb-6 md:mb-8" initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.2 }}>
-                                <img src="/img/logo-zaitec.png" alt="Logo Zaitec" className="h-12 md:h-14 w-auto opacity-90" />
-                            </motion.div>
-
+                           
                             <motion.h1
                                 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-900 leading-tight mb-4 md:mb-6"
                                 initial={{ opacity: 0, y: 20 }}
@@ -463,7 +460,7 @@ export default function Header() {
 
                         {/* Right Side - Image */}
                         <motion.div
-                            className="flex-1 relative min-h-[50vh] md:min-h-screen"
+                            className="flex-1 relative min-h-[80vh] md:min-h-screen"
                             initial={{ opacity: 0, x: 30 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ 

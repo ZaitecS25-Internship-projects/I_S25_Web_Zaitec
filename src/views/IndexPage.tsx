@@ -1,5 +1,6 @@
 import { useEffect, useState, useMemo } from "react";
 import type { FormEvent, MouseEvent } from "react";
+import emailjs from '@emailjs/browser';
 import { useOutletContext } from "react-router-dom";
 import type { Cards } from "../types";
 import CardInnovacion from "../components/CardInnovacion";
@@ -7,6 +8,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from "react-router-dom";
 import { ArrowUpRight } from "lucide-react";
 import type { ErrorType, UserDataType } from "../types";
+import CookieConsent from '../components/CookieConsent';
 
 
 
@@ -23,26 +25,27 @@ const initialForm = {
 
 export default function IndexPage() {
   //Mostrar local storage
-  const savedData = useMemo<UserDataType[]>(() => {
-    try {
-      const data = localStorage.getItem('datosForm');
-      return data ? JSON.parse(data) : [];
-    } catch {
-      return [];
-    }
-  }, []);
+  // const savedData = useMemo<UserDataType[]>(() => {
+  //   try {
+  //     const data = localStorage.getItem('datosForm');
+  //     return data ? JSON.parse(data) : [];
+  //   } catch {
+  //     return [];
+  //   }
+  // }, []);
 
   //State del formulario
   const [formState, setFormState] = useState<UserDataType>(initialForm);
-  const [dataForm, setDataForm] = useState<UserDataType[]>(savedData)
+  // const [dataForm, setDataForm] = useState<UserDataType[]>(savedData)
 
-  //escribir en local storage
-  useEffect(() => {
-    localStorage.setItem('datosForm', JSON.stringify(dataForm))
-  }, [dataForm])
-
-
-  const [enviado, setEnviado] = useState<string>('')
+  // //escribir en local storage
+  // useEffect(() => {
+  //   localStorage.setItem('datosForm', JSON.stringify(dataForm))
+  // }, [dataForm])
+  //relacionado con el formulario
+  const [sentForm, setSentForm] = useState<boolean>(false)
+  const [alertForm, setAlertForm] = useState<string>('')
+  const [isSending, setIsSending] = useState(false);
   // State para los campos requridos
   const [errors, setErrors] = useState<ErrorType>({
     nombre: '',
@@ -50,16 +53,14 @@ export default function IndexPage() {
     segunapellido: '',
     email: '',
     telefono: '',
-    fecha: '',
+    fecha: ''
   });
-
-
 
   useEffect(() => {
     setErrors({
       nombre: 'Campo obligatorio',
       apellido: 'Campo obligatorio',
-      segunapellido: 'campo obligatorio',
+      segunapellido: 'Campo obligatorio',
       email: 'Campo obligatorio',
       telefono: 'Campo obligatorio',
       fecha: 'Campo obligatorio',
@@ -110,31 +111,86 @@ export default function IndexPage() {
   };
 
   // values(formState).some(value => value.trim() === ''
-
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  //funcion asincrona aync await
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    //validación de campos
     if (
       (Object.keys(formState) as (keyof UserDataType)[])
         .filter(key => key !== 'comentario')
         .some(key => formState[key].trim() === '')
     ) {
       return;
-    } else {
-      setDataForm(prev => [...prev, { ...formState }]);
-      handleReset()
-      setErrors({
-        nombre: 'Campo obligatorio',
-        apellido: 'Campo obligatorio',
-        segunapellido: 'campo obligatorio',
-        email: 'Campo obligatorio',
-        telefono: 'Campo obligatorio',
-        fecha: 'Campo obligatorio',
-      })
-      setEnviado('Formulario enviado con éxito')
-      setTimeout(() => {
-        setEnviado('')
-      }, 5000)
     }
+
+    setIsSending(true)
+
+    //bloque try catch finally
+    try {
+      //obtener datos del formState
+      const data = await emailjs.send(
+        "service_054243w",
+        "template_ul1ngwc",
+        formState,
+        "AitL2YWNXRY3yYfb4")
+
+      if (data) {
+        //enviar alerta y resetear
+        setAlertForm('Los datos han sido enviados')
+        setSentForm(true)
+        handleReset()
+        setErrors({ nombre: 'Campo obligatorio', apellido: 'Campo obligatorio', segunapellido: 'campo obligatorio', email: 'Campo obligatorio', telefono: 'Campo obligatorio', fecha: 'Campo obligatorio', })
+        // Guardamos automáticamente si el usuario aceptó cookies
+        if (sessionStorage.getItem("userConsent") === "true") {
+          sessionStorage.setItem("userData", JSON.stringify(formState));
+        }
+      }
+
+    } catch (error) {
+      //mostrar error
+      console.error('Los datos no se han enviado', error)
+      setAlertForm('Los datos no han sido enviados')
+      setSentForm(false)
+    } finally {
+      //resetear alerta
+      setTimeout(() => {
+        setAlertForm('')
+        setIsSending(false)
+      }, 4000)
+    }
+
+    //utilizar then y catch
+    // // Enviar correo automáticamente con EmailJS
+    // emailjs
+    //   .send(
+    //     "service_054243w", // <- tu Service ID de EmailJS
+    //     "template_ul1ngwc", // <- tu Template ID de EmailJS
+    //     formState, // <- state directamente
+    //     "AitL2YWNXRY3yYfb4" // <- tu Public Key de EmailJS
+    //   ).then(() => {
+    //     setAlertForm('Los datos han sido enviados')
+    //     setSentForm(true)
+    //     handleReset()
+    //     setErrors({
+    //       nombre: 'Campo obligatorio',
+    //       apellido: 'Campo obligatorio',
+    //       segunapellido: 'campo obligatorio',
+    //       email: 'Campo obligatorio',
+    //       telefono: 'Campo obligatorio',
+    //       fecha: 'Campo obligatorio',
+    //     })
+
+    //     setTimeout(() => {
+    //       setAlertForm('')
+    //     }, 5000)
+
+    //   })
+    //   .catch((error) => {
+    //     console.error("Error EmailJS:", error)
+    //     setAlertForm('Fallo al enviar los datos');
+    //     setSentForm(false)
+    //     setTimeout(() => setAlertForm(''), 5000);
+    //   })
   }
 
   const handleReset = () => {
@@ -148,6 +204,15 @@ export default function IndexPage() {
       fecha: 'Campo obligatorio',
     })
   }
+
+  //Código de las cookies
+  const handleCookiesAccept = () => {
+    // Guardamos que ha aceptado
+    sessionStorage.setItem("userConsent", "true");
+    // Guardamos los datos actuales del formulario
+    sessionStorage.setItem("userData", JSON.stringify(formState));
+  };
+
 
   return (
     <>
@@ -179,7 +244,7 @@ export default function IndexPage() {
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto">
+          <div className="grid md:grid-row lg:grid-cols-3 gap-1 lg:gap-8 md:w-3/4 lg:w-10/11 mx-auto">
             <CardInnovacion cards={cards} />
 
           </div>
@@ -188,137 +253,137 @@ export default function IndexPage() {
 
 
       {/* Projects Section */}
-     <section
-  aria-labelledby="soluciones-heading"
-  id="desarrollo-proyectos"
-  className="py-16 md:py-20 bg-linear-to-br from-yellow-50 to-amber-50"
->
-  <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-    {/* Título + enlace */}
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.7 }}
-      viewport={{ once: true }}
-      className="flex flex-col md:flex-row items-center justify-between mb-10 md:mb-14"
-    >
-      {/* Texto izquierda con subrayado animado completo */}
-      <div className="relative text-center md:text-left mb-6 md:mb-0 inline-block">
-        <h2
-          id="soluciones-heading"
-          className="text-3xl sm:text-4xl font-bold text-gray-900 bg-linear-to-r from-blue-600 to-purple-600 bg-clip-text  inline-block pb-2"
-        >
-          Proyectos que generan confianza
-        </h2>
-        {/* Línea animada de ancho completo */}
-        <span className="absolute bottom-0 left-0 w-full h-1 rounded-full bg-size[length:200%_200%] bg-linear-to-r from-blue-600 via-purple-600 to-blue-600 animate-gradient-move"></span>
-      </div>
-
-      {/* Enlace derecha con flecha animada constante */}
-      <Link
-        to="/Desarrollo"
-        className="inline-flex items-center text-blue-600 text-lg sm:text-xl md:text-2xl font-bold hover:text-blue-800 transition-colors"
+      <section
+        aria-labelledby="soluciones-heading"
+        id="desarrollo-proyectos"
+        className="py-16 md:py-20 bg-linear-to-br from-yellow-50 to-amber-50"
       >
-        Ver más proyectos
-        <motion.div
-          animate={{
-            x: [0, 4, 0],
-            y: [0, -4, 0],
-          }}
-          transition={{
-            duration: 1.5,
-            repeat: Infinity,
-            ease: 'easeInOut',
-          }}
-          className="ml-2 sm:ml-3"
-        >
-          <ArrowUpRight className="w-6 h-6 sm:w-8 sm:h-8" />
-        </motion.div>
-      </Link>
-    </motion.div>
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Título + enlace */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7 }}
+            viewport={{ once: true }}
+            className="flex flex-col md:flex-row items-center justify-between mb-10 md:mb-14"
+          >
+            {/* Texto izquierda con subrayado animado completo */}
+            <div className="relative text-center md:text-left mb-6 md:mb-0 inline-block">
+              <h2
+                id="soluciones-heading"
+                className="text-3xl sm:text-4xl font-bold text-gray-900 bg-linear-to-r from-blue-600 to-purple-600 bg-clip-text  inline-block pb-2"
+              >
+                Proyectos que generan confianza
+              </h2>
+              {/* Línea animada de ancho completo */}
+              <span className="absolute bottom-0 left-0 w-full h-1 rounded-full bg-size[length:200%_200%] bg-linear-to-r from-blue-600 via-purple-600 to-blue-600 animate-gradient-move"></span>
+            </div>
 
-    {/* Tarjetas responsive */}
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-6xl mx-auto">
-      {/* Proyecto 1 */}
-      <motion.article
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7, delay: 0.1 }}
-        viewport={{ once: true }}
-        className="group bg-white rounded-2xl shadow-md hover:shadow-2xl hover:-translate-y-2 hover:bg-linear-to-br hover:from-blue-50 hover:to-purple-50 transition-all duration-500 overflow-hidden cursor-pointer"
-      >
-        <div className="h-56 sm:h-64 md:h-72 lg:h-80 overflow-hidden flex items-center justify-center bg-gray-50">
-          <img
-            src="/img/pepe-martinez.png"
-            alt="Pepe Martínez y Asociados"
-            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-          />
-        </div>
-        <div className="p-4 sm:p-5">
-          <h3 className="text-lg sm:text-xl font-bold text-gray-800 mb-2 transition-colors duration-300 group-hover:text-blue-700">
-            Pepe Martínez y Asociados, bufete de abogados
-          </h3>
-          <p className="text-gray-600 text-sm sm:text-base transition-colors duration-300 group-hover:text-gray-800">
-            Posicionamiento SEO, formularios para consejo legal y mucho más.
-          </p>
-        </div>
-      </motion.article>
+            {/* Enlace derecha con flecha animada constante */}
+            <Link
+              to="/Desarrollo"
+              className="inline-flex items-center text-blue-600 text-lg sm:text-xl md:text-2xl font-bold hover:text-blue-800 transition-colors"
+            >
+              Ver más proyectos
+              <motion.div
+                animate={{
+                  x: [0, 4, 0],
+                  y: [0, -4, 0],
+                }}
+                transition={{
+                  duration: 1.5,
+                  repeat: Infinity,
+                  ease: 'easeInOut',
+                }}
+                className="ml-2 sm:ml-3"
+              >
+                <ArrowUpRight className="w-6 h-6 sm:w-8 sm:h-8" />
+              </motion.div>
+            </Link>
+          </motion.div>
 
-      {/* Proyecto 2 */}
-      <motion.article
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7, delay: 0.2 }}
-        viewport={{ once: true }}
-        className="group bg-white rounded-2xl shadow-md hover:shadow-2xl hover:-translate-y-2 hover:bg-linear-to-br hover:from-blue-50 hover:to-purple-50 transition-all duration-500 overflow-hidden cursor-pointer"
-      >
-        <div className="h-56 sm:h-64 md:h-72 lg:h-80 overflow-hidden flex items-center justify-center bg-gray-50">
-          <img
-            src="/img/cocinas-con-alma.png"
-            alt="Cocinas con Alma"
-            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-          />
-        </div>
-        <div className="p-4 sm:p-5">
-          <h3 className="text-lg sm:text-xl font-bold text-gray-800 mb-2 transition-colors duration-300 group-hover:text-blue-700">
-            Cocinas con Alma
-          </h3>
-          <p className="text-gray-600 text-sm sm:text-base transition-colors duration-300 group-hover:text-gray-800">
-            Página con diseño impactante y gran detalle en Proyectos de Cocinas realizados.
-          </p>
-        </div>
-      </motion.article>
+          {/* Tarjetas responsive */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-6xl mx-auto">
+            {/* Proyecto 1 */}
+            <motion.article
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.1 }}
+              viewport={{ once: true }}
+              className="group bg-white rounded-2xl shadow-md hover:shadow-2xl hover:-translate-y-2 hover:bg-linear-to-br hover:from-blue-50 hover:to-purple-50 transition-all duration-500 overflow-hidden cursor-pointer"
+            >
+              <div className="h-56 sm:h-64 md:h-72 lg:h-80 overflow-hidden flex items-center justify-center bg-gray-50">
+                <img
+                  src="/img/pepe-martinez.png"
+                  alt="Pepe Martínez y Asociados"
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+              </div>
+              <div className="p-4 sm:p-5">
+                <h3 className="text-lg sm:text-xl font-bold text-gray-800 mb-2 transition-colors duration-300 group-hover:text-blue-700">
+                  Pepe Martínez y Asociados, bufete de abogados
+                </h3>
+                <p className="text-gray-600 text-sm sm:text-base transition-colors duration-300 group-hover:text-gray-800">
+                  Posicionamiento SEO, formularios para consejo legal y mucho más.
+                </p>
+              </div>
+            </motion.article>
 
-      {/* Proyecto 3 */}
-      <motion.article
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7, delay: 0.3 }}
-        viewport={{ once: true }}
-        className="group bg-white rounded-2xl shadow-md hover:shadow-2xl hover:-translate-y-2 hover:bg-linear-to-br hover:from-blue-50 hover:to-purple-50 transition-all duration-500 overflow-hidden cursor-pointer"
-      >
-        <div className="h-56 sm:h-64 md:h-72 lg:h-80 overflow-hidden flex items-center justify-center bg-gray-50">
-          <img
-            src="/img/electro-genio.png"
-            alt="Electro-genio"
-            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-          />
-        </div>
-        <div className="p-4 sm:p-5">
-          <h3 className="text-lg sm:text-xl font-bold text-gray-800 mb-2 transition-colors duration-300 group-hover:text-blue-700">
-            Electrodomésticos ElectroGenio
-          </h3>
-          <p className="text-gray-600 text-sm sm:text-base transition-colors duration-300 group-hover:text-gray-800">
-            Una web con tienda incorporada con cientos de referencias y pasarelas de pago.
-          </p>
-        </div>
-      </motion.article>
-    </div>
-  </div>
+            {/* Proyecto 2 */}
+            <motion.article
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.2 }}
+              viewport={{ once: true }}
+              className="group bg-white rounded-2xl shadow-md hover:shadow-2xl hover:-translate-y-2 hover:bg-linear-to-br hover:from-blue-50 hover:to-purple-50 transition-all duration-500 overflow-hidden cursor-pointer"
+            >
+              <div className="h-56 sm:h-64 md:h-72 lg:h-80 overflow-hidden flex items-center justify-center bg-gray-50">
+                <img
+                  src="/img/cocinas-con-alma.png"
+                  alt="Cocinas con Alma"
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+              </div>
+              <div className="p-4 sm:p-5">
+                <h3 className="text-lg sm:text-xl font-bold text-gray-800 mb-2 transition-colors duration-300 group-hover:text-blue-700">
+                  Cocinas con Alma
+                </h3>
+                <p className="text-gray-600 text-sm sm:text-base transition-colors duration-300 group-hover:text-gray-800">
+                  Página con diseño impactante y gran detalle en Proyectos de Cocinas realizados.
+                </p>
+              </div>
+            </motion.article>
 
-  {/* Animación personalizada para la línea */}
-  <style>
-    {`
+            {/* Proyecto 3 */}
+            <motion.article
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.3 }}
+              viewport={{ once: true }}
+              className="group bg-white rounded-2xl shadow-md hover:shadow-2xl hover:-translate-y-2 hover:bg-linear-to-br hover:from-blue-50 hover:to-purple-50 transition-all duration-500 overflow-hidden cursor-pointer"
+            >
+              <div className="h-56 sm:h-64 md:h-72 lg:h-80 overflow-hidden flex items-center justify-center bg-gray-50">
+                <img
+                  src="/img/electro-genio.png"
+                  alt="Electro-genio"
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+              </div>
+              <div className="p-4 sm:p-5">
+                <h3 className="text-lg sm:text-xl font-bold text-gray-800 mb-2 transition-colors duration-300 group-hover:text-blue-700">
+                  Electrodomésticos ElectroGenio
+                </h3>
+                <p className="text-gray-600 text-sm sm:text-base transition-colors duration-300 group-hover:text-gray-800">
+                  Una web con tienda incorporada con cientos de referencias y pasarelas de pago.
+                </p>
+              </div>
+            </motion.article>
+          </div>
+        </div>
+
+        {/* Animación personalizada para la línea */}
+        <style>
+          {`
       @keyframes gradient-move {
         0% { background-position: 0% 50%; }
         50% { background-position: 100% 50%; }
@@ -328,8 +393,8 @@ export default function IndexPage() {
         animation: gradient-move 4s ease infinite;
       }
     `}
-  </style>
-</section>
+        </style>
+      </section>
       {/* Contact Section */}
       <section
         className="py-16 md:py-20 bg-linear-to-br from-yellow-50 to-amber-50"
@@ -391,7 +456,7 @@ export default function IndexPage() {
                       onChange={handleChange}
                       placeholder="Escribe tu primer apellido..."
                     />
-                    {errors.apellido && <p className="text-red-500 text-sm">{'* '}{errors.apellido}{' *'}</p>}
+                    {errors.apellido && <p className="text-red-500 text-xs">{'* '}{errors.apellido}{' *'}</p>}
                   </div>
                 </div>
 
@@ -408,7 +473,7 @@ export default function IndexPage() {
                       onChange={handleChange}
                       placeholder="Escribe tu segundo apellido..."
                     />
-                    {errors.segunapellido && <p className="text-red-500 text-sm">{'* '}{errors.segunapellido}{' *'}</p>}
+                    {errors.segunapellido && <p className="text-red-500 text-xs">{'* '}{errors.segunapellido}{' *'}</p>}
                   </div>
 
                   <div className="flex flex-col gap-1 text-neutral-600">
@@ -422,7 +487,7 @@ export default function IndexPage() {
                       onChange={handleChange}
                       placeholder="Escribe tu email..."
                     />
-                    {errors.email && <p className="text-red-500 text-sm">{'* '}{errors.email}{' *'}</p>}
+                    {errors.email && <p className="text-red-500 text-xs">{'* '}{errors.email}{' *'}</p>}
                   </div>
                 </div>
 
@@ -439,7 +504,7 @@ export default function IndexPage() {
                       onChange={handleChange}
                       placeholder="Escribe tu número de teléfono..."
                     />
-                    {errors.telefono && <p className="text-red-500 text-sm">{'* '}{errors.telefono}{' *'}</p>}
+                    {errors.telefono && <p className="text-red-500 text-xs">{'* '}{errors.telefono}{' *'}</p>}
                   </div>
 
                   <div className="flex flex-col gap-1 text-neutral-600">
@@ -452,7 +517,7 @@ export default function IndexPage() {
                       value={formState.fecha}
                       onChange={handleChange}
                     />
-                    {errors.fecha && <p className="text-red-500 text-sm">{'* '}{errors.fecha}{' *'}</p>}
+                    {errors.fecha && <p className="text-red-500 text-xs">{'* '}{errors.fecha}{' *'}</p>}
                   </div>
                 </div>
 
@@ -473,7 +538,10 @@ export default function IndexPage() {
                 <div className="flex flex-row gap-5 pt-5">
                   <button
                     type="submit"
-                    className="block w-50 bg-black my-2 mx-auto py-1 font-bold text-white text-lg text-shadow-lg rounded-md hover:bg-green-600 transition-all duration-200 ease-linear"
+                    disabled={isSending}
+                    className={`block w-50  my-2 mx-auto py-1 font-bold text-white text-lg text-shadow-lg rounded-md hover:bg-green-600 transition-all duration-200 ease-linear
+                      ${!isSending ? 'bg-black' : 'bg-neutral-600 cursor-not-allowed'}
+                      `}
                   >
                     Enviar
                   </button>
@@ -486,19 +554,19 @@ export default function IndexPage() {
                   </button>
                 </div>
 
-                {enviado ? <motion.div
-                  className="absolute top-139 left-50 w-1/3 mx-auto rounded-xl bg-green-50 p-2 border border-green-300"
+                {(alertForm) && <motion.div
+                  className={`absolute top-80 left-48 w-60 rounded-xl p-3 shadow-lg text-center
+                  ${sentForm ? "border-cyan-600 bg-cyan-50" : "border-red-600 bg-red-50"}`}
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ duration: 1 }}
-                ><h4 className="text-blue-600 text-center text-md font-bold">
-                    Solicitud reciba
+                ><h4 className={`font-bold ${sentForm ? "text-cyan-700" : "text-red-700"}`}>
+                    Estado solicitud
                   </h4>
-                  <p className="text-blue-400 text-xs text-center">{enviado}</p>
-                </motion.div> : null}
+                  <p className={`${sentForm ? "text-cyan-600" : "text-red-600"} text-sm`}>{alertForm}</p>
+                </motion.div>}
               </form>
             </div>
-
           </div>
         </div>
       </section>
@@ -679,6 +747,7 @@ export default function IndexPage() {
           </div>
         </div>
       </section>
+      <CookieConsent onAccept={handleCookiesAccept} />
     </>
   );
 }
