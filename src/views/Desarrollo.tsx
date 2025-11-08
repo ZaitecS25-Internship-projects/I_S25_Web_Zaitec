@@ -103,7 +103,7 @@ export default function ProyectosPage() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.1 * index }}
             viewport={{ once: true }}
-            className="bg-white rounded-2xl shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 cursor-pointer overflow-hidden flex flex-col"
+            className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 cursor-pointer overflow-hidden flex flex-col"
             onClick={() => setModalProyecto(proyecto)}
           >
             <div className="h-64 overflow-hidden flex items-center justify-center bg-gray-50">
@@ -114,7 +114,7 @@ export default function ProyectosPage() {
               />
             </div>
             <div className="p-6 flex-1 flex flex-col">
-              <h3 className="text-xl font-bold text-gray-800 mb-3">{proyecto.titulo}</h3>
+              <h3 className="text-xl font-bold text-gray-800 mb-3 transition-colors duration-300 group-hover:text-blue-700">{proyecto.titulo}</h3>
               <p className="text-gray-600 mb-4 flex-grow">{proyecto.descripcion}</p>
             </div>
           </motion.article>

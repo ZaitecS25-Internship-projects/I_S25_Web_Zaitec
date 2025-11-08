@@ -304,83 +304,82 @@ export default function IndexPage() {
 
           {/* Tarjetas responsive */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-6xl mx-auto">
-            {/* Proyecto 1 */}
-            <motion.article
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.1 }}
-              viewport={{ once: true }}
-              className="group bg-white rounded-2xl shadow-md hover:shadow-2xl hover:-translate-y-2 hover:bg-linear-to-br hover:from-blue-50 hover:to-purple-50 transition-all duration-500 overflow-hidden cursor-pointer"
-            >
-              <div className="h-56 sm:h-64 md:h-72 lg:h-80 overflow-hidden flex items-center justify-center bg-gray-50">
-                <img
-                  src="/img/pepe-martinez.png"
-                  alt="Pepe Martínez y Asociados"
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-              </div>
-              <div className="p-4 sm:p-5">
-                <h3 className="text-lg sm:text-xl font-bold text-gray-800 mb-2 transition-colors duration-300 group-hover:text-blue-700">
-                  Pepe Martínez y Asociados, bufete de abogados
-                </h3>
-                <p className="text-gray-600 text-sm sm:text-base transition-colors duration-300 group-hover:text-gray-800">
-                  Posicionamiento SEO, formularios para consejo legal y mucho más.
-                </p>
-              </div>
-            </motion.article>
+  {/* Proyecto 1 */}
+  <motion.article
+    initial={{ opacity: 0, y: 30 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.7, delay: 0.1 }}
+    viewport={{ once: true }}
+    className="group bg-white rounded-2xl shadow-md hover:shadow-2xl hover:-translate-y-2 hover:bg-gradient-to-br hover:from-blue-50 hover:to-purple-50 transition-all duration-500 overflow-hidden cursor-pointer"
+  >
+    <div className="aspect-[4/3] w-full overflow-hidden flex items-center justify-center bg-gray-50">
+      <img
+        src="/img/pepe-martinez.png"
+        alt="Pepe Martínez y Asociados"
+        className="w-full h-full object-contain sm:object-cover transition-transform duration-500 group-hover:scale-105"
+      />
+    </div>
+    <div className="p-4 sm:p-5">
+      <h3 className="text-lg sm:text-xl font-bold text-gray-800 mb-2 transition-colors duration-300 group-hover:text-blue-700">
+        Pepe Martínez y Asociados, bufete de abogados
+      </h3>
+      <p className="text-gray-600 text-sm sm:text-base transition-colors duration-300 group-hover:text-gray-800">
+        Posicionamiento SEO, formularios para consejo legal y mucho más.
+      </p>
+    </div>
+  </motion.article>
 
-            {/* Proyecto 2 */}
-            <motion.article
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.2 }}
-              viewport={{ once: true }}
-              className="group bg-white rounded-2xl shadow-md hover:shadow-2xl hover:-translate-y-2 hover:bg-linear-to-br hover:from-blue-50 hover:to-purple-50 transition-all duration-500 overflow-hidden cursor-pointer"
-            >
-              <div className="h-56 sm:h-64 md:h-72 lg:h-80 overflow-hidden flex items-center justify-center bg-gray-50">
-                <img
-                  src="/img/cocinas-con-alma.png"
-                  alt="Cocinas con Alma"
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-              </div>
-              <div className="p-4 sm:p-5">
-                <h3 className="text-lg sm:text-xl font-bold text-gray-800 mb-2 transition-colors duration-300 group-hover:text-blue-700">
-                  Cocinas con Alma
-                </h3>
-                <p className="text-gray-600 text-sm sm:text-base transition-colors duration-300 group-hover:text-gray-800">
-                  Página con diseño impactante y gran detalle en Proyectos de Cocinas realizados.
-                </p>
-              </div>
-            </motion.article>
+  {/* Proyecto 2 */}
+  <motion.article
+    initial={{ opacity: 0, y: 30 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.7, delay: 0.2 }}
+    viewport={{ once: true }}
+    className="group bg-white rounded-2xl shadow-md hover:shadow-2xl hover:-translate-y-2 hover:bg-gradient-to-br hover:from-blue-50 hover:to-purple-50 transition-all duration-500 overflow-hidden cursor-pointer"
+  >
+    <div className="aspect-[4/3] w-full overflow-hidden flex items-center justify-center bg-gray-50">
+      <img
+        src="/img/cocinas-con-alma.png"
+        alt="Cocinas con Alma"
+        className="w-full h-full object-contain sm:object-cover transition-transform duration-500 group-hover:scale-105"
+      />
+    </div>
+    <div className="p-4 sm:p-5">
+      <h3 className="text-lg sm:text-xl font-bold text-gray-800 mb-2 transition-colors duration-300 group-hover:text-blue-700">
+        Cocinas con Alma
+      </h3>
+      <p className="text-gray-600 text-sm sm:text-base transition-colors duration-300 group-hover:text-gray-800">
+        Página con diseño impactante y gran detalle en Proyectos de Cocinas realizados.
+      </p>
+    </div>
+  </motion.article>
 
-            {/* Proyecto 3 */}
-            <motion.article
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.3 }}
-              viewport={{ once: true }}
-              className="group bg-white rounded-2xl shadow-md hover:shadow-2xl hover:-translate-y-2 hover:bg-linear-to-br hover:from-blue-50 hover:to-purple-50 transition-all duration-500 overflow-hidden cursor-pointer"
-            >
-              <div className="h-56 sm:h-64 md:h-72 lg:h-80 overflow-hidden flex items-center justify-center bg-gray-50">
-                <img
-                  src="/img/electro-genio.png"
-                  alt="Electro-genio"
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-              </div>
-              <div className="p-4 sm:p-5">
-                <h3 className="text-lg sm:text-xl font-bold text-gray-800 mb-2 transition-colors duration-300 group-hover:text-blue-700">
-                  Electrodomésticos ElectroGenio
-                </h3>
-                <p className="text-gray-600 text-sm sm:text-base transition-colors duration-300 group-hover:text-gray-800">
-                  Una web con tienda incorporada con cientos de referencias y pasarelas de pago.
-                </p>
-              </div>
-            </motion.article>
-          </div>
+  {/* Proyecto 3 */}
+  <motion.article
+    initial={{ opacity: 0, y: 30 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.7, delay: 0.3 }}
+    viewport={{ once: true }}
+    className="group bg-white rounded-2xl shadow-md hover:shadow-2xl hover:-translate-y-2 hover:bg-gradient-to-br hover:from-blue-50 hover:to-purple-50 transition-all duration-500 overflow-hidden cursor-pointer"
+  >
+    <div className="aspect-[4/3] w-full overflow-hidden flex items-center justify-center bg-gray-50">
+      <img
+        src="/img/electro-genio.png"
+        alt="Electrodomésticos ElectroGenio"
+        className="w-full h-full object-contain sm:object-cover transition-transform duration-500 group-hover:scale-105"
+      />
+    </div>
+    <div className="p-4 sm:p-5">
+      <h3 className="text-lg sm:text-xl font-bold text-gray-800 mb-2 transition-colors duration-300 group-hover:text-blue-700">
+        Electrodomésticos ElectroGenio
+      </h3>
+      <p className="text-gray-600 text-sm sm:text-base transition-colors duration-300 group-hover:text-gray-800">
+        Una web con tienda incorporada con cientos de referencias y pasarelas de pago.
+      </p>
+    </div>
+  </motion.article>
+</div>
         </div>
-
         {/* Animación personalizada para la línea */}
         <style>
           {`
