@@ -9,6 +9,9 @@ import { Link } from "react-router-dom";
 import { ArrowUpRight } from "lucide-react";
 import type { ErrorType, UserDataType } from "../types";
 import CookieConsent from '../components/CookieConsent';
+import Cursos from "../views/Formacion";
+
+
 
 
 
@@ -310,9 +313,9 @@ export default function IndexPage() {
     whileInView={{ opacity: 1, y: 0 }}
     transition={{ duration: 0.7, delay: 0.1 }}
     viewport={{ once: true }}
-    className="group bg-white rounded-2xl shadow-md hover:shadow-2xl hover:-translate-y-2 hover:bg-gradient-to-br hover:from-blue-50 hover:to-purple-50 transition-all duration-500 overflow-hidden cursor-pointer"
+    className="group bg-white rounded-2xl shadow-md hover:shadow-2xl hover:-translate-y-2 hover:bg-linear-to-br hover:from-blue-50 hover:to-purple-50 transition-all duration-500 overflow-hidden cursor-pointer"
   >
-    <div className="aspect-[4/3] w-full overflow-hidden flex items-center justify-center bg-gray-50">
+    <div className="aspect-4/3 w-full overflow-hidden flex items-center justify-center bg-gray-50">
       <img
         src="/img/pepe-martinez.png"
         alt="Pepe Martínez y Asociados"
@@ -335,9 +338,9 @@ export default function IndexPage() {
     whileInView={{ opacity: 1, y: 0 }}
     transition={{ duration: 0.7, delay: 0.2 }}
     viewport={{ once: true }}
-    className="group bg-white rounded-2xl shadow-md hover:shadow-2xl hover:-translate-y-2 hover:bg-gradient-to-br hover:from-blue-50 hover:to-purple-50 transition-all duration-500 overflow-hidden cursor-pointer"
+    className="group bg-white rounded-2xl shadow-md hover:shadow-2xl hover:-translate-y-2 hover:bg-linear-to-br hover:from-blue-50 hover:to-purple-50 transition-all duration-500 overflow-hidden cursor-pointer"
   >
-    <div className="aspect-[4/3] w-full overflow-hidden flex items-center justify-center bg-gray-50">
+    <div className="aspect-4/3 w-full overflow-hidden flex items-center justify-center bg-gray-50">
       <img
         src="/img/cocinas-con-alma.png"
         alt="Cocinas con Alma"
@@ -360,9 +363,9 @@ export default function IndexPage() {
     whileInView={{ opacity: 1, y: 0 }}
     transition={{ duration: 0.7, delay: 0.3 }}
     viewport={{ once: true }}
-    className="group bg-white rounded-2xl shadow-md hover:shadow-2xl hover:-translate-y-2 hover:bg-gradient-to-br hover:from-blue-50 hover:to-purple-50 transition-all duration-500 overflow-hidden cursor-pointer"
+    className="group bg-white rounded-2xl shadow-md hover:shadow-2xl hover:-translate-y-2 hover:bg-linear-to-br hover:from-blue-50 hover:to-purple-50 transition-all duration-500 overflow-hidden cursor-pointer"
   >
-    <div className="aspect-[4/3] w-full overflow-hidden flex items-center justify-center bg-gray-50">
+    <div className="aspect-4/3 w-full overflow-hidden flex items-center justify-center bg-gray-50">
       <img
         src="/img/electro-genio.png"
         alt="Electrodomésticos ElectroGenio"
@@ -570,182 +573,87 @@ export default function IndexPage() {
         </div>
       </section>
 
-      {/* Training Section */}
-      <section
-        id="formacion"
-        aria-labelledby="capacitacion-tecnologica-heading"
-        className="py-16 md:py-20 bg-gray-50 relative"
+    {/* Training Section */}
+<section
+  id="formacion"
+  aria-labelledby="capacitacion-tecnologica-heading"
+  className="py-16 md:py-20 bg-gray-50 relative"
+>
+  <div className="container mx-auto px-6">
+    {/* Título */}
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.7 }}
+      viewport={{ once: true }}
+      className="text-center mb-12"
+    >
+      <h2
+        id="capacitacion-tecnologica-heading"
+        className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6"
       >
-        <div className="container mx-auto px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7 }}
-            viewport={{ once: true }}
-            className="text-center mb-12"
-          >
-            <h2
-              id="capacitacion-tecnologica-heading"
-              className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6"
-            >
-              <span className="bg-linear-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                Capacitación
-              </span>{" "}
-              para convertirte en un experto de la tecnología.
-            </h2>
-            <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              Mejora tus habilidades con nuestras formaciones tecnológicas más demandadas.
-            </p>
-          </motion.div>
+        <span className="bg-linear-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+          Capacitación
+        </span>{" "}
+        para convertirte en un experto de la tecnología.
+      </h2>
+      <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+        Mejora tus habilidades con nuestras formaciones tecnológicas más demandadas.
+      </p>
+    </motion.div>
 
-          {/* Bloque de acceso al curso con texto centrado y flecha a la derecha */}
-          <div className="flex items-center justify-between my-12 max-w-5xl mx-auto px-6">
-            {/* Texto centrado */}
-            <span className="text-2xl md:text-3xl font-bold text-gray-900 mx-auto">
-              Accede al curso ZaitecLabs.es
-            </span>
+    {/* Bloque con flecha a ZaitecLabs.es */}
+    <div className="flex items-center justify-between my-12 max-w-5xl mx-auto px-6">
+      <span className="text-2xl md:text-3xl font-bold text-gray-900 mx-auto">
+        Accede al curso ZaitecLabs.es
+      </span>
 
-            {/* Flecha clicable a la derecha */}
-            <motion.a
-              href="https://Zaiteclabs.es/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-60 h-60 ml-auto" // ml-auto empuja la flecha a la derecha
-              animate={{
-                y: [0, -15, 0],
-                x: [0, 10, 0]
-              }}
-              transition={{
-                duration: 2,
-                repeat: Infinity,
-                repeatType: "loop",
-                ease: "easeInOut",
-              }}
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="none"
-                strokeWidth={2.4}
-                stroke="currentColor"
-                className="w-60 h-60 text-blue-700 hover:text-blue-900 cursor-pointer transition-transform duration-300 hover:scale-105"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M5 19L19 5M5 5h14v14"
-                />
-              </svg>
-            </motion.a>
-          </div>
+      <motion.a
+        href="https://Zaiteclabs.es/"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="w-60 h-60 ml-auto"
+        animate={{
+          y: [0, -15, 0],
+          x: [0, 10, 0]
+        }}
+        transition={{
+          duration: 2,
+          repeat: Infinity,
+          repeatType: "loop",
+          ease: "easeInOut",
+        }}
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="none"
+          strokeWidth={2.4}
+          stroke="currentColor"
+          className="w-60 h-60 text-blue-700 hover:text-blue-900 cursor-pointer transition-transform duration-300 hover:scale-105"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M5 19L19 5M5 5h14v14"
+          />
+        </svg>
+      </motion.a>
+    </div>
+
+    {/* Enlace a nueva página de cursos */}
+    <div className="text-center mt-16">
+      <Link
+        to="/Formacion"
+        className="inline-block text-lg font-semibold text-blue-700 hover:text-blue-900 transition underline decoration-blue-400/60"
+      >
+        Ver todos los cursos disponibles →
+      </Link>
+    </div>
+  </div>
+</section>
 
 
-          {/* Training Targets */}
-          <div className="flex flex-col gap-10 max-w-5xl mx-auto">
-
-            {/* Excel Avanzado */}
-            <motion.article
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.1 }}
-              viewport={{ once: true }}
-            >
-              <div className="flex flex-col md:flex-row items-center justify-between bg-linear-to-br from-green-500 to-green-600 text-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02] min-h-[200px]">
-                <p className="text-green-100 text-lg md:w-2/3 mb-4 md:mb-0">
-                  Aprende a dominar hojas de cálculo, fórmulas avanzadas, análisis de datos y automatización con macros.
-                </p>
-                <a
-                  href="https://learn.microsoft.com/es-es/training/excel/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-3 md:w-1/3 justify-end hover:opacity-90 transition"
-                >
-                  <img src="/img/excel.png" alt="Excel Avanzado" className="w-10 h-10" />
-                  <h3 className="text-2xl font-bold text-right underline decoration-green-200/60">
-                    Excel Avanzado
-                  </h3>
-                </a>
-              </div>
-            </motion.article>
-
-            {/* ChatGPT */}
-            <motion.article
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.2 }}
-              viewport={{ once: true }}
-            >
-              <div className="flex flex-col md:flex-row-reverse items-center justify-between bg-linear-to-br from-gray-800 to-gray-900 text-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02] min-h-[200px]">
-                <p className="text-gray-200 text-lg md:w-2/3 mb-4 md:mb-0 text-right md:text-left">
-                  Aprende a usar ChatGPT para aumentar tu productividad, generar contenido y automatizar tareas.
-                </p>
-                <a
-                  href="https://openai.com/chat"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-3 md:w-1/3 justify-start hover:opacity-90 transition"
-                >
-                  <img src="/img/chatgpt.png" alt="ChatGPT" className="w-10 h-10" />
-                  <h3 className="text-2xl font-bold md:text-right underline decoration-gray-400/60">
-                    ChatGPT
-                  </h3>
-                </a>
-              </div>
-            </motion.article>
-
-            {/* Python */}
-            <motion.article
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.3 }}
-              viewport={{ once: true }}
-            >
-              <div className="flex flex-col md:flex-row items-center justify-between bg-linear-to-br from-blue-600 to-blue-700 text-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02] min-h-[200px]">
-                <p className="text-blue-100 text-lg md:w-2/3 mb-4 md:mb-0">
-                  Domina la programación con Python: desde fundamentos hasta análisis de datos y desarrollo web.
-                </p>
-                <a
-                  href="https://www.python.org/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-3 md:w-1/3 justify-end hover:opacity-90 transition"
-                >
-                  <img src="/img/python.png" alt="Python" className="w-10 h-10" />
-                  <h3 className="text-2xl font-bold text-right underline decoration-blue-200/60">
-                    Python
-                  </h3>
-                </a>
-              </div>
-            </motion.article>
-
-            {/* React */}
-            <motion.article
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.4 }}
-              viewport={{ once: true }}
-            >
-              <div className="flex flex-col md:flex-row-reverse items-center justify-between bg-linear-to-br from-sky-500 to-indigo-600 text-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02] min-h-[200px]">
-                <p className="text-sky-100 text-lg md:w-2/3 mb-4 md:mb-0 text-right md:text-left">
-                  Aprende React desde cero: componentes, hooks, rutas y animaciones para crear aplicaciones modernas.
-                </p>
-                <a
-                  href="https://react.dev/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-3 md:w-1/3 justify-start hover:opacity-90 transition"
-                >
-                  <img src="/img/react.png" alt="React" className="w-10 h-10 animate-spin-slow" />
-                  <h3 className="text-2xl font-bold md:text-right underline decoration-sky-200/60">
-                    React
-                  </h3>
-                </a>
-              </div>
-            </motion.article>
-
-          </div>
-        </div>
-      </section>
       <CookieConsent onAccept={handleCookiesAccept} />
     </>
   );

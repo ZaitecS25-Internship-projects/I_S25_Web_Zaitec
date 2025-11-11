@@ -1,101 +1,126 @@
-import { motion, easeInOut } from "framer-motion";
+import { motion } from "framer-motion";
 
-export default function Formación() {
-
-  const cardVariants = {
-    hidden: { opacity: 0, y: 50 },
-    show: { 
-      opacity: 1, 
-      y: 0, 
-      transition: { duration: 0.9, ease: easeInOut }
-    },
-  };
-
-  const cards = [
-    {
-      title: "AWS Services",
-      description:
-        "Empoderamiento de las instituciones de educación superior con certificaciones y carreras en la nube.",
-      img: "/img/aws.png",
-      link: "https://www.awsacademy.com/login?ec=302&startURL=%2FSiteLogin%3FstartURL%3D%252Fforums%252F",
-      bgColor: "#FF9900",
-    },
-    {
-      title: "Udemy",
-      description:
-        "Domina hoy las habilidades del mañana con cursos actualizados e impartidos por expertos.",
-      img: "/img/udemy.png",
-      link: "https://www.udemy.com/",
-      bgColor: "#EC5252",
-    },
-    {
-      title: "Python",
-      description:
-        "Explora Python, un lenguaje de programación popular en diversas carreras tecnológicas.",
-      img: "/img/python.png",
-      link: "https://www.edx.org/learn/python",
-      bgColor: "#306998",
-    },
-    {
-      title: "SAP",
-      description:
-        "Potencia tu carrera con cursos gratuitos de SAP y adquiere habilidades en gestión empresarial y tecnología.",
-      img: "/img/sap.png",
-      link: "https://logaligroup.com/cursos-gratis-aprender-sap-desde-cero/",
-      bgColor: "#1E7145",
-    },
-  ];
-
+export default function Cursos() {
   return (
-    <div className="bg-neutral-100 min-h-screen flex flex-col items-center justify-center">
-      {/* HEADER */}
-      <header className="text-center my-10">
-        <h2 className="text-3xl md:text-5xl font-bold text-neutral-800">
-          <span className="text-orange-600">Capacitación</span> para convertirte en un experto de la tecnología
-        </h2>
-        <p className="mt-4 text-neutral-600 text-lg md:text-xl">
-          Aquí destacamos los beneficios esenciales de nuestros servicios.
-        </p>
-      </header>
+    <div className="max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8 py-10">
 
-      {/* TARJETAS VERTICALES */}
-      <div className="flex flex-col gap-16 w-11/12 lg:w-4/5">
+      {/* Excel Avanzado */}
+      <motion.article
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7, delay: 0.1 }}
+        viewport={{ once: true }}
+        className="aspect-square"
+      >
+        <div className="flex flex-col justify-between bg-green-500 text-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02] h-full">
+          <div className="flex items-center justify-center gap-3 mb-4">
+            <img src="/img/excel.png" alt="Excel Avanzado" className="w-10 h-10" />
+            <h3 className="text-2xl font-bold underline decoration-green-200/60 text-center">
+              Excel Avanzado
+            </h3>
+          </div>
+          <p className="text-green-100 text-lg text-center">
+            Aprende a dominar hojas de cálculo, fórmulas avanzadas, análisis de datos y automatización con macros.
+          </p>
+          <a
+            href="https://learn.microsoft.com/es-es/training/excel/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-4 flex justify-center hover:opacity-90 transition"
+          >
+            Ver curso
+          </a>
+        </div>
+      </motion.article>
 
-        {cards.map((card, index) => {
-          const isEven = index % 2 === 1;
+      {/* ChatGPT */}
+      <motion.article
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7, delay: 0.2 }}
+        viewport={{ once: true }}
+        className="aspect-square"
+      >
+        <div className="flex flex-col justify-between bg-red-500 text-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02] h-full">
+          <div className="flex items-center justify-center gap-3 mb-4">
+            <img src="/img/chatgpt.png" alt="ChatGPT" className="w-10 h-10" />
+            <h3 className="text-2xl font-bold underline decoration-gray-400/60 text-center">
+              ChatGPT
+            </h3>
+          </div>
+          <p className="text-gray-200 text-lg text-center">
+            Aprende a usar ChatGPT para aumentar tu productividad, generar contenido y automatizar tareas.
+          </p>
+          <a
+            href="https://openai.com/chat"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-4 flex justify-center hover:opacity-90 transition"
+          >
+            Ver curso
+          </a>
+        </div>
+      </motion.article>
 
-          return (
-            <motion.a
-              key={index}
-              href={card.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              variants={cardVariants}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true, amount: 0.4 }}
-              className={`flex flex-col md:flex-row items-center rounded-3xl shadow-2xl overflow-hidden transition-transform duration-300 hover:scale-105`}
-              style={{ backgroundColor: card.bgColor }}
-            >
-              {/* IMAGEN */}
-              <div className={`w-full md:w-1/2 p-6 ${isEven ? "md:order-2" : ""}`}>
-                <img
-                  src={card.img}
-                  alt={card.title}
-                  className="w-full h-full object-contain rounded-xl"
-                />
-              </div>
+      {/* Python */}
+      <motion.article
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7, delay: 0.3 }}
+        viewport={{ once: true }}
+        className="aspect-square"
+      >
+        <div className="flex flex-col justify-between bg-orange-400 text-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02] h-full">
+          <div className="flex items-center justify-center gap-3 mb-4">
+            <img src="/img/python.png" alt="Python" className="w-10 h-10" />
+            <h3 className="text-2xl font-bold underline decoration-blue-200/60 text-center">
+              Python
+            </h3>
+          </div>
+          <p className="text-blue-100 text-lg text-center">
+            Domina la programación con Python: desde fundamentos hasta análisis de datos y desarrollo web.
+          </p>
+          <a
+            href="https://www.python.org/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-4 flex justify-center hover:opacity-90 transition"
+          >
+            Ver curso
+          </a>
+        </div>
+      </motion.article>
 
-              {/* INFORMACIÓN */}
-              <div className={`w-full md:w-1/2 p-6 text-white ${isEven ? "md:order-1 text-right" : "text-left"}`}>
-                <h3 className="text-3xl font-bold mb-4">{card.title}</h3>
-                <p className="text-lg">{card.description}</p>
-              </div>
-            </motion.a>
-          );
-        })}
+      {/* React */}
+      <motion.article
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7, delay: 0.4 }}
+        viewport={{ once: true }}
+        className="aspect-square"
+      >
+        <div className="flex flex-col justify-between bg-gray-500  text-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02] h-full">
+          <div className="flex items-center justify-center gap-3 mb-4">
+            <img src="/img/react.png" alt="React" className="w-10 h-10 animate-spin-slow" />
+            <h3 className="text-2xl font-bold underline decoration-sky-200/60 text-center">
+              React
+            </h3>
+          </div>
+          <p className="text-sky-100 text-lg text-center">
+            Aprende React desde cero: componentes, hooks, rutas y animaciones para crear aplicaciones modernas.
+          </p>
+          <a
+            href="https://react.dev/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-4 flex justify-center hover:opacity-90 transition"
+          >
+            Ver curso
+          </a>
+        </div>
+      </motion.article>
 
-      </div>
     </div>
   );
 }
+
