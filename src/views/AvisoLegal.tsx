@@ -25,15 +25,15 @@ const AvisoLegal: React.FC = () => {
           <p>
             En cumplimiento de la Ley 34/2002, de 11 de julio, de Servicios de la
             Sociedad de la Información y de Comercio Electrónico (LSSI-CE), la
-            entidad <strong>Asirtec</strong> le informa que es titular del sitio web.
+            entidad <strong>Zaitec</strong> le informa que es titular del sitio web.
             De acuerdo con la exigencia del artículo 10 de la citada Ley, informa de
             los siguientes datos:
           </p>
 
           <p>
-            <strong>Titular:</strong> Asirtec<br />
-            <strong>Dirección:</strong> Calle Torpedera, 11100, San Fernando, Cádiz<br />
-            <strong>Contacto:</strong> comercial@asirtec.es<br />
+            <strong>Titular:</strong> Zaitec<br />
+            <strong>Dirección:</strong> <br />
+            <strong>Contacto:</strong> comercial@zaitec.es<br />
             <strong>C.I.F.:</strong> — (--)
           </p>
 
@@ -44,7 +44,7 @@ const AvisoLegal: React.FC = () => {
             El acceso y uso de este sitio web atribuye la condición de usuario,
             aceptando desde dicho acceso las presentes condiciones de uso. El
             usuario se compromete a hacer un uso adecuado de los contenidos que
-            Asirtec ofrece, absteniéndose de realizar actividades ilícitas,
+            Zaitec ofrece, absteniéndose de realizar actividades ilícitas,
             contrarias a la buena fe o que puedan causar daño a los sistemas
             informáticos de la empresa o de terceros.
           </p>
@@ -54,7 +54,7 @@ const AvisoLegal: React.FC = () => {
           </h3>
           <p>
             Todos los contenidos, diseños, logotipos, textos, imágenes, software y
-            demás elementos del sitio web son propiedad exclusiva de Asirtec o de
+            demás elementos del sitio web son propiedad exclusiva de Zaitec o de
             sus respectivos titulares, contando con la autorización para su uso.
             Queda prohibida la reproducción total o parcial de dichos contenidos sin
             el consentimiento expreso y por escrito del titular.
@@ -64,7 +64,7 @@ const AvisoLegal: React.FC = () => {
             Protección de datos personales
           </h3>
           <p>
-            Asirtec cumple con la normativa vigente en materia de protección de
+            Zaitec cumple con la normativa vigente en materia de protección de
             datos personales (Reglamento (UE) 2016/679 y Ley Orgánica 3/2018), y
             garantiza un uso confidencial y seguro de la información aportada por
             los usuarios. Los datos recogidos se emplearán únicamente para los fines
@@ -75,7 +75,7 @@ const AvisoLegal: React.FC = () => {
             Responsabilidad
           </h3>
           <p>
-            Asirtec no se responsabiliza de los daños o perjuicios derivados del uso
+            Zaitec no se responsabiliza de los daños o perjuicios derivados del uso
             de la información contenida en esta web, ni del mal funcionamiento del
             sitio causado por causas ajenas a la empresa. Tampoco garantiza la
             disponibilidad continua del portal ni la ausencia de virus o elementos
@@ -88,7 +88,7 @@ const AvisoLegal: React.FC = () => {
           <p>
             El presente aviso legal se rige por la legislación española. Cualquier
             controversia que pudiera derivarse del acceso o uso de este sitio web se
-            someterá a los tribunales de la ciudad de Cádiz.
+            someterá a los tribunales respectivo de la ciudad.
           </p>
         </div>
       </main>
