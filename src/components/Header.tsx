@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link, useLocation } from 'react-router-dom';
+import { Sun, Moon } from 'lucide-react';
+import { useTheme } from '../contexts/Themecontext';
 
 export default function Header() {
     // State for navigation - REMOVED CONTEXT TO PREVENT FREEZES
@@ -9,6 +11,8 @@ export default function Header() {
     const [isScrolled, setIsScrolled] = useState<boolean>(false);
     // Hook useLocation
     const location = useLocation();
+    // Theme context
+    const { theme, toggleTheme } = useTheme();
 
     // Open navigation - SIMPLIFIED
     const openNav = () => {
@@ -137,8 +141,8 @@ export default function Header() {
             {/* FIXED HEADER */}
             <motion.header
                 className={`fixed w-full flex flex-row z-50 backdrop-blur-md transition-all duration-300 ${isScrolled
-                    ? 'bg-linear-to-r from-blue-50/95 to-indigo-50/95 shadow-lg py-2'
-                    : 'bg-linear-to-r from-blue-50/90 to-indigo-50/90 py-4'
+                    ? 'bg-linear-to-r from-blue-50/95 to-indigo-50/95 dark:from-gray-900/95 dark:to-gray-800/95 shadow-lg py-2'
+                    : 'bg-linear-to-r from-blue-50/90 to-indigo-50/90 dark:from-gray-900/90 dark:to-gray-800/90 py-4'
                     }`}
                 initial={{ y: -100 }}
                 animate={{ y: 0 }}
@@ -158,7 +162,7 @@ export default function Header() {
                                 }`}
                         />
                         <div className="flex flex-col">
-                            <h1 className={`font-bold font-sans transition-all duration-300 ${isScrolled ? 'text-lg text-gray-800' : 'text-xl text-gray-900'
+                            <h1 className={`font-bold font-sans transition-all duration-300 ${isScrolled ? 'text-lg text-gray-800 dark:text-white' : 'text-xl text-gray-900 dark:text-white'
                                 }`}>
                                 Zaitec
                                 <span className="bg-linear-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent text-sm"> Innova</span>
@@ -166,51 +170,85 @@ export default function Header() {
                         </div>
                     </motion.div>
 
-                    {/* Menu Button */}
-                    {location.pathname === '/' ?
+                    {/* Right side container for theme toggle and menu */}
+                    <div className="flex items-center gap-4">
+                        {/* Theme Toggle */}
                         <motion.button
-                            type="button"
-                            className="flex flex-col items-center p-2 rounded-lg hover:bg-white/50 transition-colors"
-                            onClick={openNav}
+                            onClick={toggleTheme}
+                            className="relative p-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-300 border border-gray-200 dark:border-gray-700"
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
-                            aria-label="Abrir menú de navegación"
-                            aria-expanded={modalNav}
+                            aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
                         >
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                strokeWidth="1.5"
-                                stroke="currentColor"
-                                className={`transition-colors ${isScrolled ? 'size-6 text-gray-700' : 'size-7 text-gray-800'
-                                    }`}
+                            <motion.div
+                                initial={false}
+                                animate={{ rotate: theme === 'light' ? 0 : 180 }}
+                                transition={{ duration: 0.3 }}
                             >
-                                <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-                            </svg>
-                            <span className={`font-semibold transition-all ${isScrolled ? 'text-xs bg-linear-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent'
-                                : 'text-sm bg-linear-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent'
-                                }`}>
-                                Menu
-                            </span>
-                        </motion.button> :
-                        <nav
-                         className='hover:bg-neutral-50 p-1 rounded-lg'
-                        >
-                            <Link
-                                to="/"
-                               
-                            >
-                                <div className='flex flex-col items-center justify-center'>
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-5">
-                                        <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 19.5-15-15m0 0v11.25m0-11.25h11.25" />
-                                    </svg>
+                                {theme === 'light' ? (
+                                    <Moon className="w-5 h-5" />
+                                ) : (
+                                    <Sun className="w-5 h-5" />
+                                )}
+                            </motion.div>
+                            
+                            {/* Active state indicator */}
+                            <motion.div
+                                className="absolute inset-0 rounded-lg border-2 border-transparent"
+                                initial={false}
+                                animate={{ 
+                                    borderColor: theme === 'light' ? 'transparent' : 'rgba(139, 92, 246, 0.5)'
+                                }}
+                                transition={{ duration: 0.3 }}
+                            />
+                        </motion.button>
 
-                                    <p className='text-md text-blue-600 font-bold'>Incio</p>
-                                </div>
-                            </Link>
-                        </nav>
-                    }
+                        {/* Menu Button */}
+                        {location.pathname === '/' ?
+                            <motion.button
+                                type="button"
+                                className="flex flex-col items-center p-2 rounded-lg hover:bg-white/50 dark:hover:bg-gray-700/50 transition-colors"
+                                onClick={openNav}
+                                whileHover={{ scale: 1.05 }}
+                                whileTap={{ scale: 0.95 }}
+                                aria-label="Abrir menú de navegación"
+                                aria-expanded={modalNav}
+                            >
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    strokeWidth="1.5"
+                                    stroke="currentColor"
+                                    className={`transition-colors ${isScrolled ? 'size-6 text-gray-700 dark:text-gray-300' : 'size-7 text-gray-800 dark:text-gray-200'
+                                        }`}
+                                >
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                                </svg>
+                                <span className={`font-semibold transition-all ${isScrolled ? 'text-xs bg-linear-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent'
+                                    : 'text-sm bg-linear-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent'
+                                    }`}>
+                                    Menu
+                                </span>
+                            </motion.button> :
+                            <nav
+                             className='hover:bg-neutral-50 dark:hover:bg-gray-700 p-1 rounded-lg transition-colors duration-300'
+                            >
+                                <Link
+                                    to="/"
+                                   
+                                >
+                                    <div className='flex flex-col items-center justify-center'>
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-5 dark:text-white">
+                                            <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 19.5-15-15m0 0v11.25m0-11.25h11.25" />
+                                        </svg>
+
+                                        <p className='text-md text-blue-600 dark:text-blue-400 font-bold'>Incio</p>
+                                    </div>
+                                </Link>
+                            </nav>
+                        }
+                    </div>
                 </div>
             </motion.header>
 
@@ -411,7 +449,7 @@ export default function Header() {
                         >
                             <motion.button
                                 onClick={() => scrollToSection('formacion')}
-                                className="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300 border border-blue-200 hover:border-blue-300 min-w-40"
+                                className="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300 border border-blue-200 hover:border-blue-300 min-w-40 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:border-gray-500"
                                 whileHover={{ 
                                     scale: 1.05,
                                     backgroundColor: "#f8fafc"
