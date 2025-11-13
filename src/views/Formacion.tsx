@@ -35,6 +35,25 @@ export default function CursosZaitec() {
       hoverBg: "linear-gradient(to right, #EDEDED, #D9D9D9)",
       link: "https://docs.github.com/es/get-started/start-your-journey",
     },
+    {
+      titulo: "Python",
+      descripcion: "Domina la programación con Python: desde fundamentos hasta análisis de datos y desarrollo web.",
+      img: "/img/python.png",
+      color: "#FACC15", // amarillo brillante para borde y título
+      secondaryColor: "#0EA5E9", // azul opcional si quieres algún detalle en el hover o ícono
+      hoverBg: "linear-gradient(to right, #EDEDED, #D9D9D9)", // degradado gris suave
+      link: "https://www.python.org/",
+    },
+    {
+  titulo: "AWS Service",
+  descripcion: "Aprende a manejar servicios de AWS, desplegar aplicaciones y gestionar la nube de forma profesional.",
+  img: "/img/aws.png",
+  color: "#FF9900", // amarillo AWS para borde y título
+  secondaryColor: "#232F3E", // azul oscuro AWS para icono o detalles
+  hoverBg: "linear-gradient(to right, #FFF8E1, #FFEBC1)", // degradado amarillo suave para hover
+  link: "https://aws.amazon.com/training/",
+  }
+
   ];
 
   return (
