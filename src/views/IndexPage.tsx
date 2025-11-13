@@ -204,48 +204,58 @@ export default function IndexPage() {
         className="py-16 md:py-20 bg-white"
       >
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Título + enlace */}
+          {/* Centered Title */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7 }}
             viewport={{ once: true }}
-            className="flex flex-col md:flex-row items-center justify-between mb-10 md:mb-14"
+            className="text-center mb-12"
           >
-            {/* Texto izquierda con subrayado animado completo */}
-            <div className="relative text-center md:text-left mb-6 md:mb-0 inline-block">
-              <h2
-                id="soluciones-heading"
-                className="text-3xl sm:text-4xl font-bold text-gray-900 bg-linear-to-r from-blue-600 to-purple-600 bg-clip-text  inline-block pb-2"
-              >
-                Proyectos que generan confianza
-              </h2>
-              {/* Línea animada de ancho completo */}
-              <span className="absolute bottom-0 left-0 w-full h-1 rounded-full bg-size[length:200%_200%] bg-linear-to-r from-blue-600 via-purple-600 to-blue-600 animate-gradient-move"></span>
-            </div>
+            <h2
+              id="soluciones-heading"
+              className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6"
+            >
+              <span className="bg-linear-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                Proyectos
+              </span>{" "}
+              que generan confianza
+            </h2>
+            <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+              Descubre nuestros trabajos más destacados que reflejan calidad, innovación y resultados.
+            </p>
+          </motion.div>
 
-            {/* Enlace derecha con flecha animada constante */}
+          {/* Enhanced Button */}
+          <div className="flex justify-center mb-10 md:mb-14">
             <Link
               to="/Desarrollo"
-              className="inline-flex items-center text-blue-600 text-lg sm:text-xl md:text-2xl font-bold hover:text-blue-800 transition-colors"
+              className="group relative inline-flex items-center justify-center px-8 py-4 bg-linear-to-r from-blue-600 to-purple-600 text-white font-semibold text-lg rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:from-blue-700 hover:to-purple-700 min-w-48"
             >
-              Ver más proyectos
+              <span className="relative z-10">Ver más proyectos</span>
               <motion.div
+                className="ml-3 relative z-10"
                 animate={{
                   x: [0, 4, 0],
-                  y: [0, -4, 0],
                 }}
                 transition={{
                   duration: 1.5,
                   repeat: Infinity,
                   ease: 'easeInOut',
                 }}
-                className="ml-2 sm:ml-3"
               >
-                <ArrowUpRight className="w-6 h-6 sm:w-8 sm:h-8" />
+                <ArrowUpRight className="w-6 h-6" />
               </motion.div>
+              
+              {/* Hover effect background */}
+              <div className="absolute inset-0 bg-linear-to-r from-blue-700 to-purple-700 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              
+              {/* Shine effect */}
+              <div className="absolute inset-0 rounded-xl overflow-hidden">
+                <div className="absolute -inset-full bg-linear-to-r from-transparent via-white/20 to-transparent transform skew-x-12 group-hover:animate-shine group-hover:duration-1000"></div>
+              </div>
             </Link>
-          </motion.div>
+          </div>
 
           {/* Tarjetas responsive */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-6xl mx-auto">
@@ -325,19 +335,6 @@ export default function IndexPage() {
             </motion.article>
           </div>
         </div>
-        {/* Animación personalizada para la línea */}
-        <style>
-          {`
-            @keyframes gradient-move {
-              0% { background-position: 0% 50%; }
-              50% { background-position: 100% 50%; }
-              100% { background-position: 0% 50%; }
-            }
-            .animate-gradient-move {
-              animation: gradient-move 4s ease infinite;
-            }
-          `}
-        </style>
       </section>
 
       {/* Contact Section */}
