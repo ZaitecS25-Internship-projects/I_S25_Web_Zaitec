@@ -3,14 +3,11 @@
 html {
   font-family: 'Inter', sans-serif;
   scroll-behavior: smooth;
-  scroll-behavior: smooth;
 }
 
 h1 {
     font-family: 'Orbitron', sans-serif;
 }
-
-
 
 /* Remove any default margins that might cause white space */
 body {
@@ -31,9 +28,77 @@ body {
   animation: gradient-shift 3s ease infinite;
 }
 
-
-
 /* Custom shadow for better depth */
 .custom-shadow {
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1), 0 10px 10px rgba(0, 0, 0, 0.04);
+}
+
+/* Menu animation styles */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Video container styles */
+.video-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.video-container video {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+/* Ensure text remains accessible over video */
+.text-over-video {
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Menu animation transitions */
+.menu-transition {
+  transition: all var(--menu-transition-duration, 0.5s) ease-in-out;
+}
+
+/* Improved button styles */
+.zaitec-button {
+  @apply inline-flex items-center gap-3 bg-linear-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-xl font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:from-blue-700 hover:to-purple-700;
+  min-width: 280px;
+}
+
+.zaitec-button:focus {
+  @apply outline-none ring-2 ring-blue-500 ring-offset-2;
+}
+
+.zaitec-button:disabled {
+  @apply opacity-50 cursor-not-allowed;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .zaitec-button {
+    transition-duration: 0.1s;
+  }
+  
+  .menu-transition {
+    transition-duration: 0.1s;
+  }
+}
+
+/* Gradient move animation */
+@keyframes gradient-move {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.animate-gradient-move {
+  animation: gradient-move 4s ease infinite;
+  background-size: 200% 200%;
 }

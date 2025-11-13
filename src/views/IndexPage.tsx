@@ -11,10 +11,6 @@ import type { ErrorType, UserDataType } from "../types";
 import CookieConsent from '../components/CookieConsent';
 import Cursos from "../views/Formacion";
 
-
-
-
-
 //Estado inicial del formulario
 const initialForm = {
   nombre: '',
@@ -27,24 +23,8 @@ const initialForm = {
 }
 
 export default function IndexPage() {
-  //Mostrar local storage
-  // const savedData = useMemo<UserDataType[]>(() => {
-  //   try {
-  //     const data = localStorage.getItem('datosForm');
-  //     return data ? JSON.parse(data) : [];
-  //   } catch {
-  //     return [];
-  //   }
-  // }, []);
-
   //State del formulario
   const [formState, setFormState] = useState<UserDataType>(initialForm);
-  // const [dataForm, setDataForm] = useState<UserDataType[]>(savedData)
-
-  // //escribir en local storage
-  // useEffect(() => {
-  //   localStorage.setItem('datosForm', JSON.stringify(dataForm))
-  // }, [dataForm])
   //relacionado con el formulario
   const [sentForm, setSentForm] = useState<boolean>(false)
   const [alertForm, setAlertForm] = useState<string>('')
@@ -71,7 +51,6 @@ export default function IndexPage() {
   }, [])
 
   const cards: Cards = [
-
     {
       titulo: "Desarrollo Ágil.",
       descripcion:
@@ -113,8 +92,6 @@ export default function IndexPage() {
     });
   };
 
-  // values(formState).some(value => value.trim() === ''
-  //funcion asincrona aync await
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     //validación de campos
@@ -161,39 +138,6 @@ export default function IndexPage() {
         setIsSending(false)
       }, 4000)
     }
-
-    //utilizar then y catch
-    // // Enviar correo automáticamente con EmailJS
-    // emailjs
-    //   .send(
-    //     "service_054243w", // <- tu Service ID de EmailJS
-    //     "template_ul1ngwc", // <- tu Template ID de EmailJS
-    //     formState, // <- state directamente
-    //     "AitL2YWNXRY3yYfb4" // <- tu Public Key de EmailJS
-    //   ).then(() => {
-    //     setAlertForm('Los datos han sido enviados')
-    //     setSentForm(true)
-    //     handleReset()
-    //     setErrors({
-    //       nombre: 'Campo obligatorio',
-    //       apellido: 'Campo obligatorio',
-    //       segunapellido: 'campo obligatorio',
-    //       email: 'Campo obligatorio',
-    //       telefono: 'Campo obligatorio',
-    //       fecha: 'Campo obligatorio',
-    //     })
-
-    //     setTimeout(() => {
-    //       setAlertForm('')
-    //     }, 5000)
-
-    //   })
-    //   .catch((error) => {
-    //     console.error("Error EmailJS:", error)
-    //     setAlertForm('Fallo al enviar los datos');
-    //     setSentForm(false)
-    //     setTimeout(() => setAlertForm(''), 5000);
-    //   })
   }
 
   const handleReset = () => {
@@ -215,7 +159,6 @@ export default function IndexPage() {
     // Guardamos los datos actuales del formulario
     sessionStorage.setItem("userData", JSON.stringify(formState));
   };
-
 
   return (
     <>
@@ -249,11 +192,9 @@ export default function IndexPage() {
 
           <div className="grid md:grid-row lg:grid-cols-3 gap-1 lg:gap-8 md:w-3/4 lg:w-10/11 mx-auto">
             <CardInnovacion cards={cards} />
-
           </div>
         </div>
       </section>
-
 
       {/* Projects Section */}
       <section
@@ -307,96 +248,97 @@ export default function IndexPage() {
 
           {/* Tarjetas responsive */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-6xl mx-auto">
-  {/* Proyecto 1 */}
-  <motion.article
-    initial={{ opacity: 0, y: 30 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    transition={{ duration: 0.7, delay: 0.1 }}
-    viewport={{ once: true }}
-    className="group bg-white rounded-2xl shadow-md hover:shadow-2xl hover:-translate-y-2 hover:bg-linear-to-br hover:from-blue-50 hover:to-purple-50 transition-all duration-500 overflow-hidden cursor-pointer"
-  >
-    <div className="aspect-4/3 w-full overflow-hidden flex items-center justify-center bg-gray-50">
-      <img
-        src="/img/pepe-martinez.png"
-        alt="Pepe Martínez y Asociados"
-        className="w-full h-full object-contain sm:object-cover transition-transform duration-500 group-hover:scale-105"
-      />
-    </div>
-    <div className="p-4 sm:p-5">
-      <h3 className="text-lg sm:text-xl font-bold text-gray-800 mb-2 transition-colors duration-300 group-hover:text-blue-700">
-        Pepe Martínez y Asociados, bufete de abogados
-      </h3>
-      <p className="text-gray-600 text-sm sm:text-base transition-colors duration-300 group-hover:text-gray-800">
-        Posicionamiento SEO, formularios para consejo legal y mucho más.
-      </p>
-    </div>
-  </motion.article>
+            {/* Proyecto 1 */}
+            <motion.article
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.1 }}
+              viewport={{ once: true }}
+              className="group bg-white rounded-2xl shadow-md hover:shadow-2xl hover:-translate-y-2 hover:bg-linear-to-br hover:from-blue-50 hover:to-purple-50 transition-all duration-500 overflow-hidden cursor-pointer"
+            >
+              <div className="aspect-4/3 w-full overflow-hidden flex items-center justify-center bg-gray-50">
+                <img
+                  src="/img/pepe-martinez.png"
+                  alt="Pepe Martínez y Asociados"
+                  className="w-full h-full object-contain sm:object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+              </div>
+              <div className="p-4 sm:p-5">
+                <h3 className="text-lg sm:text-xl font-bold text-gray-800 mb-2 transition-colors duration-300 group-hover:text-blue-700">
+                  Pepe Martínez y Asociados, bufete de abogados
+                </h3>
+                <p className="text-gray-600 text-sm sm:text-base transition-colors duration-300 group-hover:text-gray-800">
+                  Posicionamiento SEO, formularios para consejo legal y mucho más.
+                </p>
+              </div>
+            </motion.article>
 
-  {/* Proyecto 2 */}
-  <motion.article
-    initial={{ opacity: 0, y: 30 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    transition={{ duration: 0.7, delay: 0.2 }}
-    viewport={{ once: true }}
-    className="group bg-white rounded-2xl shadow-md hover:shadow-2xl hover:-translate-y-2 hover:bg-linear-to-br hover:from-blue-50 hover:to-purple-50 transition-all duration-500 overflow-hidden cursor-pointer"
-  >
-    <div className="aspect-4/3 w-full overflow-hidden flex items-center justify-center bg-gray-50">
-      <img
-        src="/img/cocinas-con-alma.png"
-        alt="Cocinas con Alma"
-        className="w-full h-full object-contain sm:object-cover transition-transform duration-500 group-hover:scale-105"
-      />
-    </div>
-    <div className="p-4 sm:p-5">
-      <h3 className="text-lg sm:text-xl font-bold text-gray-800 mb-2 transition-colors duration-300 group-hover:text-blue-700">
-        Cocinas con Alma
-      </h3>
-      <p className="text-gray-600 text-sm sm:text-base transition-colors duration-300 group-hover:text-gray-800">
-        Página con diseño impactante y gran detalle en Proyectos de Cocinas realizados.
-      </p>
-    </div>
-  </motion.article>
+            {/* Proyecto 2 */}
+            <motion.article
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.2 }}
+              viewport={{ once: true }}
+              className="group bg-white rounded-2xl shadow-md hover:shadow-2xl hover:-translate-y-2 hover:bg-linear-to-br hover:from-blue-50 hover:to-purple-50 transition-all duration-500 overflow-hidden cursor-pointer"
+            >
+              <div className="aspect-4/3 w-full overflow-hidden flex items-center justify-center bg-gray-50">
+                <img
+                  src="/img/cocinas-con-alma.png"
+                  alt="Cocinas con Alma"
+                  className="w-full h-full object-contain sm:object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+              </div>
+              <div className="p-4 sm:p-5">
+                <h3 className="text-lg sm:text-xl font-bold text-gray-800 mb-2 transition-colors duration-300 group-hover:text-blue-700">
+                  Cocinas con Alma
+                </h3>
+                <p className="text-gray-600 text-sm sm:text-base transition-colors duration-300 group-hover:text-gray-800">
+                  Página con diseño impactante y gran detalle en Proyectos de Cocinas realizados.
+                </p>
+              </div>
+            </motion.article>
 
-  {/* Proyecto 3 */}
-  <motion.article
-    initial={{ opacity: 0, y: 30 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    transition={{ duration: 0.7, delay: 0.3 }}
-    viewport={{ once: true }}
-    className="group bg-white rounded-2xl shadow-md hover:shadow-2xl hover:-translate-y-2 hover:bg-linear-to-br hover:from-blue-50 hover:to-purple-50 transition-all duration-500 overflow-hidden cursor-pointer"
-  >
-    <div className="aspect-4/3 w-full overflow-hidden flex items-center justify-center bg-gray-50">
-      <img
-        src="/img/electro-genio.png"
-        alt="Electrodomésticos ElectroGenio"
-        className="w-full h-full object-contain sm:object-cover transition-transform duration-500 group-hover:scale-105"
-      />
-    </div>
-    <div className="p-4 sm:p-5">
-      <h3 className="text-lg sm:text-xl font-bold text-gray-800 mb-2 transition-colors duration-300 group-hover:text-blue-700">
-        Electrodomésticos ElectroGenio
-      </h3>
-      <p className="text-gray-600 text-sm sm:text-base transition-colors duration-300 group-hover:text-gray-800">
-        Una web con tienda incorporada con cientos de referencias y pasarelas de pago.
-      </p>
-    </div>
-  </motion.article>
-</div>
+            {/* Proyecto 3 */}
+            <motion.article
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.3 }}
+              viewport={{ once: true }}
+              className="group bg-white rounded-2xl shadow-md hover:shadow-2xl hover:-translate-y-2 hover:bg-linear-to-br hover:from-blue-50 hover:to-purple-50 transition-all duration-500 overflow-hidden cursor-pointer"
+            >
+              <div className="aspect-4/3 w-full overflow-hidden flex items-center justify-center bg-gray-50">
+                <img
+                  src="/img/electro-genio.png"
+                  alt="Electrodomésticos ElectroGenio"
+                  className="w-full h-full object-contain sm:object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+              </div>
+              <div className="p-4 sm:p-5">
+                <h3 className="text-lg sm:text-xl font-bold text-gray-800 mb-2 transition-colors duration-300 group-hover:text-blue-700">
+                  Electrodomésticos ElectroGenio
+                </h3>
+                <p className="text-gray-600 text-sm sm:text-base transition-colors duration-300 group-hover:text-gray-800">
+                  Una web con tienda incorporada con cientos de referencias y pasarelas de pago.
+                </p>
+              </div>
+            </motion.article>
+          </div>
         </div>
         {/* Animación personalizada para la línea */}
         <style>
           {`
-      @keyframes gradient-move {
-        0% { background-position: 0% 50%; }
-        50% { background-position: 100% 50%; }
-        100% { background-position: 0% 50%; }
-      }
-      .animate-gradient-move {
-        animation: gradient-move 4s ease infinite;
-      }
-    `}
+            @keyframes gradient-move {
+              0% { background-position: 0% 50%; }
+              50% { background-position: 100% 50%; }
+              100% { background-position: 0% 50%; }
+            }
+            .animate-gradient-move {
+              animation: gradient-move 4s ease infinite;
+            }
+          `}
         </style>
       </section>
+
       {/* Contact Section */}
       <section
         className="py-16 md:py-20 bg-linear-to-br from-yellow-50 to-amber-50"
@@ -409,7 +351,6 @@ export default function IndexPage() {
             transition={{ duration: 0.7 }}
             viewport={{ once: true }}
             className="text-center mb-12"
-
           >
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
               <span className="bg-linear-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
@@ -573,86 +514,82 @@ export default function IndexPage() {
         </div>
       </section>
 
-    {/* Training Section */}
-<section
-  id="formacion"
-  aria-labelledby="capacitacion-tecnologica-heading"
-  className="py-16 md:py-20 bg-gray-50 relative"
->
-  <div className="container mx-auto px-6">
-    {/* Título */}
-    <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.7 }}
-      viewport={{ once: true }}
-      className="text-center mb-12"
-    >
-      <h2
-        id="capacitacion-tecnologica-heading"
-        className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6"
+      {/* Training Section - Now with courses directly displayed */}
+      <section
+        id="formacion"
+        aria-labelledby="capacitacion-tecnologica-heading"
+        className="py-16 md:py-20 bg-gray-50 relative"
       >
-        <span className="bg-linear-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-          Capacitación
-        </span>{" "}
-        para convertirte en un experto de la tecnología.
-      </h2>
-      <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-        Mejora tus habilidades con nuestras formaciones tecnológicas más demandadas.
-      </p>
-    </motion.div>
+        <div className="container mx-auto px-6">
+          {/* Título */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7 }}
+            viewport={{ once: true }}
+            className="text-center mb-12"
+          >
+            <h2
+              id="capacitacion-tecnologica-heading"
+              className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6"
+            >
+              <span className="bg-linear-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                Capacitación
+              </span>{" "}
+              para convertirte en un experto de la tecnología.
+            </h2>
+            <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+              Mejora tus habilidades con nuestras formaciones tecnológicas más demandadas.
+            </p>
+          </motion.div>
 
-    {/* Bloque con flecha a ZaitecLabs.es */}
-    <div className="flex items-center justify-between my-12 max-w-5xl mx-auto px-6">
-      <span className="text-2xl md:text-3xl font-bold text-gray-900 mx-auto">
-        Accede al curso ZaitecLabs.es
-      </span>
+          {/* Courses Grid - Directly on homepage */}
+          <div className="max-w-5xl mx-auto">
+            <Cursos />
+          </div>
 
-      <motion.a
-        href="https://Zaiteclabs.es/"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="w-60 h-60 ml-auto"
-        animate={{
-          y: [0, -15, 0],
-          x: [0, 10, 0]
-        }}
-        transition={{
-          duration: 2,
-          repeat: Infinity,
-          repeatType: "loop",
-          ease: "easeInOut",
-        }}
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-          fill="none"
-          strokeWidth={2.4}
-          stroke="currentColor"
-          className="w-60 h-60 text-blue-700 hover:text-blue-900 cursor-pointer transition-transform duration-300 hover:scale-105"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M5 19L19 5M5 5h14v14"
-          />
-        </svg>
-      </motion.a>
-    </div>
-
-    {/* Enlace a nueva página de cursos */}
-    <div className="text-center mt-16">
-      <Link
-        to="/Formacion"
-        className="inline-block text-lg font-semibold text-blue-700 hover:text-blue-900 transition underline decoration-blue-400/60"
-      >
-        Ver todos los cursos disponibles →
-      </Link>
-    </div>
-  </div>
-</section>
-
+          {/* Improved ZaitecLabs Button */}
+          <motion.div
+            className="text-center mt-12"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <motion.a
+              href="https://Zaiteclabs.es/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-3 bg-linear-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-xl font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:from-blue-700 hover:to-purple-700 min-w-[280px] mx-auto"
+              whileHover={{ 
+                scale: 1.05,
+                boxShadow: "0 10px 25px -5px rgba(59, 130, 246, 0.4)"
+              }}
+              whileTap={{ scale: 0.98 }}
+            >
+              <span>Accede al curso ZaitecLabs.es</span>
+              <motion.svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                strokeWidth={2.4}
+                stroke="currentColor"
+                className="w-5 h-5"
+                animate={{
+                  x: [0, 4, 0]
+                }}
+                transition={{
+                  duration: 1.5,
+                  repeat: Infinity,
+                  ease: 'easeInOut'
+                }}
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H19.5M19.5 6V12M19.5 6L10.5 15M5.25 5.25l13.5 13.5" />
+              </motion.svg>
+            </motion.a>
+          </motion.div>
+        </div>
+      </section>
 
       <CookieConsent onAccept={handleCookiesAccept} />
     </>
