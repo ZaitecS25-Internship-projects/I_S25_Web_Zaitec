@@ -10,6 +10,7 @@ import { ArrowUpRight } from "lucide-react";
 import type { ErrorType, UserDataType } from "../types";
 import CookieConsent from '../components/CookieConsent';
 import Cursos from "../views/Formacion";
+import { section } from "framer-motion/client";
 
 //Estado inicial del formulario
 const initialForm = {
@@ -547,47 +548,6 @@ export default function IndexPage() {
           <div className="max-w-5xl mx-auto">
             <Cursos />
           </div>
-
-          {/* Improved ZaitecLabs Button */}
-          <motion.div
-            className="text-center mt-12"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-          >
-            <motion.a
-              href="https://Zaiteclabs.es/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-3 bg-linear-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-xl font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:from-blue-700 hover:to-purple-700 min-w-[280px] mx-auto"
-              whileHover={{ 
-                scale: 1.05,
-                boxShadow: "0 10px 25px -5px rgba(59, 130, 246, 0.4)"
-              }}
-              whileTap={{ scale: 0.98 }}
-            >
-              <span>Accede al curso ZaitecLabs.es</span>
-              <motion.svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="none"
-                strokeWidth={2.4}
-                stroke="currentColor"
-                className="w-5 h-5"
-                animate={{
-                  x: [0, 4, 0]
-                }}
-                transition={{
-                  duration: 1.5,
-                  repeat: Infinity,
-                  ease: 'easeInOut'
-                }}
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H19.5M19.5 6V12M19.5 6L10.5 15M5.25 5.25l13.5 13.5" />
-              </motion.svg>
-            </motion.a>
-          </motion.div>
         </div>
       </section>
 
