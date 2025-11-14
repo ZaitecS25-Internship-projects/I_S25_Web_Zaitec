@@ -9,7 +9,7 @@ export default function CursosZaitec() {
       img: "/img/excel.png",
       color: "#16A34A", // verde
       hoverBg: "linear-gradient(135deg, #D8F3DC 0%, #BCECC1 100%)",
-      link: "https://learn.microsoft.com/es-es/training/excel/",
+      link: "https://excelformaciones.com/?campaignid=21984709841&adgroupid=175008083418&adid=730629006635&gad_source=1&gad_campaignid=21984709841&gbraid=0AAAAADMEleu912jttp97R337F-lG0uAR4&gclid=CjwKCAiAw9vIBhBBEiwAraSATgjw_kOIo8H-r-Lks82-8XRQhm-rFFsbUSFrQlXEE2z9jQYHs-AnHhoCtdEQAvD_BwE",
     },
     {
       titulo: "HTML + CSS + JS",
@@ -124,7 +124,7 @@ export default function CursosZaitec() {
                   </div>
 
                   {/* Description */}
-                  <p className="text-sm leading-relaxed text-gray-700 mb-4 flex-grow">
+                  <p className="text-sm leading-relaxed text-gray-700 mb-4 grow">
                     {curso.descripcion}
                   </p>
 
