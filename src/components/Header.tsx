@@ -243,7 +243,7 @@ export default function Header() {
                                             <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 19.5-15-15m0 0v11.25m0-11.25h11.25" />
                                         </svg>
 
-                                        <p className='text-md text-blue-600 dark:text-blue-400 font-bold'>Incio</p>
+                                        <p className='text-md text-blue-600 dark:text-blue-400 font-bold'>Inicio</p>
                                     </div>
                                 </Link>
                             </nav>

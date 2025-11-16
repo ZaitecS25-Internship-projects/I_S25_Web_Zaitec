@@ -265,17 +265,18 @@ export default function IndexPage() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.1 }}
               viewport={{ once: true }}
-              className="group bg-white rounded-2xl shadow-md hover:shadow-2xl hover:-translate-y-2 hover:bg-linear-to-br hover:from-blue-50 hover:to-purple-50 transition-all duration-500 overflow-hidden cursor-pointer"
+              className="group bg:white rounded-2xl shadow-md hover:shadow-2xl hover:-translate-y-2 hover:bg-linear-to-br hover:from-blue-50 hover:to-purple-50
+              transition-all duration-500 overflow-hidden cursor-pointer"
             >
-              <div className="aspect-4/3 w-full overflow-hidden flex items-center justify-center bg-gray-50">
+              <div className="aspect-4/3 w-full min-h-80 overflow-hidden flex items-center justify-center bg-gray-50">
                 <img
                   src="/img/pepe-martinez.png"
                   alt="Pepe Martínez y Asociados"
                   className="w-full h-full object-contain sm:object-cover transition-transform duration-500 group-hover:scale-105"
                 />
               </div>
-              <div className="p-4 sm:p-5">
-                <h3 className="text-lg sm:text-xl font-bold text-gray-800 mb-2 transition-colors duration-300 group-hover:text-blue-700">
+              <div className="p-4 sm:p-5 transition-all">
+                <h3 className="text-lg sm:text-xl font-bold text-gray-800  group-hover:text-blue-700 mb-2 transition-all duration-300">
                   Pepe Martínez y Asociados, bufete de abogados
                 </h3>
                 <p className="text-gray-600 text-sm sm:text-base transition-colors duration-300 group-hover:text-gray-800">
@@ -292,7 +293,7 @@ export default function IndexPage() {
               viewport={{ once: true }}
               className="group bg-white rounded-2xl shadow-md hover:shadow-2xl hover:-translate-y-2 hover:bg-linear-to-br hover:from-blue-50 hover:to-purple-50 transition-all duration-500 overflow-hidden cursor-pointer"
             >
-              <div className="aspect-4/3 w-full overflow-hidden flex items-center justify-center bg-gray-50">
+              <div className="aspect-4/3 w-full min-h-80 overflow-hidden flex items-center justify-center bg-gray-50">
                 <img
                   src="/img/cocinas-con-alma.png"
                   alt="Cocinas con Alma"
@@ -315,9 +316,10 @@ export default function IndexPage() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.3 }}
               viewport={{ once: true }}
-              className="group bg-white rounded-2xl shadow-md hover:shadow-2xl hover:-translate-y-2 hover:bg-linear-to-br hover:from-blue-50 hover:to-purple-50 transition-all duration-500 overflow-hidden cursor-pointer"
+              className="
+              group bg-white rounded-2xl shadow-md hover:shadow-2xl hover:-translate-y-2 hover:bg-linear-to-br hover:from-blue-50 hover:to-purple-50 transition-all duration-500  overflow-hidden cursor-pointer"
             >
-              <div className="aspect-4/3 w-full overflow-hidden flex items-center justify-center bg-gray-50">
+              <div className="aspect-4/3 w-full min-h-80 overflow-hidden flex items-center justify-center bg-gray-50">
                 <img
                   src="/img/electro-genio.png"
                   alt="Electrodomésticos ElectroGenio"

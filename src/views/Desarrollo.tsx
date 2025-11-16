@@ -74,15 +74,15 @@ export default function ProyectosPage() {
   return (
     <section id="proyectos" className="py-20 bg-gray-100">
       <div className="max-w-6xl mx-auto px-6 text-center mb-16">
-     <motion.h1
-  initial={{ opacity: 0, y: 20 }}
-  whileInView={{ opacity: 1, y: 0 }}
-  transition={{ duration: 0.6 }}
-  viewport={{ once: true }}
-  className="text-5xl md:text-6xl font-extrabold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-6"
->
-  Más proyectos
-</motion.h1>
+        <motion.h1
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="text-5xl md:text-6xl font-extrabold bg-linear-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-6"
+        >
+          Más proyectos
+        </motion.h1>
 
         <motion.p
           initial={{ opacity: 0, y: 20 }}
@@ -123,46 +123,46 @@ export default function ProyectosPage() {
 
       {/* Modal */}
       {/* Modal */}
-<AnimatePresence mode="wait">
-  {modalProyecto && (
-    <motion.div
-      key="modal"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.25 }}
-      className="fixed inset-0 z-[9999] bg-black bg-opacity-70 flex items-center justify-center"
-      onClick={() => setModalProyecto(null)}
-    >
-      <motion.div
-        initial={{ scale: 0.9, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        exit={{ scale: 0.9, opacity: 0 }}
-        transition={{ duration: 0.3, ease: 'easeInOut' }}
-        className="bg-white rounded-2xl max-w-3xl w-full p-6 relative"
-        onClick={(e) => e.stopPropagation()}
-      >
-        <button
-          onClick={() => setModalProyecto(null)}
-          className="absolute top-4 right-4 text-gray-500 hover:text-gray-800 text-2xl font-bold"
-        >
-          &times;
-        </button>
+      <AnimatePresence mode="wait">
+        {modalProyecto && (
+          <motion.div
+            key="modal"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.25 }}
+            className="fixed inset-0 z-[9999] bg-black bg-opacity-70 flex items-center justify-center"
+            onClick={() => setModalProyecto(null)}
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              transition={{ duration: 0.3, ease: 'easeInOut' }}
+              className="bg-white rounded-2xl max-w-3xl w-full p-6 relative"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button
+                onClick={() => setModalProyecto(null)}
+                className="absolute top-4 right-4 text-gray-500 hover:text-gray-800 text-2xl font-bold"
+              >
+                &times;
+              </button>
 
-        <div className="h-64 flex items-center justify-center mb-6">
-          <img
-            src={modalProyecto.img}
-            alt={modalProyecto.alt}
-            className="max-h-full object-contain"
-          />
-        </div>
+              <div className="h-64 flex items-center justify-center mb-6">
+                <img
+                  src={modalProyecto.img}
+                  alt={modalProyecto.alt}
+                  className="max-h-full object-contain"
+                />
+              </div>
 
-        <h3 className="text-2xl font-bold mb-2">{modalProyecto.titulo}</h3>
-        <p className="text-gray-700">{modalProyecto.detalles || modalProyecto.descripcion}</p>
-      </motion.div>
-    </motion.div>
-  )}
-</AnimatePresence>
+              <h3 className="text-2xl font-bold mb-2">{modalProyecto.titulo}</h3>
+              <p className="text-gray-700">{modalProyecto.detalles || modalProyecto.descripcion}</p>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
     </section>
   );
