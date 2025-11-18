@@ -1,7 +1,23 @@
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
+import { useTheme } from '../contexts/Themecontext';
+
+// Función para generar un color más claro u oscuro para dark mode
+function adjustColorForDarkMode(hex: string) {
+  // Convierte hex a RGB
+  const r = parseInt(hex.substring(1, 3), 16);
+  const g = parseInt(hex.substring(3, 5), 16);
+  const b = parseInt(hex.substring(5, 7), 16);
+
+  // Aumenta luminosidad para texto oscuro → claro, hover para dark
+  const lighten = (c: number) => Math.min(255, Math.floor(c + 100));
+
+  return `rgb(${lighten(r)}, ${lighten(g)}, ${lighten(b)})`;
+}
 
 export default function CursosZaitec() {
+  const { theme } = useTheme();
+
   const cursos = [
     {
       titulo: "Excel Avanzado",
@@ -54,8 +70,9 @@ export default function CursosZaitec() {
   ];
 
   return (
-    <section className="py-12 bg-gray-50">
+    <section className="py-12 bg-gray-50 dark:bg-gray-900">
       <div className="container mx-auto px-4 max-w-6xl">
+
         {/* Premium CTA Button */}
         <div className="flex justify-center mb-12">
           <a
@@ -69,88 +86,114 @@ export default function CursosZaitec() {
               <ArrowUpRight className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300" />
             </span>
             
-            {/* Gradient border effect */}
             <div className="absolute inset-0 rounded-2xl bg-linear-to-r from-blue-600 to-purple-600 p-0.5 -z-10">
-              <div className="w-full h-full bg-white rounded-2xl"></div>
+              <div className="w-full h-full bg-white rounded-2xl dark:bg-gray-900"></div>
             </div>
             
-            {/* Hover glow effect */}
             <div className="absolute inset-0 rounded-2xl bg-linear-to-r from-blue-400 to-purple-400 opacity-0 group-hover:opacity-100 blur-md transition-opacity duration-500 -z-20"></div>
           </a>
         </div>
 
-        {/* Enhanced Course Cards */}
+        {/* Course Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 justify-items-center">
-          {cursos.map((curso, index) => (
-            <motion.article
-              key={index}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              viewport={{ once: true }}
-              className="w-full max-w-sm"
-            >
-              <div
-                style={{
-                  borderColor: curso.color,
-                }}
-                className="group relative bg-white border-2 rounded-2xl p-6 flex flex-col h-full shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 overflow-hidden"
+          {cursos.map((curso, index) => {
+            // Generamos color de título y hover dinámico para dark mode
+            const colorText = theme === "dark" ? adjustColorForDarkMode(curso.color) : curso.color;
+            const hoverBg = theme === "dark"
+              ? `linear-gradient(135deg, ${curso.color}55 0%, ${curso.color}25 100%)`
+              : curso.hoverBg;
+
+            return (
+              <motion.article
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="w-full max-w-sm"
               >
-                {/* Background gradient on hover */}
-                <div 
-                  className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl"
-                  style={{ background: curso.hoverBg }}
-                ></div>
-                
-                <div className="relative z-10 flex flex-col h-full">
-                  {/* Header with icon and title */}
-                  <div className="flex items-center gap-3 mb-4">
-                    <div 
-                      className="p-2 rounded-xl shadow-md"
-                      style={{ backgroundColor: `${curso.color}15` }}
-                    >
-                      <img 
-                        src={curso.img} 
-                        alt={curso.titulo} 
-                        className="w-8 h-8 object-contain"
-                      />
+                <div
+                  style={{
+                    borderColor: curso.color,
+                    background: theme === "dark" ? "#1A1F2B" : "#FFFFFF",
+                  }}
+                  className="
+                    group relative border-[2.5px] rounded-2xl p-6 flex flex-col h-full
+                    shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2
+                    overflow-hidden ring-1 ring-transparent hover:ring-[1.5px]
+                    dark:ring-gray-700
+                    text-gray-900 dark:text-gray-100
+                  "
+                >
+                  {/* Hover background */}
+                  <div
+                    className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl"
+                    style={{ background: hoverBg }}
+                  ></div>
+
+                  <div className="relative z-10 flex flex-col h-full">
+
+                    {/* Header */}
+                    <div className="flex items-center gap-3 mb-4">
+                      <div
+                        className="p-2 rounded-xl shadow-sm backdrop-blur-sm"
+                        style={{
+                          backgroundColor:
+                            theme === "dark"
+                              ? `${curso.color}20`
+                              : `${curso.color}15`,
+                        }}
+                      >
+                        <img
+                          src={curso.img}
+                          alt={curso.titulo}
+                          className="w-8 h-8 object-contain"
+                        />
+                      </div>
+
+                      <h3
+                        className="text-lg font-extrabold tracking-wide"
+                        style={{ color: colorText }}
+                      >
+                        {curso.titulo}
+                      </h3>
                     </div>
-                    <h3 
-                      style={{ color: curso.color }} 
-                      className="text-lg font-bold"
+
+                    {/* Description */}
+                    <p className="text-sm leading-relaxed text-gray-700 dark:text-gray-300 mb-4 grow">
+                      {curso.descripcion}
+                    </p>
+
+                    {/* CTA */}
+                    <a
+                      href={curso.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{ color: colorText }}
+                      className="
+                        inline-flex items-center justify-between font-semibold text-sm
+                        hover:underline transition-all duration-300 group-hover:translate-x-1
+                      "
                     >
-                      {curso.titulo}
-                    </h3>
+                      <span>Ver curso completo</span>
+                      <ArrowUpRight className="w-4 h-4 ml-1" />
+                    </a>
                   </div>
 
-                  {/* Description */}
-                  <p className="text-sm leading-relaxed text-gray-700 mb-4 grow">
-                    {curso.descripcion}
-                  </p>
-
-                  {/* Enhanced CTA Link */}
-                  <a
-                    href={curso.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    style={{ color: curso.color }}
-                    className="inline-flex items-center justify-between font-semibold text-sm hover:underline transition-all duration-300 group-hover:translate-x-1"
-                  >
-                    <span>Ver curso completo</span>
-                    <ArrowUpRight className="w-4 h-4 ml-1" />
-                  </a>
+                  {/* Corner accent */}
+                  <div
+                    className="
+                      absolute top-0 right-0 w-20 h-20 opacity-[0.06] 
+                      group-hover:opacity-[0.14] transition-opacity duration-500
+                    "
+                    style={{
+                      background: `radial-gradient(circle at top right, ${curso.color}, transparent 70%)`,
+                    }}
+                  ></div>
                 </div>
-
-                {/* Subtle corner accent */}
-                <div 
-                  className="absolute top-0 right-0 w-16 h-16 opacity-10 group-hover:opacity-20 transition-opacity duration-500"
-                  style={{ 
-                    background: `radial-gradient(circle at top right, ${curso.color}, transparent 70%)`
-                  }}
-                ></div>
-              </div>
-            </motion.article>
-          ))}
+              </motion.article>
+            );
+          })}
         </div>
       </div>
     </section>
