@@ -398,7 +398,7 @@ export default function Header() {
                             loop
                             playsInline
                             className="w-full h-full object-cover"
-                            poster="/img/header-zaitectwo.jpg"
+                            // poster="/img/header-zaitectwo.jpg"
                         >
                             <source src="/img/headerfondo.mp4" type="video/mp4" />
                             <img 
