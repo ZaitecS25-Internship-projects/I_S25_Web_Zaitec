@@ -259,9 +259,12 @@ export default function IndexPage() {
 
           {/* Tarjetas responsive */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-6xl mx-auto">
-                        {/* Proyecto 1 */}
+            {/* Proyecto 1 */}
             <motion.article
-              initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.1 }} viewport={{ once: true }}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.1 }}
+              viewport={{ once: true }}
               className="group relative cursor-pointer rounded-2xl overflow-hidden shadow-xl
                 bg-linear-to-br from-gray-800/90 to-gray-900/90
                 dark:from-gray-900/80 dark:via-gray-800/60 dark:to-gray-900/80
@@ -276,7 +279,10 @@ export default function IndexPage() {
               <div className="p-4 sm:p-5">
                 <h3 className="text-lg sm:text-xl font-extrabold mb-2 bg-clip-text text-transparent
                   bg-linear-to-r from-yellow-400 via-orange-400 to-pink-400
-                  dark:from-yellow-300 dark:via-yellow-200 dark:to-orange-300 transition-colors duration-300 group-hover:from-yellow-300 group-hover:via-orange-300 group-hover:to-pink-300">
+                  dark:from-yellow-300 dark:via-yellow-200 dark:to-orange-300
+                  transition-all duration-500
+                  group-hover:from-blue-600 group-hover:via-purple-500 group-hover:to-purple-600 group-hover:font-semibold"
+                >
                   Pepe Martínez y Asociados, bufete de abogados
                 </h3>
                 <p className="text-gray-200 dark:text-gray-100 text-sm sm:text-base transition-colors duration-300 group-hover:text-white">
@@ -287,7 +293,10 @@ export default function IndexPage() {
 
             {/* Proyecto 2 */}
             <motion.article
-              initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.2 }} viewport={{ once: true }}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.2 }}
+              viewport={{ once: true }}
               className="group relative cursor-pointer rounded-2xl overflow-hidden shadow-xl
                 bg-linear-to-br from-gray-800/90 to-gray-900/90
                 dark:from-blue-900/80 dark:via-purple-800/60 dark:to-blue-900/80
@@ -302,7 +311,10 @@ export default function IndexPage() {
               <div className="p-4 sm:p-5">
                 <h3 className="text-lg sm:text-xl font-extrabold mb-2 bg-clip-text text-transparent
                   bg-linear-to-r from-blue-400 via-purple-400 to-cyan-400
-                  dark:from-blue-300 dark:via-purple-300 dark:to-cyan-300 transition-colors duration-300 group-hover:from-blue-300 group-hover:via-purple-300 group-hover:to-cyan-300">
+                  dark:from-blue-300 dark:via-purple-300 dark:to-cyan-300
+                  transition-all duration-500
+                  group-hover:from-blue-600 group-hover:via-purple-500 group-hover:to-purple-600 group-hover:font-semibold"
+                >
                   Cocinas con Alma
                 </h3>
                 <p className="text-gray-200 dark:text-gray-100 text-sm sm:text-base transition-colors duration-300 group-hover:text-white">
@@ -313,7 +325,10 @@ export default function IndexPage() {
 
             {/* Proyecto 3 */}
             <motion.article
-              initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.3 }} viewport={{ once: true }}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.3 }}
+              viewport={{ once: true }}
               className="group relative cursor-pointer rounded-2xl overflow-hidden shadow-xl
                 bg-linear-to-br from-gray-800/90 to-gray-900/90
                 dark:from-pink-900/80 dark:via-purple-800/60 dark:to-red-900/80
@@ -328,14 +343,18 @@ export default function IndexPage() {
               <div className="p-4 sm:p-5">
                 <h3 className="text-lg sm:text-xl font-extrabold mb-2 bg-clip-text text-transparent
                   bg-linear-to-r from-pink-400 via-purple-400 to-red-400
-                  dark:from-pink-300 dark:via-purple-300 dark:to-red-300 transition-colors duration-300 group-hover:from-pink-300 group-hover:via-purple-300 group-hover:to-red-300">
+                  dark:from-pink-300 dark:via-purple-300 dark:to-red-300
+                  transition-all duration-500
+                  group-hover:from-blue-600 group-hover:via-purple-500 group-hover:to-purple-600 group-hover:font-semibold"
+                >
                   Electrodomésticos ElectroGenio
                 </h3>
                 <p className="text-gray-200 dark:text-gray-100 text-sm sm:text-base transition-colors duration-300 group-hover:text-white">
                   Una web con tienda incorporada con cientos de referencias y pasarelas de pago.
                 </p>
               </div>
-</motion.article>
+            </motion.article>
+
 
           </div>
         </div>
