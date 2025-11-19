@@ -4,14 +4,10 @@ import { useTheme } from '../contexts/Themecontext';
 
 // Función para generar un color más claro u oscuro para dark mode
 function adjustColorForDarkMode(hex: string) {
-  // Convierte hex a RGB
   const r = parseInt(hex.substring(1, 3), 16);
   const g = parseInt(hex.substring(3, 5), 16);
   const b = parseInt(hex.substring(5, 7), 16);
-
-  // Aumenta luminosidad para texto oscuro → claro, hover para dark
   const lighten = (c: number) => Math.min(255, Math.floor(c + 100));
-
   return `rgb(${lighten(r)}, ${lighten(g)}, ${lighten(b)})`;
 }
 
@@ -23,7 +19,7 @@ export default function CursosZaitec() {
       titulo: "Excel Avanzado",
       descripcion: "Domina hojas de cálculo, fórmulas avanzadas y automatización con macros.",
       img: "/img/excel.png",
-      color: "#16A34A", // verde
+      color: "#16A34A",
       hoverBg: "linear-gradient(135deg, #D8F3DC 0%, #BCECC1 100%)",
       link: "https://learn.microsoft.com/es-es/credentials/certifications/mos-excel-expert-2019/?practice-assessment-type=certification",
     },
@@ -31,7 +27,7 @@ export default function CursosZaitec() {
       titulo: "HTML + CSS + JS",
       descripcion: "Aprende a construir sitios web modernos con las bases del desarrollo frontend.",
       img: "/img/cssjshtml.png",
-      color: "#3B82F6", // azul
+      color: "#3B82F6",
       hoverBg: "linear-gradient(135deg, #CCE5FF 0%, #99CCFF 100%)",
       link: "https://developer.mozilla.org/es/docs/Learn",
     },
@@ -39,7 +35,7 @@ export default function CursosZaitec() {
       titulo: "React + Tailwind",
       descripcion: "Crea interfaces modernas y dinámicas con React y Tailwind CSS.",
       img: "/img/react.png",
-      color: "#0EA5E9", // celeste
+      color: "#0EA5E9",
       hoverBg: "linear-gradient(135deg, #E0F7FA 0%, #B2EBF2 100%)",
       link: "https://react.dev/learn",
     },
@@ -47,7 +43,7 @@ export default function CursosZaitec() {
       titulo: "Git y GitHub",
       descripcion: "Gestiona versiones y proyectos en equipo con Git y GitHub.",
       img: "/img/github.png",
-      color: "#374151", // gris oscuro
+      color: "#374151",
       hoverBg: "linear-gradient(135deg, #EDEDED 0%, #D9D9D9 100%)",
       link: "https://docs.github.com/es/get-started/start-your-journey",
     },
@@ -55,7 +51,7 @@ export default function CursosZaitec() {
       titulo: "Python",
       descripcion: "Domina la programación con Python: desde fundamentos hasta análisis de datos y desarrollo web.",
       img: "/img/python.png",
-      color: "#FACC15", // amarillo brillante
+      color: "#FACC15",
       hoverBg: "linear-gradient(135deg, #FEF9C3 0%, #FEF08A 100%)",
       link: "https://www.python.org/",
     },
@@ -63,7 +59,7 @@ export default function CursosZaitec() {
       titulo: "AWS Service",
       descripcion: "Aprende a manejar servicios de AWS, desplegar aplicaciones y gestionar la nube de forma profesional.",
       img: "/img/aws.png",
-      color: "#FF9900", // amarillo AWS
+      color: "#FF9900",
       hoverBg: "linear-gradient(135deg, #FFF8E1 0%, #FFEBC1 100%)",
       link: "https://aws.amazon.com/training/",
     }
@@ -73,35 +69,55 @@ export default function CursosZaitec() {
     <section className="py-12 bg-gray-50 dark:bg-gray-900">
       <div className="container mx-auto px-4 max-w-6xl">
 
-        {/* Premium CTA Button */}
+        {/* PREMIUM CTA BUTTON FIJO SIN CAMBIO BLANCO */}
         <div className="flex justify-center mb-12">
           <a
             href="https://zaiteclabs.es"
             target="_blank"
             rel="noopener noreferrer"
-            className="group relative inline-flex items-center justify-center px-8 py-4 bg-linear-to-r from-blue-600 to-purple-600 text-white font-bold text-lg rounded-2xl shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-105 min-w-64"
+            className="
+              relative group inline-flex items-center justify-center
+              px-8 py-4 rounded-2xl font-bold text-lg text-white
+              bg-linear-to-r from-blue-600 to-purple-600
+              shadow-2xl hover:shadow-3xl
+              transition-all duration-500 hover:scale-105
+              overflow-hidden min-w-64
+            "
           >
-            <span className="relative z-10 flex items-center gap-3">
+            <span className="relative z-20 flex items-center gap-3">
               Accede al curso ZaitecLabs.es
               <ArrowUpRight className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300" />
             </span>
-            
-            <div className="absolute inset-0 rounded-2xl bg-linear-to-r from-blue-600 to-purple-600 p-0.5 -z-10">
-              <div className="w-full h-full bg-white rounded-2xl dark:bg-gray-900"></div>
-            </div>
-            
-            <div className="absolute inset-0 rounded-2xl bg-linear-to-r from-blue-400 to-purple-400 opacity-0 group-hover:opacity-100 blur-md transition-opacity duration-500 -z-20"></div>
+
+            {/* Suave capa en hover */}
+            <div
+              className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-20 transition-opacity duration-500 z-10"
+            ></div>
+
+            {/* Brillo diagonal */}
+            <div
+              className="
+                absolute top-0 left-[-150%] w-[120%] h-full
+                bg-linear-to-r from-transparent via-white/30 to-transparent
+                skew-x-12
+                group-hover:translate-x-[250%]
+                transition-transform duration-700 ease-out
+                z-10
+              "
+            ></div>
           </a>
         </div>
 
         {/* Course Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 justify-items-center">
           {cursos.map((curso, index) => {
-            // Generamos color de título y hover dinámico para dark mode
-            const colorText = theme === "dark" ? adjustColorForDarkMode(curso.color) : curso.color;
-            const hoverBg = theme === "dark"
-              ? `linear-gradient(135deg, ${curso.color}55 0%, ${curso.color}25 100%)`
-              : curso.hoverBg;
+            const colorText =
+              theme === "dark" ? adjustColorForDarkMode(curso.color) : curso.color;
+
+            const hoverBg =
+              theme === "dark"
+                ? `linear-gradient(135deg, ${curso.color}55 0%, ${curso.color}25 100%)`
+                : curso.hoverBg;
 
             return (
               <motion.article
@@ -125,7 +141,6 @@ export default function CursosZaitec() {
                     text-gray-900 dark:text-gray-100
                   "
                 >
-                  {/* Hover background */}
                   <div
                     className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl"
                     style={{ background: hoverBg }}
@@ -133,7 +148,6 @@ export default function CursosZaitec() {
 
                   <div className="relative z-10 flex flex-col h-full">
 
-                    {/* Header */}
                     <div className="flex items-center gap-3 mb-4">
                       <div
                         className="p-2 rounded-xl shadow-sm backdrop-blur-sm"
@@ -159,12 +173,10 @@ export default function CursosZaitec() {
                       </h3>
                     </div>
 
-                    {/* Description */}
                     <p className="text-sm leading-relaxed text-gray-700 dark:text-gray-300 mb-4 grow">
                       {curso.descripcion}
                     </p>
 
-                    {/* CTA */}
                     <a
                       href={curso.link}
                       target="_blank"
@@ -180,7 +192,6 @@ export default function CursosZaitec() {
                     </a>
                   </div>
 
-                  {/* Corner accent */}
                   <div
                     className="
                       absolute top-0 right-0 w-20 h-20 opacity-[0.06] 
