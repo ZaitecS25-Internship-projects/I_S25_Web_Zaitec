@@ -420,7 +420,7 @@ export default function Header() {
                         transition={{ duration: 0.8 }}
                     >
                         <motion.h1
-                            className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight mb-6"
+                            className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight mb-6 mt-18"
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.8, delay: 0.2 }}
@@ -452,7 +452,7 @@ export default function Header() {
                                 className="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300 border border-blue-200 hover:border-blue-300 min-w-40 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:border-gray-500"
                                 whileHover={{ 
                                     scale: 1.05,
-                                    backgroundColor: "#f8fafc"
+                                    backgroundColor: "#131D2D"
                                 }}
                                 whileTap={{ scale: 0.98 }}
                             >

@@ -265,21 +265,27 @@ export default function IndexPage() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.1 }}
               viewport={{ once: true }}
-              className="group bg:white rounded-2xl shadow-md hover:shadow-2xl hover:-translate-y-2 hover:bg-linear-to-br hover:from-blue-50 hover:to-purple-50
-              transition-all duration-500 overflow-hidden cursor-pointer"
+              className="group relative cursor-pointer rounded-2xl overflow-hidden shadow-xl
+                bg-linear-to-br from-gray-800/90 to-gray-900/90
+                dark:from-gray-900/80 dark:via-gray-800/60 dark:to-gray-900/80
+                border-2 border-yellow-500/70 hover:border-yellow-400 hover:shadow-2xl hover:-translate-y-2 transition-all duration-500"
             >
-              <div className="aspect-4/3 w-full min-h-80 overflow-hidden flex items-center justify-center bg-gray-50">
-                <img
-                  src="/img/pepe-martinez.png"
-                  alt="Pepe Martínez y Asociados"
-                  className="w-full h-full object-contain sm:object-cover transition-transform duration-500 group-hover:scale-105"
-                />
+              <div className="aspect-4/3 w-full min-h-80 overflow-hidden flex items-center justify-center
+                bg-gray-700/30 dark:bg-linear-to-tr dark:from-yellow-800/30 dark:via-yellow-700/20 dark:to-yellow-900/30
+                transition-colors duration-500"
+              >
+                <img src="/img/pepe-martinez.png" alt="Pepe Martínez y Asociados" className="w-full h-full object-contain sm:object-cover transition-transform duration-500 group-hover:scale-105" />
               </div>
-              <div className="p-4 sm:p-5 transition-all">
-                <h3 className="text-lg sm:text-xl font-bold text-gray-800  group-hover:text-blue-700 mb-2 transition-all duration-300">
+              <div className="p-4 sm:p-5">
+                <h3 className="text-lg sm:text-xl font-extrabold mb-2 bg-clip-text text-transparent
+                  bg-linear-to-r from-yellow-400 via-orange-400 to-pink-400
+                  dark:from-yellow-300 dark:via-yellow-200 dark:to-orange-300
+                  transition-all duration-500
+                  group-hover:from-blue-600 group-hover:via-purple-500 group-hover:to-purple-600 group-hover:font-semibold"
+                >
                   Pepe Martínez y Asociados, bufete de abogados
                 </h3>
-                <p className="text-gray-600 text-sm sm:text-base transition-colors duration-300 group-hover:text-gray-800">
+                <p className="text-gray-200 dark:text-gray-100 text-sm sm:text-base transition-colors duration-300 group-hover:text-white">
                   Posicionamiento SEO, formularios para consejo legal y mucho más.
                 </p>
               </div>
@@ -291,20 +297,27 @@ export default function IndexPage() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.2 }}
               viewport={{ once: true }}
-              className="group bg-white rounded-2xl shadow-md hover:shadow-2xl hover:-translate-y-2 hover:bg-linear-to-br hover:from-blue-50 hover:to-purple-50 transition-all duration-500 overflow-hidden cursor-pointer"
+              className="group relative cursor-pointer rounded-2xl overflow-hidden shadow-xl
+                bg-linear-to-br from-gray-800/90 to-gray-900/90
+                dark:from-blue-900/80 dark:via-purple-800/60 dark:to-blue-900/80
+                border-2 border-blue-500/70 hover:border-blue-400 hover:shadow-2xl hover:-translate-y-2 transition-all duration-500"
             >
-              <div className="aspect-4/3 w-full min-h-80 overflow-hidden flex items-center justify-center bg-gray-50">
-                <img
-                  src="/img/cocinas-con-alma.png"
-                  alt="Cocinas con Alma"
-                  className="w-full h-full object-contain sm:object-cover transition-transform duration-500 group-hover:scale-105"
-                />
+              <div className="aspect-4/3 w-full min-h-80 overflow-hidden flex items-center justify-center
+                bg-gray-700/30 dark:bg-linear-to-tr dark:from-blue-800/30 dark:via-purple-700/20 dark:to-blue-900/30
+                transition-colors duration-500"
+              >
+                <img src="/img/cocinas-con-alma.png" alt="Cocinas con Alma" className="w-full h-full object-contain sm:object-cover transition-transform duration-500 group-hover:scale-105" />
               </div>
               <div className="p-4 sm:p-5">
-                <h3 className="text-lg sm:text-xl font-bold text-gray-800 mb-2 transition-colors duration-300 group-hover:text-blue-700">
+                <h3 className="text-lg sm:text-xl font-extrabold mb-2 bg-clip-text text-transparent
+                  bg-linear-to-r from-blue-400 via-purple-400 to-cyan-400
+                  dark:from-blue-300 dark:via-purple-300 dark:to-cyan-300
+                  transition-all duration-500
+                  group-hover:from-blue-600 group-hover:via-purple-500 group-hover:to-purple-600 group-hover:font-semibold"
+                >
                   Cocinas con Alma
                 </h3>
-                <p className="text-gray-600 text-sm sm:text-base transition-colors duration-300 group-hover:text-gray-800">
+                <p className="text-gray-200 dark:text-gray-100 text-sm sm:text-base transition-colors duration-300 group-hover:text-white">
                   Página con diseño impactante y gran detalle en Proyectos de Cocinas realizados.
                 </p>
               </div>
@@ -316,25 +329,33 @@ export default function IndexPage() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.3 }}
               viewport={{ once: true }}
-              className="
-              group bg-white rounded-2xl shadow-md hover:shadow-2xl hover:-translate-y-2 hover:bg-linear-to-br hover:from-blue-50 hover:to-purple-50 transition-all duration-500  overflow-hidden cursor-pointer"
+              className="group relative cursor-pointer rounded-2xl overflow-hidden shadow-xl
+                bg-linear-to-br from-gray-800/90 to-gray-900/90
+                dark:from-pink-900/80 dark:via-purple-800/60 dark:to-red-900/80
+                border-2 border-pink-500/70 hover:border-pink-400 hover:shadow-2xl hover:-translate-y-2 transition-all duration-500"
             >
-              <div className="aspect-4/3 w-full min-h-80 overflow-hidden flex items-center justify-center bg-gray-50">
-                <img
-                  src="/img/electro-genio.png"
-                  alt="Electrodomésticos ElectroGenio"
-                  className="w-full h-full object-contain sm:object-cover transition-transform duration-500 group-hover:scale-105"
-                />
+              <div className="aspect-4/3 w-full min-h-80 overflow-hidden flex items-center justify-center
+                bg-gray-700/30 dark:bg-linear-to-tr dark:from-pink-800/30 dark:via-purple-700/20 dark:to-red-900/30
+                transition-colors duration-500"
+              >
+                <img src="/img/electro-genio.png" alt="Electrodomésticos ElectroGenio" className="w-full h-full object-contain sm:object-cover transition-transform duration-500 group-hover:scale-105" />
               </div>
               <div className="p-4 sm:p-5">
-                <h3 className="text-lg sm:text-xl font-bold text-gray-800 mb-2 transition-colors duration-300 group-hover:text-blue-700">
+                <h3 className="text-lg sm:text-xl font-extrabold mb-2 bg-clip-text text-transparent
+                  bg-linear-to-r from-pink-400 via-purple-400 to-red-400
+                  dark:from-pink-300 dark:via-purple-300 dark:to-red-300
+                  transition-all duration-500
+                  group-hover:from-blue-600 group-hover:via-purple-500 group-hover:to-purple-600 group-hover:font-semibold"
+                >
                   Electrodomésticos ElectroGenio
                 </h3>
-                <p className="text-gray-600 text-sm sm:text-base transition-colors duration-300 group-hover:text-gray-800">
+                <p className="text-gray-200 dark:text-gray-100 text-sm sm:text-base transition-colors duration-300 group-hover:text-white">
                   Una web con tienda incorporada con cientos de referencias y pasarelas de pago.
                 </p>
               </div>
             </motion.article>
+
+
           </div>
         </div>
       </section>
