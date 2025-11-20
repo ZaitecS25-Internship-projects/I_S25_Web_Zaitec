@@ -355,6 +355,40 @@ export default function IndexPage() {
               </div>
             </motion.article>
 
+            {/* Proyecto 3 */}
+            <motion.article
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.3 }}
+              viewport={{ once: true }}
+              className="relative group cursor-pointer rounded-2xl overflow-hidden shadow-xl border border-violet-500/40 hover:border-2 hover:hover-violet-400/90 hover:shadow-neutral-400 hover:-translate-y-2 transition-all duration-500 ease-in-out"
+            >
+              <div className="aspect-4/3 w-full min-h-80 overflow-hidden flex items-center justify-center"
+              >
+                <img src="/img/electro-genio.png" alt="Electrodomésticos ElectroGenio" className="w-full h-full object-cover sm:object-cover group-hover:scale-105 transition-transform duration-500 ease-in-out" />
+              </div>
+              <div className="p-4 sm:p-5 bg-linear-to-b from-neutral-900/20 to-transparent group-hover:from-gray-900/5 group-hover:to-transparent transition-all duration-300 ease-in-out">
+                <h3 className="text-lg sm:text-xl font-semibold tracking-tight text-blue-700 mb-2 group-hover:text-violet-600 transition-all duration-300 ease-linear"
+                >
+                  Electrodomésticos ElectroGenio
+                </h3>
+                <p className="font-light text-neutral-600 tracking-tightm pr-5 sm:text-base">
+                  Una web con tienda incorporada con cientos de referencias y pasarelas de pago.
+                </p>
+                <a
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="
+                        flex items-center justify-between pt-4 font-semibold text-sm text-blue-700
+                        hover:underline transition-all duration-300 group-hover:translate-x-1
+                      "
+                    >
+                      <span>Más detalles</span>
+                      <ArrowUpRight className="w-4 h-4 ml-1" />
+                    </a>
+              </div>
+            </motion.article>
+
 
           </div>
         </div>
