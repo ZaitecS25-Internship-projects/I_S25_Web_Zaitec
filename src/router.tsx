@@ -3,7 +3,7 @@ import Layout from "./layouts/Layout"
 import IndexPage from "./views/IndexPage"
 import Formacion from "./views/Formacion"
 import Desarrollo from "./views/Desarrollo"
-import { action as actionContacto } from './components/Contacto'
+
 
 // Simple error boundary
 function ErrorBoundary() {
@@ -33,15 +33,20 @@ export const routerApp = createHashRouter([
             {
                 index: true,
                 element: <IndexPage />,
-                action: actionContacto
+                // action: actionContacto
             },
             {
                 path: 'formacion',
                 element: <Formacion />
             },
             {
-                path: 'desarrollo',
+                path: "desarrollo",
                 element: <Desarrollo />
+            },
+            {
+              path:"IndexPage",
+              element:<IndexPage/>
+
             }
         ]
     }

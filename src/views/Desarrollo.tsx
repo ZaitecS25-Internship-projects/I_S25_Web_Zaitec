@@ -1,86 +1,216 @@
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useTheme } from "../contexts/Themecontext";
 
-export default function Desarrollo() {
-  const projects = [
+interface Proyecto {
+  titulo: string;
+  descripcion: string;
+  img: string;
+  detalles?: string;
+  alt: string;
+}
+
+export default function ProyectosPage() {
+  const { theme } = useTheme();
+  const [modalProyecto, setModalProyecto] = useState<Proyecto | null>(null);
+
+  const proyectos: Proyecto[] = [
     {
-      id: 1,
-      title: "Pepe Martínez y asociados, bufete de abogados",
-      description: "Posicionamiento SEO, formularios para consejo legal y mucho más.",
-      image: "/img/pepe-martinez.png",
-      alt: "Pepe Martínez y Asociados"
+      titulo: "Pepe Martínez y Asociados",
+      descripcion: "Posicionamiento SEO, formularios para consejo legal y mucho más.",
+      detalles: "Proyecto completo de SEO y desarrollo de formularios para captación de clientes.",
+      img: "/img/pepe-martinez.png",
+      alt: "Pepe Martínez y Asociados",
     },
     {
-      id: 2,
-      title: "Cocinas con Alma",
-      description: "Página con diseño impactante y gran detalle en Proyectos de Cocinas realizados.",
-      image: "/img/cocinas-con-alma.png",
-      alt: "Cocinas con Alma"
+      titulo: "Cocinas con Alma",
+      descripcion: "Página con diseño impactante y gran detalle en proyectos de cocinas realizados.",
+      detalles: "Se incluyeron galerías interactivas y animaciones para destacar cada proyecto de cocina.",
+      img: "/img/cocinas-con-alma.png",
+      alt: "Cocinas con Alma",
     },
     {
-      id: 3,
-      title: "Electrodomésticos ElectroGenio",
-      description: "Una web con tienda incorporada con cientos de referencias y pasarelas de pago.",
-      image: "/img/electro-genio.png",
-      alt: "Electrodomésticos ElectroGenio"
-    }
+      titulo: "Electrodomésticos ElectroGenio",
+      descripcion: "Web con tienda incorporada, cientos de referencias y pasarelas de pago.",
+      detalles: "Integración de catálogo, carrito y múltiples métodos de pago, optimización de velocidad.",
+      img: "/img/electro-genio.png",
+      alt: "Electro-genio",
+    },
+    {
+      titulo: "Tienda Verde",
+      descripcion: "E-commerce sostenible con integración de pasarela de pago y carrito de compras.",
+      detalles: "Se implementó seguimiento de stock y gestión de pedidos con notificaciones.",
+      img: "/img/tienda-verde.jpg",
+      alt: "Tienda Verde",
+    },
+    {
+      titulo: "Fotografía Creativa",
+      descripcion: "Portfolio online con galería interactiva y animaciones suaves.",
+      detalles: "Galería de imágenes con lightbox y animaciones hover en cada foto.",
+      img: "/img/fotografia-creativa.png",
+      alt: "Fotografía Creativa",
+    },
+    {
+      titulo: "App Saludable",
+      descripcion: "Landing page para aplicación de hábitos saludables con integración de blog.",
+      detalles: "Se incluyó blog, sección de testimonios y formularios de suscripción.",
+      img: "/img/app-saludable.png",
+      alt: "App Saludable",
+    },
+    {
+      titulo: "Eventos Zaitec",
+      descripcion: "Web con calendario dinámico, formularios de inscripción y mapas integrados.",
+      detalles: "Integración de Google Maps y gestión de eventos con RSVP en línea.",
+      img: "/img/eventos-zaitec.png",
+      alt: "Eventos Zaitec",
+    },
+    {
+      titulo: "Consultoría Tech",
+      descripcion: "Sitio corporativo con servicios detallados, blog y testimonios de clientes.",
+      detalles: "Optimización SEO, secciones animadas y testimonios dinámicos.",
+      img: "/img/consultoria-tech.png",
+      alt: "Consultoría Tech",
+    },
   ];
 
   return (
-    <div className="bg-linear-to-br from-gray-50 to-white min-h-screen">
-      <section className="container mx-auto px-6 py-16 md:py-24">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
+    <section
+      id="proyectos"
+      className={`py-20 transition-colors duration-500 ${
+        theme === "dark" ? "bg-gray-900" : "bg-gray-100"
+      }`}
+    >
+      <div className="max-w-6xl mx-auto px-6 text-center mb-16">
+        <motion.h1
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7 }}
+          transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-5xl md:text-6xl font-extrabold bg-linear-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-6"
         >
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
-            <span className="bg-linear-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-              Proyectos
-            </span>{" "}
-            que generan confianza y resultados
-          </h2>
-          <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            Explora nuestras soluciones clave, donde convergen innovación, experiencia y resultados excepcionales.
-          </p>
-        </motion.div>
+          Más proyectos
+        </motion.h1>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
-          {projects.map((project, index) => (
-            <motion.div
-              key={project.id}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: index * 0.1 }}
-              viewport={{ once: true }}
-              className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-100"
-            >
-              {/* Imagen del proyecto */}
-              <div className="relative h-64 overflow-hidden bg-gray-100">
-                <motion.img
-                  src={project.image}
-                  alt={project.alt}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                  whileHover={{ scale: 1.05 }}
-                  transition={{ duration: 0.6 }}
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+          viewport={{ once: true }}
+          className="bg-linear-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent"
+        >
+          Explora más trabajos realizados por Zaitec: diseño web, desarrollo, e-commerce y mucho más.
+        </motion.p>
+      </div>
+
+      <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 max-w-6xl mx-auto px-6">
+        {proyectos.map((proyecto, index) => (
+          <motion.article
+            key={index}
+            initial={{ opacity: 0, y: 30, scale: 0.95 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ duration: 0.7, delay: 0.1 * index }}
+            viewport={{ once: true }}
+            onClick={() => setModalProyecto(proyecto)}
+            className={`group relative cursor-pointer rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 flex flex-col border-2 ${
+              theme === "dark"
+                ? "bg-white/10 backdrop-blur-md border-gray-600 text-gray-100"
+                : "bg-white text-gray-900 border-gray-200"
+            }`}
+          >
+            {/* Hover efecto degradado y brillo */}
+            <div
+              className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-40 transition-opacity duration-500"
+              style={{
+                background:
+                  theme === "dark"
+                    ? "linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.08))"
+                    : "linear-gradient(135deg, rgba(99,102,241,0.1), rgba(139,92,246,0.1))",
+              }}
+            ></div>
+
+            <div className="relative z-10 flex flex-col">
+              <div
+                className={`h-64 overflow-hidden flex items-center justify-center ${
+                  theme === "dark" ? "bg-white/5" : "bg-gray-50"
+                }`}
+              >
+                <img
+                  src={proyecto.img}
+                  alt={proyecto.alt}
+                  className="max-h-full object-contain transition-transform duration-500 group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-linear-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </div>
 
-              {/* Contenido del proyecto */}
-              <div className="p-6">
-                <h3 className="text-xl font-bold text-gray-800 mb-3 leading-tight">
-                  {project.title}
+              <div className="p-6 flex-1 flex flex-col relative z-10">
+                <h3
+                  className={`text-xl font-bold mb-3 transition-colors duration-300 group-hover:text-blue-400 ${
+                    theme === "dark" ? "text-gray-100" : "text-gray-900"
+                  }`}
+                >
+                  {proyecto.titulo}
                 </h3>
-                <p className="text-gray-600 leading-relaxed">
-                  {project.description}
+                <p
+                  className={`grow mb-4 transition-colors duration-300 ${
+                    theme === "dark" ? "text-gray-200" : "text-gray-800"
+                  }`}
+                >
+                  {proyecto.descripcion}
                 </p>
               </div>
+            </div>
+          </motion.article>
+        ))}
+      </div>
+
+      {/* Modal */}
+      <AnimatePresence mode="wait">
+        {modalProyecto && (
+          <motion.div
+            key="modal"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.25 }}
+            className="fixed inset-0 z-9999 bg-black bg-opacity-70 flex items-center justify-center"
+            onClick={() => setModalProyecto(null)}
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              transition={{ duration: 0.3, ease: "easeInOut" }}
+              className={`rounded-2xl max-w-3xl w-full p-6 relative transition-colors ${
+                theme === "dark"
+                  ? "bg-white/10 backdrop-blur-md border border-gray-600 text-gray-100"
+                  : "bg-white text-gray-900"
+              }`}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button
+                onClick={() => setModalProyecto(null)}
+                className={`absolute top-4 right-4 text-2xl font-bold hover:text-white transition-colors ${
+                  theme === "dark" ? "text-gray-200" : "text-gray-500"
+                }`}
+              >
+                &times;
+              </button>
+
+              <div className="h-64 flex items-center justify-center mb-6">
+                <img
+                  src={modalProyecto.img}
+                  alt={modalProyecto.alt}
+                  className="max-h-full object-contain"
+                />
+              </div>
+
+              <h3 className="text-2xl font-bold mb-2">{modalProyecto.titulo}</h3>
+              <p className={`${theme === "dark" ? "text-gray-200" : "text-gray-800"}`}>
+                {modalProyecto.detalles || modalProyecto.descripcion}
+              </p>
             </motion.div>
-          ))}
-        </div>
-      </section>
-    </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </section>
   );
 }
