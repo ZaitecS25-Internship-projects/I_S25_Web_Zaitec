@@ -66,7 +66,7 @@ export default function CursosZaitec() {
   ];
 
   return (
-    <section className="py-12 bg-gray-50 dark:bg-gray-900">
+    <section className="py-12 bg-transparent">
       <div className="container mx-auto px-4 max-w-6xl">
 
         {/* PREMIUM CTA BUTTON FIJO SIN CAMBIO BLANCO */}
@@ -138,7 +138,6 @@ export default function CursosZaitec() {
                     shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2
                     overflow-hidden ring-1 ring-transparent hover:ring-[1.5px]
                     dark:ring-gray-700
-                    text-gray-900 dark:text-gray-100
                   "
                 >
                   <div
@@ -173,7 +172,7 @@ export default function CursosZaitec() {
                       </h3>
                     </div>
 
-                    <p className="text-sm leading-relaxed text-gray-700 dark:text-gray-300 mb-4 grow">
+                    <p className="text-sm leading-relaxed text-gray-800 dark:text-gray-300 mb-4 grow">
                       {curso.descripcion}
                     </p>
 
