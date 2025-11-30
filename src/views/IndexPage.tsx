@@ -9,8 +9,8 @@ import { Link } from "react-router-dom";
 import { ArrowUpRight } from "lucide-react";
 import type { ErrorType, UserDataType } from "../types";
 import CookieConsent from '../components/CookieConsent';
-
-
+import Cursos from "../views/Formacion";
+import { section } from "framer-motion/client";
 
 //Estado inicial del formulario
 const initialForm = {
@@ -24,24 +24,8 @@ const initialForm = {
 }
 
 export default function IndexPage() {
-  //Mostrar local storage
-  // const savedData = useMemo<UserDataType[]>(() => {
-  //   try {
-  //     const data = localStorage.getItem('datosForm');
-  //     return data ? JSON.parse(data) : [];
-  //   } catch {
-  //     return [];
-  //   }
-  // }, []);
-
   //State del formulario
   const [formState, setFormState] = useState<UserDataType>(initialForm);
-  // const [dataForm, setDataForm] = useState<UserDataType[]>(savedData)
-
-  // //escribir en local storage
-  // useEffect(() => {
-  //   localStorage.setItem('datosForm', JSON.stringify(dataForm))
-  // }, [dataForm])
   //relacionado con el formulario
   const [sentForm, setSentForm] = useState<boolean>(false)
   const [alertForm, setAlertForm] = useState<string>('')
@@ -68,7 +52,6 @@ export default function IndexPage() {
   }, [])
 
   const cards: Cards = [
-
     {
       titulo: "Desarrollo Ágil.",
       descripcion:
@@ -110,8 +93,6 @@ export default function IndexPage() {
     });
   };
 
-  // values(formState).some(value => value.trim() === ''
-  //funcion asincrona aync await
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     //validación de campos
@@ -158,39 +139,6 @@ export default function IndexPage() {
         setIsSending(false)
       }, 4000)
     }
-
-    //utilizar then y catch
-    // // Enviar correo automáticamente con EmailJS
-    // emailjs
-    //   .send(
-    //     "service_054243w", // <- tu Service ID de EmailJS
-    //     "template_ul1ngwc", // <- tu Template ID de EmailJS
-    //     formState, // <- state directamente
-    //     "AitL2YWNXRY3yYfb4" // <- tu Public Key de EmailJS
-    //   ).then(() => {
-    //     setAlertForm('Los datos han sido enviados')
-    //     setSentForm(true)
-    //     handleReset()
-    //     setErrors({
-    //       nombre: 'Campo obligatorio',
-    //       apellido: 'Campo obligatorio',
-    //       segunapellido: 'campo obligatorio',
-    //       email: 'Campo obligatorio',
-    //       telefono: 'Campo obligatorio',
-    //       fecha: 'Campo obligatorio',
-    //     })
-
-    //     setTimeout(() => {
-    //       setAlertForm('')
-    //     }, 5000)
-
-    //   })
-    //   .catch((error) => {
-    //     console.error("Error EmailJS:", error)
-    //     setAlertForm('Fallo al enviar los datos');
-    //     setSentForm(false)
-    //     setTimeout(() => setAlertForm(''), 5000);
-    //   })
   }
 
   const handleReset = () => {
@@ -212,7 +160,6 @@ export default function IndexPage() {
     // Guardamos los datos actuales del formulario
     sessionStorage.setItem("userData", JSON.stringify(formState));
   };
-
 
   return (
     <>
@@ -246,61 +193,69 @@ export default function IndexPage() {
 
           <div className="grid md:grid-row lg:grid-cols-3 gap-1 lg:gap-8 md:w-3/4 lg:w-10/11 mx-auto">
             <CardInnovacion cards={cards} />
-
           </div>
         </div>
       </section>
-
 
       {/* Projects Section */}
       <section
         aria-labelledby="soluciones-heading"
         id="desarrollo-proyectos"
-        className="py-16 md:py-20 bg-linear-to-br from-yellow-50 to-amber-50"
+        className="py-16 md:py-20 bg-white"
       >
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Título + enlace */}
+          {/* Centered Title */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7 }}
             viewport={{ once: true }}
-            className="flex flex-col md:flex-row items-center justify-between mb-10 md:mb-14"
+            className="text-center mb-12"
           >
-            {/* Texto izquierda con subrayado animado completo */}
-            <div className="relative text-center md:text-left mb-6 md:mb-0 inline-block">
-              <h2
-                id="soluciones-heading"
-                className="text-3xl sm:text-4xl font-bold text-gray-900 bg-linear-to-r from-blue-600 to-purple-600 bg-clip-text  inline-block pb-2"
-              >
-                Proyectos que generan confianza
-              </h2>
-              {/* Línea animada de ancho completo */}
-              <span className="absolute bottom-0 left-0 w-full h-1 rounded-full bg-size[length:200%_200%] bg-linear-to-r from-blue-600 via-purple-600 to-blue-600 animate-gradient-move"></span>
-            </div>
+            <h2
+              id="soluciones-heading"
+              className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6"
+            >
+              <span className="bg-linear-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                Proyectos
+              </span>{" "}
+              que generan confianza
+            </h2>
+            <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+              Descubre nuestros trabajos más destacados que reflejan calidad, innovación y resultados.
+            </p>
+          </motion.div>
 
-            {/* Enlace derecha con flecha animada constante */}
+          {/* Enhanced Button */}
+          <div className="flex justify-center mb-10 md:mb-14">
             <Link
               to="/Desarrollo"
-              className="inline-flex items-center text-blue-600 text-lg sm:text-xl md:text-2xl font-bold hover:text-blue-800 transition-colors"
+              className="group relative inline-flex items-center justify-center px-8 py-4 bg-linear-to-r from-blue-600 to-purple-600 text-white font-semibold text-lg rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:from-blue-700 hover:to-purple-700 min-w-48"
             >
-              Ver más proyectos
+              <span className="relative z-10">Ver más proyectos</span>
               <motion.div
+                className="ml-3 relative z-10"
                 animate={{
                   x: [0, 4, 0],
-                  y: [0, -4, 0],
                 }}
                 transition={{
                   duration: 1.5,
                   repeat: Infinity,
                   ease: 'easeInOut',
                 }}
-                className="ml-2 sm:ml-3"
               >
-                <ArrowUpRight className="w-6 h-6 sm:w-8 sm:h-8" />
+                <ArrowUpRight className="w-6 h-6" />
               </motion.div>
+              
+              {/* Hover effect background */}
+              <div className="absolute inset-0 bg-linear-to-r from-blue-700 to-purple-700 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              
+              {/* Shine effect */}
+              <div className="absolute inset-0 rounded-xl overflow-hidden">
+                <div className="absolute -inset-full bg-linear-to-r from-transparent via-white/20 to-transparent transform skew-x-12 group-hover:animate-shine group-hover:duration-1000"></div>
+              </div>
             </Link>
-          </motion.div>
+          </div>
 
           {/* Tarjetas responsive */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-6xl mx-auto">
@@ -310,20 +265,17 @@ export default function IndexPage() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.1 }}
               viewport={{ once: true }}
-              className="group bg-white rounded-2xl shadow-md hover:shadow-2xl hover:-translate-y-2 hover:bg-linear-to-br hover:from-blue-50 hover:to-purple-50 transition-all duration-500 overflow-hidden cursor-pointer"
+              className="group relative cursor-pointer rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 bg-white dark:bg-gray-800"
             >
-              <div className="h-56 sm:h-64 md:h-72 lg:h-80 overflow-hidden flex items-center justify-center bg-gray-50">
-                <img
-                  src="/img/pepe-martinez.png"
-                  alt="Pepe Martínez y Asociados"
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                />
+              <div className="aspect-4/3 w-full min-h-80 overflow-hidden flex items-center justify-center bg-gray-50 dark:bg-gray-700 transition-colors duration-500"
+              >
+                <img src="/img/pepe-martinez.png" alt="Pepe Martínez y Asociados" className="w-full h-full object-contain sm:object-cover transition-transform duration-500 group-hover:scale-105" />
               </div>
               <div className="p-4 sm:p-5">
-                <h3 className="text-lg sm:text-xl font-bold text-gray-800 mb-2 transition-colors duration-300 group-hover:text-blue-700">
+                <h3 className="text-lg sm:text-xl font-extrabold mb-2 bg-linear-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent dark:text-white">
                   Pepe Martínez y Asociados, bufete de abogados
                 </h3>
-                <p className="text-gray-600 text-sm sm:text-base transition-colors duration-300 group-hover:text-gray-800">
+                <p className="text-gray-700 dark:text-gray-300 text-sm sm:text-base">
                   Posicionamiento SEO, formularios para consejo legal y mucho más.
                 </p>
               </div>
@@ -335,20 +287,17 @@ export default function IndexPage() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.2 }}
               viewport={{ once: true }}
-              className="group bg-white rounded-2xl shadow-md hover:shadow-2xl hover:-translate-y-2 hover:bg-linear-to-br hover:from-blue-50 hover:to-purple-50 transition-all duration-500 overflow-hidden cursor-pointer"
+              className="group relative cursor-pointer rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 bg-white dark:bg-gray-800"
             >
-              <div className="h-56 sm:h-64 md:h-72 lg:h-80 overflow-hidden flex items-center justify-center bg-gray-50">
-                <img
-                  src="/img/cocinas-con-alma.png"
-                  alt="Cocinas con Alma"
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                />
+              <div className="aspect-4/3 w-full min-h-80 overflow-hidden flex items-center justify-center bg-gray-50 dark:bg-gray-700 transition-colors duration-500"
+              >
+                <img src="/img/cocinas-con-alma.png" alt="Cocinas con Alma" className="w-full h-full object-contain sm:object-cover transition-transform duration-500 group-hover:scale-105" />
               </div>
               <div className="p-4 sm:p-5">
-                <h3 className="text-lg sm:text-xl font-bold text-gray-800 mb-2 transition-colors duration-300 group-hover:text-blue-700">
+                <h3 className="text-lg sm:text-xl font-extrabold mb-2 bg-linear-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent dark:text-white">
                   Cocinas con Alma
                 </h3>
-                <p className="text-gray-600 text-sm sm:text-base transition-colors duration-300 group-hover:text-gray-800">
+                <p className="text-gray-700 dark:text-gray-300 text-sm sm:text-base">
                   Página con diseño impactante y gran detalle en Proyectos de Cocinas realizados.
                 </p>
               </div>
@@ -360,41 +309,25 @@ export default function IndexPage() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.3 }}
               viewport={{ once: true }}
-              className="group bg-white rounded-2xl shadow-md hover:shadow-2xl hover:-translate-y-2 hover:bg-linear-to-br hover:from-blue-50 hover:to-purple-50 transition-all duration-500 overflow-hidden cursor-pointer"
+              className="group relative cursor-pointer rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 bg-white dark:bg-gray-800"
             >
-              <div className="h-56 sm:h-64 md:h-72 lg:h-80 overflow-hidden flex items-center justify-center bg-gray-50">
-                <img
-                  src="/img/electro-genio.png"
-                  alt="Electro-genio"
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                />
+              <div className="aspect-4/3 w-full min-h-80 overflow-hidden flex items-center justify-center bg-gray-50 dark:bg-gray-700 transition-colors duration-500"
+              >
+                <img src="/img/electro-genio.png" alt="Electrodomésticos ElectroGenio" className="w-full h-full object-contain sm:object-cover transition-transform duration-500 group-hover:scale-105" />
               </div>
               <div className="p-4 sm:p-5">
-                <h3 className="text-lg sm:text-xl font-bold text-gray-800 mb-2 transition-colors duration-300 group-hover:text-blue-700">
+                <h3 className="text-lg sm:text-xl font-extrabold mb-2 bg-linear-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent dark:text-white">
                   Electrodomésticos ElectroGenio
                 </h3>
-                <p className="text-gray-600 text-sm sm:text-base transition-colors duration-300 group-hover:text-gray-800">
+                <p className="text-gray-700 dark:text-gray-300 text-sm sm:text-base">
                   Una web con tienda incorporada con cientos de referencias y pasarelas de pago.
                 </p>
               </div>
             </motion.article>
           </div>
         </div>
-
-        {/* Animación personalizada para la línea */}
-        <style>
-          {`
-      @keyframes gradient-move {
-        0% { background-position: 0% 50%; }
-        50% { background-position: 100% 50%; }
-        100% { background-position: 0% 50%; }
-      }
-      .animate-gradient-move {
-        animation: gradient-move 4s ease infinite;
-      }
-    `}
-        </style>
       </section>
+
       {/* Contact Section */}
       <section
         className="py-16 md:py-20 bg-linear-to-br from-yellow-50 to-amber-50"
@@ -407,7 +340,6 @@ export default function IndexPage() {
             transition={{ duration: 0.7 }}
             viewport={{ once: true }}
             className="text-center mb-12"
-
           >
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
               <span className="bg-linear-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
@@ -571,13 +503,14 @@ export default function IndexPage() {
         </div>
       </section>
 
-      {/* Training Section */}
+      {/* Training Section - Now with courses directly displayed */}
       <section
         id="formacion"
         aria-labelledby="capacitacion-tecnologica-heading"
         className="py-16 md:py-20 bg-gray-50 relative"
       >
         <div className="container mx-auto px-6">
+          {/* Título */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -599,154 +532,13 @@ export default function IndexPage() {
             </p>
           </motion.div>
 
-          {/* Bloque de acceso al curso con texto centrado y flecha a la derecha */}
-          <div className="flex items-center justify-between my-12 max-w-5xl mx-auto px-6">
-            {/* Texto centrado */}
-            <span className="text-2xl md:text-3xl font-bold text-gray-900 mx-auto">
-              Accede al curso ZaitecLabs.es
-            </span>
-
-            {/* Flecha clicable a la derecha */}
-            <motion.a
-              href="https://Zaiteclabs.es/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-60 h-60 ml-auto" // ml-auto empuja la flecha a la derecha
-              animate={{
-                y: [0, -15, 0],
-                x: [0, 10, 0]
-              }}
-              transition={{
-                duration: 2,
-                repeat: Infinity,
-                repeatType: "loop",
-                ease: "easeInOut",
-              }}
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="none"
-                strokeWidth={2.4}
-                stroke="currentColor"
-                className="w-60 h-60 text-blue-700 hover:text-blue-900 cursor-pointer transition-transform duration-300 hover:scale-105"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M5 19L19 5M5 5h14v14"
-                />
-              </svg>
-            </motion.a>
-          </div>
-
-
-          {/* Training Targets */}
-          <div className="flex flex-col gap-10 max-w-5xl mx-auto">
-
-            {/* Excel Avanzado */}
-            <motion.article
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.1 }}
-              viewport={{ once: true }}
-            >
-              <div className="flex flex-col md:flex-row items-center justify-between bg-linear-to-br from-green-500 to-green-600 text-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02] min-h-[200px]">
-                <p className="text-green-100 text-lg md:w-2/3 mb-4 md:mb-0">
-                  Aprende a dominar hojas de cálculo, fórmulas avanzadas, análisis de datos y automatización con macros.
-                </p>
-                <a
-                  href="https://learn.microsoft.com/es-es/training/excel/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-3 md:w-1/3 justify-end hover:opacity-90 transition"
-                >
-                  <img src="/img/excel.png" alt="Excel Avanzado" className="w-10 h-10" />
-                  <h3 className="text-2xl font-bold text-right underline decoration-green-200/60">
-                    Excel Avanzado
-                  </h3>
-                </a>
-              </div>
-            </motion.article>
-
-            {/* ChatGPT */}
-            <motion.article
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.2 }}
-              viewport={{ once: true }}
-            >
-              <div className="flex flex-col md:flex-row-reverse items-center justify-between bg-linear-to-br from-gray-800 to-gray-900 text-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02] min-h-[200px]">
-                <p className="text-gray-200 text-lg md:w-2/3 mb-4 md:mb-0 text-right md:text-left">
-                  Aprende a usar ChatGPT para aumentar tu productividad, generar contenido y automatizar tareas.
-                </p>
-                <a
-                  href="https://openai.com/chat"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-3 md:w-1/3 justify-start hover:opacity-90 transition"
-                >
-                  <img src="/img/chatgpt.png" alt="ChatGPT" className="w-10 h-10" />
-                  <h3 className="text-2xl font-bold md:text-right underline decoration-gray-400/60">
-                    ChatGPT
-                  </h3>
-                </a>
-              </div>
-            </motion.article>
-
-            {/* Python */}
-            <motion.article
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.3 }}
-              viewport={{ once: true }}
-            >
-              <div className="flex flex-col md:flex-row items-center justify-between bg-linear-to-br from-blue-600 to-blue-700 text-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02] min-h-[200px]">
-                <p className="text-blue-100 text-lg md:w-2/3 mb-4 md:mb-0">
-                  Domina la programación con Python: desde fundamentos hasta análisis de datos y desarrollo web.
-                </p>
-                <a
-                  href="https://www.python.org/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-3 md:w-1/3 justify-end hover:opacity-90 transition"
-                >
-                  <img src="/img/python.png" alt="Python" className="w-10 h-10" />
-                  <h3 className="text-2xl font-bold text-right underline decoration-blue-200/60">
-                    Python
-                  </h3>
-                </a>
-              </div>
-            </motion.article>
-
-            {/* React */}
-            <motion.article
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.4 }}
-              viewport={{ once: true }}
-            >
-              <div className="flex flex-col md:flex-row-reverse items-center justify-between bg-linear-to-br from-sky-500 to-indigo-600 text-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02] min-h-[200px]">
-                <p className="text-sky-100 text-lg md:w-2/3 mb-4 md:mb-0 text-right md:text-left">
-                  Aprende React desde cero: componentes, hooks, rutas y animaciones para crear aplicaciones modernas.
-                </p>
-                <a
-                  href="https://react.dev/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-3 md:w-1/3 justify-start hover:opacity-90 transition"
-                >
-                  <img src="/img/react.png" alt="React" className="w-10 h-10 animate-spin-slow" />
-                  <h3 className="text-2xl font-bold md:text-right underline decoration-sky-200/60">
-                    React
-                  </h3>
-                </a>
-              </div>
-            </motion.article>
-
+          {/* Courses Grid - Directly on homepage */}
+          <div className="max-w-5xl mx-auto">
+            <Cursos />
           </div>
         </div>
       </section>
+
       <CookieConsent onAccept={handleCookiesAccept} />
     </>
   );

@@ -4,11 +4,14 @@ export default {
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
+  darkMode: 'class', // Use class-based dark mode
   theme: {
     extend: {
-      fontFamily: {
-        sans: ['Inter', 'sans-serif'],
-        orbitron: ['Orbitron', 'sans-serif'],
+      // Keep all existing extensions
+      backgroundImage: {
+        'linear-to-r': 'linear-gradient(to right, var(--tw-gradient-stops))',
+        'linear-to-br': 'linear-gradient(to bottom right, var(--tw-gradient-stops))',
+        'linear-to-b': 'linear-gradient(to bottom, var(--tw-gradient-stops))',
       },
     },
   },

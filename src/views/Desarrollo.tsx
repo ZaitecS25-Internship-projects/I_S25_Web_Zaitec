@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useTheme } from "../contexts/Themecontext";
 
 interface Proyecto {
   titulo: string;
@@ -10,6 +11,7 @@ interface Proyecto {
 }
 
 export default function ProyectosPage() {
+  const { theme } = useTheme();
   const [modalProyecto, setModalProyecto] = useState<Proyecto | null>(null);
 
   const proyectos: Proyecto[] = [
@@ -72,17 +74,22 @@ export default function ProyectosPage() {
   ];
 
   return (
-    <section id="proyectos" className="py-20 bg-gray-100">
+    <section
+      id="proyectos"
+      className={`py-20 transition-colors duration-500 ${
+        theme === "dark" ? "bg-gray-900" : "bg-gray-100"
+      }`}
+    >
       <div className="max-w-6xl mx-auto px-6 text-center mb-16">
-     <motion.h1
-  initial={{ opacity: 0, y: 20 }}
-  whileInView={{ opacity: 1, y: 0 }}
-  transition={{ duration: 0.6 }}
-  viewport={{ once: true }}
-  className="text-5xl md:text-6xl font-extrabold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-6"
->
-  Más proyectos
-</motion.h1>
+        <motion.h1
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="text-5xl md:text-6xl font-extrabold bg-linear-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-6"
+        >
+          Más proyectos
+        </motion.h1>
 
         <motion.p
           initial={{ opacity: 0, y: 20 }}
@@ -99,71 +106,111 @@ export default function ProyectosPage() {
         {proyectos.map((proyecto, index) => (
           <motion.article
             key={index}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, y: 30, scale: 0.95 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
             transition={{ duration: 0.7, delay: 0.1 * index }}
             viewport={{ once: true }}
-            className="bg-white rounded-2xl shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 cursor-pointer overflow-hidden flex flex-col"
             onClick={() => setModalProyecto(proyecto)}
+            className={`group relative cursor-pointer rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 flex flex-col border-2 ${
+              theme === "dark"
+                ? "bg-white/10 backdrop-blur-md border-gray-600 text-gray-100"
+                : "bg-white text-gray-900 border-gray-200"
+            }`}
           >
-            <div className="h-64 overflow-hidden flex items-center justify-center bg-gray-50">
-              <img
-                src={proyecto.img}
-                alt={proyecto.alt}
-                className="max-h-full object-contain transition-transform duration-500 hover:scale-105"
-              />
-            </div>
-            <div className="p-6 flex-1 flex flex-col">
-              <h3 className="text-xl font-bold text-gray-800 mb-3">{proyecto.titulo}</h3>
-              <p className="text-gray-600 mb-4 flex-grow">{proyecto.descripcion}</p>
+            {/* Hover efecto degradado y brillo */}
+            <div
+              className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-40 transition-opacity duration-500"
+              style={{
+                background:
+                  theme === "dark"
+                    ? "linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.08))"
+                    : "linear-gradient(135deg, rgba(99,102,241,0.1), rgba(139,92,246,0.1))",
+              }}
+            ></div>
+
+            <div className="relative z-10 flex flex-col">
+              <div
+                className={`h-64 overflow-hidden flex items-center justify-center ${
+                  theme === "dark" ? "bg-white/5" : "bg-gray-50"
+                }`}
+              >
+                <img
+                  src={proyecto.img}
+                  alt={proyecto.alt}
+                  className="max-h-full object-contain transition-transform duration-500 group-hover:scale-105"
+                />
+              </div>
+
+              <div className="p-6 flex-1 flex flex-col relative z-10">
+                <h3
+                  className={`text-xl font-bold mb-3 transition-colors duration-300 group-hover:text-blue-400 ${
+                    theme === "dark" ? "text-gray-100" : "text-gray-900"
+                  }`}
+                >
+                  {proyecto.titulo}
+                </h3>
+                <p
+                  className={`grow mb-4 transition-colors duration-300 ${
+                    theme === "dark" ? "text-gray-200" : "text-gray-800"
+                  }`}
+                >
+                  {proyecto.descripcion}
+                </p>
+              </div>
             </div>
           </motion.article>
         ))}
       </div>
 
       {/* Modal */}
-      {/* Modal */}
-<AnimatePresence mode="wait">
-  {modalProyecto && (
-    <motion.div
-      key="modal"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.25 }}
-      className="fixed inset-0 z-[9999] bg-black bg-opacity-70 flex items-center justify-center"
-      onClick={() => setModalProyecto(null)}
-    >
-      <motion.div
-        initial={{ scale: 0.9, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        exit={{ scale: 0.9, opacity: 0 }}
-        transition={{ duration: 0.3, ease: 'easeInOut' }}
-        className="bg-white rounded-2xl max-w-3xl w-full p-6 relative"
-        onClick={(e) => e.stopPropagation()}
-      >
-        <button
-          onClick={() => setModalProyecto(null)}
-          className="absolute top-4 right-4 text-gray-500 hover:text-gray-800 text-2xl font-bold"
-        >
-          &times;
-        </button>
+      <AnimatePresence mode="wait">
+        {modalProyecto && (
+          <motion.div
+            key="modal"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.25 }}
+            className="fixed inset-0 z-9999 bg-black bg-opacity-70 flex items-center justify-center"
+            onClick={() => setModalProyecto(null)}
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              transition={{ duration: 0.3, ease: "easeInOut" }}
+              className={`rounded-2xl max-w-3xl w-full p-6 relative transition-colors ${
+                theme === "dark"
+                  ? "bg-white/10 backdrop-blur-md border border-gray-600 text-gray-100"
+                  : "bg-white text-gray-900"
+              }`}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button
+                onClick={() => setModalProyecto(null)}
+                className={`absolute top-4 right-4 text-2xl font-bold hover:text-white transition-colors ${
+                  theme === "dark" ? "text-gray-200" : "text-gray-500"
+                }`}
+              >
+                &times;
+              </button>
 
-        <div className="h-64 flex items-center justify-center mb-6">
-          <img
-            src={modalProyecto.img}
-            alt={modalProyecto.alt}
-            className="max-h-full object-contain"
-          />
-        </div>
+              <div className="h-64 flex items-center justify-center mb-6">
+                <img
+                  src={modalProyecto.img}
+                  alt={modalProyecto.alt}
+                  className="max-h-full object-contain"
+                />
+              </div>
 
-        <h3 className="text-2xl font-bold mb-2">{modalProyecto.titulo}</h3>
-        <p className="text-gray-700">{modalProyecto.detalles || modalProyecto.descripcion}</p>
-      </motion.div>
-    </motion.div>
-  )}
-</AnimatePresence>
-
+              <h3 className="text-2xl font-bold mb-2">{modalProyecto.titulo}</h3>
+              <p className={`${theme === "dark" ? "text-gray-200" : "text-gray-800"}`}>
+                {modalProyecto.detalles || modalProyecto.descripcion}
+              </p>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }
