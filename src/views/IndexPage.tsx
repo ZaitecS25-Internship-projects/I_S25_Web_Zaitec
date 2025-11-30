@@ -265,17 +265,17 @@ export default function IndexPage() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.1 }}
               viewport={{ once: true }}
-              className="group relative cursor-pointer rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 bg-white dark:bg-gray-800"
+              className="group relative cursor-pointer rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl hover:-translate-y-2 bg-transparent hover:bg-gray-800/10 transition-all duration-300"
             >
-              <div className="aspect-4/3 w-full min-h-80 overflow-hidden flex items-center justify-center bg-gray-50 dark:bg-gray-700 transition-colors duration-500"
+              <div className="aspect-4/3 w-full min-h-80 overflow-hidden flex items-center justify-center  transition-colors duration-500"
               >
                 <img src="/img/pepe-martinez.png" alt="Pepe Martínez y Asociados" className="w-full h-full object-contain sm:object-cover transition-transform duration-500 group-hover:scale-105" />
               </div>
               <div className="p-4 sm:p-5">
-                <h3 className="text-lg sm:text-xl font-extrabold mb-2 bg-linear-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent dark:text-white">
+                <h3 className="text-lg sm:text-xl font-extrabold mb-2 text-blue-600 group-hover:text-violet-700 ">
                   Pepe Martínez y Asociados, bufete de abogados
                 </h3>
-                <p className="text-gray-700 dark:text-gray-300 text-sm sm:text-base">
+                <p className="text-sm sm:text-base">
                   Posicionamiento SEO, formularios para consejo legal y mucho más.
                 </p>
               </div>
@@ -287,17 +287,17 @@ export default function IndexPage() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.2 }}
               viewport={{ once: true }}
-              className="group relative cursor-pointer rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 bg-white dark:bg-gray-800"
+              className="group relative cursor-pointer rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl hover:-translate-y-2 bg-transparent hover:bg-gray-800/10 transition-all duration-300"
             >
-              <div className="aspect-4/3 w-full min-h-80 overflow-hidden flex items-center justify-center bg-gray-50 dark:bg-gray-700 transition-colors duration-500"
+              <div className="aspect-4/3 w-full min-h-80 overflow-hidden flex items-center justify-center transition-colors duration-500"
               >
                 <img src="/img/cocinas-con-alma.png" alt="Cocinas con Alma" className="w-full h-full object-contain sm:object-cover transition-transform duration-500 group-hover:scale-105" />
               </div>
-              <div className="p-4 sm:p-5">
-                <h3 className="text-lg sm:text-xl font-extrabold mb-2 bg-linear-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent dark:text-white">
+              <div className="p-4 sm:p-5  ">
+                <h3 className="text-lg sm:text-xl font-extrabold mb-2  text-blue-600 group-hover:text-violet-700 ">
                   Cocinas con Alma
                 </h3>
-                <p className="text-gray-700 dark:text-gray-300 text-sm sm:text-base">
+                <p className="text-sm sm:text-base ">
                   Página con diseño impactante y gran detalle en Proyectos de Cocinas realizados.
                 </p>
               </div>
@@ -309,17 +309,17 @@ export default function IndexPage() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.3 }}
               viewport={{ once: true }}
-              className="group relative cursor-pointer rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 bg-white dark:bg-gray-800"
+              className="group relative cursor-pointer rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl hover:-translate-y-2 bg-transparent hover:bg-gray-800/10 transition-all duration-300"
             >
-              <div className="aspect-4/3 w-full min-h-80 overflow-hidden flex items-center justify-center bg-gray-50 dark:bg-gray-700 transition-colors duration-500"
+              <div className="aspect-4/3 w-full min-h-80 overflow-hidden flex items-center justify-center transition-colors duration-500"
               >
                 <img src="/img/electro-genio.png" alt="Electrodomésticos ElectroGenio" className="w-full h-full object-contain sm:object-cover transition-transform duration-500 group-hover:scale-105" />
               </div>
               <div className="p-4 sm:p-5">
-                <h3 className="text-lg sm:text-xl font-extrabold mb-2 bg-linear-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent dark:text-white">
+                <h3 className="text-lg sm:text-xl font-extrabold mb-2 text-blue-600 group-hover:text-violet-700">
                   Electrodomésticos ElectroGenio
                 </h3>
-                <p className="text-gray-700 dark:text-gray-300 text-sm sm:text-base">
+                <p className="text-sm sm:text-base">
                   Una web con tienda incorporada con cientos de referencias y pasarelas de pago.
                 </p>
               </div>

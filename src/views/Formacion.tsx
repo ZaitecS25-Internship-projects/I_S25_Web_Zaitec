@@ -172,7 +172,7 @@ export default function CursosZaitec() {
                       </h3>
                     </div>
 
-                    <p className="text-sm leading-relaxed text-gray-800 dark:text-gray-300 mb-4 grow">
+                    <p className="text-sm leading-relaxed mb-4 grow">
                       {curso.descripcion}
                     </p>
 
